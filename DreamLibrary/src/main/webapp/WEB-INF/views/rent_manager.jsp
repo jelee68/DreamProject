@@ -59,7 +59,7 @@
                         </p>
 
                         <dl class="book_info">
-                           <dt>서명</dt><dd class="book_name">2</dd>
+                           <dt>서명</dt><dd class="book_name"></dd>
                            <dt>저자</dt><dd class="book_author"></dd>
                            <dt>출판일</dt><dd class="book_date"></dd>
                            <dt>출판사</dt><dd class="book_pub"></dd>
