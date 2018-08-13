@@ -1,0 +1,23 @@
+#myHistory{margin: auto;margin-top: 100px;}
+#myHistory .sec1,#myHistory .sec2{width: 1100px;margin: auto;}
+#myHistory h2{font-size: 28px;font-weight: bold;}
+#myHistory table{margin-top: 60px;border-top: 5px solid rgb(230, 126, 34);font-size: 18px;width: 100%;margin-bottom: 60px;}
+#myHistory table thead{background-color: #5e5e5e}
+#myHistory table thead th{padding-top: 20px;padding-bottom: 25px;color:#fff}
+#myHistory table tbody td{padding: 20px 10px;border-bottom: 1px solid dimgrey;bo rder-right: 1px solid silver;text-align: center;}
+#myHistory table tbody td.book_name{text-align: left;}
+
+#myHistory .sec2{margin-top: 120px;}
+#myHistory  p.paging{text-align: center;}
+#myHistory  p.paging a{}
+#myHistory  p.paging span{}
+#myHistory  p.paging span a{font-size: 14px;margin: 0 3px;}
+#myHistory  p.paging a img{width: 25px; height: auto;vertical-align: middle;}
+  p.paging a.on{color:#333;text-decoration: underline;font-weight: bold;}
+#myHistory  p.paging a.arrow{display: inline-block;border: 1px solid #cfcfcf;box-sizing: border-box;}
+#myHistory  p.paging a.first{}
+#myHistory  p.paging a.prev{margin-right: 10px;}
+#myHistory  p.paging a.next{margin-left: 10px;}
+#myHistory  p.paging a.last{}
+
+#myHistory  p.paging a:hover{backgr ound-color: #333;}
