@@ -29,7 +29,7 @@
                <div class="easy cf">
                   <h4>
                      <span class="detail-btn">
-                     상세검색
+                	     상세검색
                      </span>
                   </h4>
                   <form action="" method="post" >
@@ -107,11 +107,11 @@
 
             <section class="sec2">
                   <ul class="menu cf">
-                     <li><a href="search.html">자료검색</a></li>
-                     <li><a href="">신간도서</a></li>
-                     <li><a href="">내 서재</a></li>
-                     <li><a href="">도서등록</a></li>
-                     <li><a href="">대출관리</a></li>
+                     <li><a href="book_search">자료검색</a></li>
+                     <li><a href="book_list">신간도서</a></li>
+                     <li><a href="my_history">내 서재</a></li>
+                     <li><a href="book_manager">도서등록</a></li>
+                     <li><a href="rent_manager">대출관리</a></li>
                   </ul>
             </section>
 

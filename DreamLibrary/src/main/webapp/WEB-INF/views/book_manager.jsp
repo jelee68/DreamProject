@@ -13,11 +13,11 @@
 
 <header id="header">
       <div class="inner-1280">
-         <h1><a href="">Dream Library</a></h1>
+         <h1><a href="/index">Dream Library</a></h1>
          <dl class="top-menu">
             <dt class="hide">상위메뉴</dt>
-            <dd><a href="">login</a>|</dd>
-            <dd><a href="">join</a></dd>
+            <dd><a href="login">login</a>|</dd>
+            <dd><a href="join">join</a></dd>
          </dl>
       </div>
    </header>
@@ -43,7 +43,6 @@
                            <th scope="col">도서ID</th>
                            <th scope="col">서명</th>
                            <th scope="col">저자</th>
-                           <th scope="col">상태</th>
                         </tr>
                      </thead>
                   </table>
@@ -52,9 +51,8 @@
                         <caption class='hide'>등록도서목록</caption>
                         <colgroup>
                            <col width="6%" />
-                           <col width="14%" />
-                           <col width="47%" />
-                           <col width="22%" />
+                           <col width="20%" />
+                           <col width="55%" />
                            <col width="*" />
                         </colgroup>
                         <tbody>
@@ -63,189 +61,6 @@
                               <td class="book_id">0100000101</td>
                               <td class="book_name">열 세번째 이야기</td>
                               <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스존 스미스존 스미스존 스미스존 스미스존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
-                           </tr><tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                              <td class="rent_status">대출가능</td>
                            </tr>
                         </tbody>
                      </table>
@@ -258,7 +73,7 @@
             </section>
 
             <section class="sec2">
-               <form action="" method="post">
+               <form action="book_update" method="post">
                   <fieldset>
                      <legend class="hide">도서관리</legend>
                      <p>
