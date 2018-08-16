@@ -19,5 +19,15 @@ public class RentController {
 	public String rent_main() {
 		return "rent_manager";
 	}
+	
+	@RequestMapping("/input_user")
+	public String input_user() {
+		return "rent_manager";
+	}
+	
+	@RequestMapping("/input_book")
+	public String input_book() {
+		return "rent_manager";
+	}
 
 }

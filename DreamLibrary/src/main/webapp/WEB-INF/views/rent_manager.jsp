@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,13 +29,14 @@
               <section class="sec1 cf">
 
                 <article class="user">
-                     <form action="" method="post">
+                     <form action="input_user" method="post">
                         <fieldset>
                            <legend class="hide">회원정보</legend>
                            <p>
                               <label for="userId">회원 번호</label>
                               <input type="text" name="" value="" id="userId"/>
-                              <input type="button" onclick="location='login.html'" name="" value="조회" id="checkUser">
+                              <input type="button"name="" value="조회" id="checkUser">
+                              <!--  onclick="location='login.html'"  -->
                            </p>
 
                            <dl class="user_info">
@@ -49,13 +51,13 @@
                 </article>
 
                 <article class="book">
-                   <form action="" method="post">
+                   <form action="input_book" method="post">
                       <fieldset>
                         <legend class="hide">도서정보</legend>
                         <p>
                            <label for="bookId">책ID</label>
                            <input type="text" name="" value="" id="bookId"/>
-                           <input type="button" onclick="location='login.html'" name="" value="조회" id="checkBook">
+                           <input type="button" name="" value="조회" id="checkBook">
                         </p>
 
                         <dl class="book_info">
