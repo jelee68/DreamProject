@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wind.web.dao.IDao">
+<mapper namespace="com.triple.dreamlib.dao.RentDao">
 
-  <select id="listDao" resultType="com.wind.web.dto.ContentDto">
+  <!-- <select id="listDao" resultType="com.wind.web.dto.ContentDto">
 		SELECT BID, BNAME, BTITLE, BCONTENT, BDATE, BHIT, BGROUP, BSTEP, BINDENT FROM MVC_BOARD ORDER BY BGROUP DESC, BSTEP ASC
 	</select>
 	
@@ -42,5 +42,5 @@
   <update id="upHit">
     UPDATE MVC_BOARD SET BHIT = BHIT + 1 WHERE BID = #{param1}
   </update>  
-
+ -->
 </mapper>
