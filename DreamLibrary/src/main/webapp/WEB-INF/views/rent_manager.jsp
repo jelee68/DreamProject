@@ -29,20 +29,20 @@
               <section class="sec1 cf">
 
                 <article class="user">
-                     <form action="input_user" method="post">
+                     <form action="rent_user_check" method="post">
                         <fieldset>
                            <legend class="hide">회원정보</legend>
                            <p>
                               <label for="userId">회원 번호</label>
-                              <input type="text" name="" value="" id="userId"/>
-                              <input type="button"name="" value="조회" id="checkUser">
+                              <input type="text" name="user_id" id="userId"/>
+                              <input type="button" name="" value="조회" id="checkUser">
                               <!--  onclick="location='login.html'"  -->
                            </p>
 
                            <dl class="user_info">
                               <dt>이름</dt><dd class="user_name"></dd>
-                              <dt>연락처</dt><dd class="user_tel"></dd>
-                              <dt>주소</dt><dd class="user_arrd"></dd>
+                              <dt>연락처</dt><dd class="user_tel">${userInfo.user_tel }</dd>
+                              <dt>주소</dt><dd class="user_arrd">${userInfo.user_addr}</dd>
                            </dl>
                         </fieldset>
                      </form>
@@ -51,20 +51,20 @@
                 </article>
 
                 <article class="book">
-                   <form action="input_book" method="post">
+                   <form action="rent_book_check" method="post" id="myForm">
                       <fieldset>
                         <legend class="hide">도서정보</legend>
                         <p>
                            <label for="bookId">책ID</label>
-                           <input type="text" name="" value="" id="bookId"/>
-                           <input type="button" name="" value="조회" id="checkBook">
+                           <input type="text" name="book_id" value="${bookInfo.book_id }" id="bookId"/>
+                           <input type="submit" name="" value="조회" id="checkBook">
                         </p>
 
                         <dl class="book_info">
-                           <dt>서명</dt><dd class="book_name"></dd>
-                           <dt>저자</dt><dd class="book_author"></dd>
-                           <dt>출판일</dt><dd class="book_date"></dd>
-                           <dt>출판사</dt><dd class="book_pub"></dd>
+                           <dt>서명</dt><dd class="book_name">${bookInfo.book_name }</dd>
+                           <dt>저자</dt><dd class="book_author">${bookInfo.book_author }</dd>
+                           <dt>출판일</dt><dd class="book_date">${bookInfo.book_date }</dd>
+                           <dt>출판사</dt><dd class="book_pub">${bookInfo.book_pub }</dd>
                         </dl>
                         <input type="submit" name="" value="대출" id="rentBtn">
                       </fieldset>
@@ -133,6 +133,7 @@
 
    <script type="text/javascript" src="resources/js/jquery.js"> </script>
    <script type="text/javascript" src="resources/js/jquery-ui.min.js"> </script>
+   
    <script type="text/javascript">
       $(function(){
          //
@@ -148,7 +149,33 @@
                $(".sec2 table tbody tr:nth-child(2n-1)").css("background-color","#fff");
                $(".sec2 table tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
             })
-         //
+            
+            $('#checkUser').on('click',function(){
+               
+           		$.ajax({    //ajax함수 안에 객체의 형태로 실행명령을 넣는다. 
+	               
+           			url:'rent_user_check',  //가져오고자하는 서버페이지 주소를 넣는다. 
+	                type:'post',  //데이터를 가져온다는 뜻의 get 
+	                data: {"user_id" : $("#userId").val()},
+	                success : function(data){  
+	                	console.log(data.result);
+	                	if(data.result == "true"){
+	                          alert('연결성공!');
+	                	}else{
+	                		alert('아이디가 존재하지 않습니다.'); 
+	                	}
+	                           
+	                }, 
+	                error : function(){ 
+	                	 alert('오류'); 
+                 	} 
+	                
+           	    });   
+          });
+   
+       
+
+         
       })
    </script>
 </body>
