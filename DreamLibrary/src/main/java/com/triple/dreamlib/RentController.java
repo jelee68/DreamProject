@@ -1,5 +1,7 @@
 package com.triple.dreamlib;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.triple.dreamlib.dao.RentDao;
+import com.triple.dreamlib.dto.UserDto;
 
 
 
@@ -34,12 +38,16 @@ public class RentController {
 	public String rent_user_check(@RequestParam("user_id")String id, Model model) {
 		
 		RentDao dao = sqlSession.getMapper(RentDao.class);	
+		Gson gson = new Gson();
+		
+		List<UserDto> userInfo = dao.userCheckDao(id);
+		//System.out.println(dao.userCheckDao(id).toString());
 		if( dao.userCheckDao(id) != null) {
-			//model.addAttribute("userInfo", dao.userInfoDao(id));
-			model.addAttribute("result", "true");
-		    return "{\"result\":\"" + "true\"}"; //JSON 형태
+			//model.addAttribute("userInfo", dao.userInfoDao(id));	
+			System.out.println(gson.toJson(userInfo));
+			return gson.toJson(userInfo); //JSON 형태
 		}else {
-			model.addAttribute("result", "false");
+			//model.addAttribute("result", "false");
 			return "{\"result\":\"" + "false\"}";
 		}
 		

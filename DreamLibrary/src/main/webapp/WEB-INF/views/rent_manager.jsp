@@ -154,11 +154,12 @@
                
            		$.ajax({    //ajax함수 안에 객체의 형태로 실행명령을 넣는다. 
 	               
-           			url:'rent_user_check',  //가져오고자하는 서버페이지 주소를 넣는다. 
-	                type:'post',  //데이터를 가져온다는 뜻의 get 
+           			url:'rent_user_check',  
+	                type:'post',  
+	                dataType: 'json',
 	                data: {"user_id" : $("#userId").val()},
 	                success : function(data){  
-	                	console.log(data.result);
+	                	console.log(data[0].user_id);
 	                	if(data.result == "true"){
 	                          alert('연결성공!');
 	                	}else{
