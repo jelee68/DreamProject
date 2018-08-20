@@ -61,29 +61,18 @@
                   <p>총<em>~</em>건</p>
                </div>
                <ul>
+             <c:forEach items="${bookresult}" var="dto" varStatus="status">              
                   <li class="cf">
-                     <span class="result_num">1.</span>
-                     <a href="book_detail.html" class="book_img"><img src="resources/images/main/list0.jpg" alt="책표지이미지"></a>
-                     <dl>
-                        <dt class="book_name"><a href="book_detail.html">여행에 나이가 어딨어?</a></dt>
-                        <dd class="book_author"><a href="book_detail.html">힐러리 브레트</a></dd>
-                        <dd class="book_pub">책세상, 2016</dd>
-                        <dd class="rent_chek rent_able">대출가능</dd>
-                     </dl>
-                  </li>
-
-                  <li class="cf">
-                     <span class="result_num">2.</span>
-                     <a href="book_detail.html" class="book_img"><img src="resources/images/main/list1.jpg" alt="책표지이미지"></a>
-                     <dl>
-                        <dt class="book_name"><a href="book_detail.html">여행에 나이가 어딨어?</a></dt>
-                        <dd class="book_author"><a href="book_detail.html">힐러리 브레트</a></dd>
-                        <dd>책세상, 2016</dd>
-                        <dd class="rent_chek rent_ing">대출중</dd>
-                     </dl>
-                  </li>
-
-
+                     <span class="result_num">${dto.rownum}.</span>
+                    	<a href="book_detail.html" class="book_img"><img src="resources/images/main/list0.jpg" alt="책표지이미지"></a>
+                    	<dl>
+                    	<dt class="book_name"><a href="book_detail.html">${dto.book_name}</a></dt>
+                     	<dd class="book_author"><a href="book_detail.html">${dto.book_author}</a></dd>
+                     	<dd class="book_pub">${dto.book_pub}, ${dto.book_date}</dd>
+                        <dd class="rent_chek rent_able">${dto.book_status}</dd>
+                	  </dl>
+  	        	   </li>
+  				</c:forEach>
                </ul>
             </section>
 

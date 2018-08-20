@@ -21,6 +21,11 @@ public class BookController {
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
 
+	@RequestMapping("/test")
+	public String test() {
+		return "/test";
+	}	
+	
 	@RequestMapping("/book_search")
 	public String book_search() {
 		return "/book_search";
@@ -28,8 +33,52 @@ public class BookController {
 	
 	@RequestMapping("/search_result")
 	public String search_result(HttpServletRequest request, Model model) {
-		// IDao dao = sqlSession.getMapper(IDao.class);
-		//model.addAttribute("search_result", dao.book_resultDao(request.getParameter("book_name")));
+/*
+		select1=book_name
+				&input1=spring
+				&cond01=AND
+				&select2=book_author
+				&input2=coding
+				&cond02=AND
+				&select3=book_pub
+				&input3=books
+	*/
+		
+		String select1, select2, select3;
+		String input1, input2, input3;
+		String cond01, cond02;		
+		
+		BookDao dao = sqlSession.getMapper(BookDao.class);
+		
+		select1 = request.getParameter("select1");
+		select2 = request.getParameter("select2");
+		select3 = request.getParameter("select3");
+		input1 = request.getParameter("input1");
+		input2 = request.getParameter("input2");
+		input3 = request.getParameter("input3");
+		cond01 = request.getParameter("cond01");
+		cond02 = request.getParameter("cond02");		
+		
+		// 입력받은 값이 1개이상인경우
+		if (!input1.equals(null)) {
+			
+			// 입력받은 값이 2개이상인경우			
+			if (!input2.equals(null)) {
+				// 입력받은 값이 3개인경우
+				if (!input3.equals(null)) {
+					model.addAttribute("bookresult",
+					dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
+				}
+				else {
+					// 입력받은 값이 2개인경우
+					model.addAttribute("bookresult",					
+					dao.book_result2Dao(select1,input1,cond01,select2,input2));					
+				}
+			}
+			// 입력받은 값이 1개인경우
+			model.addAttribute("bookresult",dao.book_result1Dao(select1, input1));
+		}
+				
 		return "/search_result";
 	}
 	

@@ -99,23 +99,23 @@
 
                      </p>
                      <p>
-                        <label for="bookId">책고유ID</label>
-                        <input type="text" name="" value="" id="bookId" readonly="readonly"/>
+                        <label for="book_id">책고유ID</label>
+                        <input type="text" name="book_id" value="${dto.book_id}" id="bookId" readonly="readonly"/>
                      </p>
                      <p>
                         <label for="bookName">서명</label>
-                        <input type="text" name="" value="" id="bookName"/>
+                        <input type="text" name="book_name" value="" id="bookName"/>
                      </p>
                      <p>
                         <label for="bookAuthor">저자</label>
-                        <input type="text" name="" value="" id="bookAuthor"/>
+                        <input type="text" name="book_author" value="" id="bookAuthor"/>
                      </p>
 
                      <p>
                         <label for="bookDate">출판일</label>
-                        <input type="text" name="" value="" id="bookDate" placeholder="예) 19900101"/>
+                        <input type="text" name="book_date" value="" id="bookDate" placeholder="예) 19900101"/>
                         <label for="bookPub">출판사</label>
-                        <input type="text" name="" value="" id="bookPub"/>
+                        <input type="text" name="book_pub" value="" id="bookPub"/>
                      </p>
                      <p>
                         <label for="bookInDate">도서반입일</label>

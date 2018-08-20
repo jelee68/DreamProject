@@ -8,5 +8,24 @@
   <select id="booklistDao" resultType="com.triple.dreamlib.dto.BookDto">
 		select rownum, book_id, book_code, book_name, book_author, book_date, book_pub, book_in_date, book_imgPath
   		from book_tbl order by book_id asc
-	</select>
+  </select>
+
+  <select id="book_result1Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
+    	   decode(fun_bookstatus(book_id),null,'0',fun_bookstatus(book_id)) as book_status
+	  from book_tbl where #{param1} like '%'|| #{param2} ||'%'  order by book_id asc
+  </select>
+	
+  <select id="book_result2Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
+    	   decode(fun_bookstatus(book_id),null,'0',fun_bookstatus(book_id)) as book_status
+	  from book_tbl where #{param1} like '%'|| #{param2} ||'%'  order by book_id asc
+  </select>
+  
+    <select id="book_result3Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
+    	   decode(fun_bookstatus(book_id),null,'0',fun_bookstatus(book_id)) as book_status
+	  from book_tbl where #{param1} like '%'|| #{param2} ||'%'  order by book_id asc
+  </select>	
+	
 </mapper>
