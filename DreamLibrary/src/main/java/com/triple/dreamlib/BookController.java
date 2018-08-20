@@ -5,27 +5,22 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.transaction.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.triple.dreamlib.dao.BookDao;
 
 @Controller
 public class BookController {
-
 	@Autowired
 	private SqlSession sqlSession;
 	
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
-	
+
 	@RequestMapping("/book_search")
 	public String book_search() {
 		return "/book_search";
@@ -40,8 +35,8 @@ public class BookController {
 	
 	@RequestMapping("/book_manager")
 	public String search_result(Model model) {
-		// IDao dao = sqlSession.getMapper(IDao.class);
-		//model.addAttribute("search_result", dao.book_resultDao(request.getParameter("book_name")));
+		BookDao dao = sqlSession.getMapper(BookDao.class);
+		model.addAttribute("booklist", dao.booklistDao());
 		return "/book_manager";
 	}
 	

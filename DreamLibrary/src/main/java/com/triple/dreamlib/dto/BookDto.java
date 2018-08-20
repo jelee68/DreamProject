@@ -2,92 +2,103 @@ package com.triple.dreamlib.dto;
 
 public class BookDto {
 
-	String  BOOK_ID; 
-	String  BOOK_CODE; 
-	String  BOOK_NAME; 
-	String  BOOK_AUTHOR; 
-	String  BOOK_DATE; 
-	String  BOOK_PUB; 
-	String  BOOK_IN_DATE; 
-	String  BOOK_IMGPATH;
+	String  rownum;
+	String  book_id; 
+	String  book_code; 
+	String  book_name; 
+	String  book_author; 
+	String  book_date; 
+	String  book_pub; 
+	String  book_in_date; 
+	String  book_imgPath;
 	
 	public BookDto() {
 	}
-	
-	public BookDto(String bOOK_ID, String bOOK_CODE, String bOOK_NAME, String bOOK_AUTHOR, String bOOK_DATE,
-			String bOOK_PUB, String bOOK_IN_DATE, String bOOK_IMGPATH) {
-		BOOK_ID = bOOK_ID;
-		BOOK_CODE = bOOK_CODE;
-		BOOK_NAME = bOOK_NAME;
-		BOOK_AUTHOR = bOOK_AUTHOR;
-		BOOK_DATE = bOOK_DATE;
-		BOOK_PUB = bOOK_PUB;
-		BOOK_IN_DATE = bOOK_IN_DATE;
-		BOOK_IMGPATH = bOOK_IMGPATH;
+
+	public BookDto(String rownum, String book_id, String book_code, String book_name, String book_author,
+			String book_date, String book_pub, String book_in_date, String book_imgPath) {
+
+		this.rownum = rownum;
+		this.book_id = book_id;
+		this.book_code = book_code;
+		this.book_name = book_name;
+		this.book_author = book_author;
+		this.book_date = book_date;
+		this.book_pub = book_pub;
+		this.book_in_date = book_in_date;
+		this.book_imgPath = book_imgPath;
 	}
 
-	public String getBOOK_ID() {
-		return BOOK_ID;
+	public String getRownum() {
+		return rownum;
 	}
 
-	public String getBOOK_CODE() {
-		return BOOK_CODE;
+	public String getBook_id() {
+		return book_id;
 	}
 
-	public String getBOOK_NAME() {
-		return BOOK_NAME;
+	public String getBook_code() {
+		return book_code;
 	}
 
-	public String getBOOK_AUTHOR() {
-		return BOOK_AUTHOR;
+	public String getBook_name() {
+		return book_name;
 	}
 
-	public String getBOOK_DATE() {
-		return BOOK_DATE;
+	public String getBook_author() {
+		return book_author;
 	}
 
-	public String getBOOK_PUB() {
-		return BOOK_PUB;
+	public String getBook_date() {
+		return book_date;
 	}
 
-	public String getBOOK_IN_DATE() {
-		return BOOK_IN_DATE;
+	public String getBook_pub() {
+		return book_pub;
 	}
 
-	public String getBOOK_IMGPATH() {
-		return BOOK_IMGPATH;
+	public String getBook_in_date() {
+		return book_in_date;
 	}
 
-	public void setBOOK_ID(String bOOK_ID) {
-		BOOK_ID = bOOK_ID;
+	public String getBook_imgPath() {
+		return book_imgPath;
 	}
 
-	public void setBOOK_CODE(String bOOK_CODE) {
-		BOOK_CODE = bOOK_CODE;
+	public void setRownum(String rownum) {
+		this.rownum = rownum;
 	}
 
-	public void setBOOK_NAME(String bOOK_NAME) {
-		BOOK_NAME = bOOK_NAME;
+	public void setBook_id(String book_id) {
+		this.book_id = book_id;
 	}
 
-	public void setBOOK_AUTHOR(String bOOK_AUTHOR) {
-		BOOK_AUTHOR = bOOK_AUTHOR;
+	public void setBook_code(String book_code) {
+		this.book_code = book_code;
 	}
 
-	public void setBOOK_DATE(String bOOK_DATE) {
-		BOOK_DATE = bOOK_DATE;
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
 	}
 
-	public void setBOOK_PUB(String bOOK_PUB) {
-		BOOK_PUB = bOOK_PUB;
+	public void setBook_author(String book_author) {
+		this.book_author = book_author;
 	}
 
-	public void setBOOK_IN_DATE(String bOOK_IN_DATE) {
-		BOOK_IN_DATE = bOOK_IN_DATE;
+	public void setBook_date(String book_date) {
+		this.book_date = book_date;
 	}
 
-	public void setBOOK_IMGPATH(String bOOK_IMGPATH) {
-		BOOK_IMGPATH = bOOK_IMGPATH;
+	public void setBook_pub(String book_pub) {
+		this.book_pub = book_pub;
+	}
+
+	public void setBook_in_date(String book_in_date) {
+		this.book_in_date = book_in_date;
+	}
+
+	public void setBook_imgPath(String book_imgPath) {
+		this.book_imgPath = book_imgPath;
 	}
 	
 	

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.triple.dreamlib.dao.BookDao">
+
+  <select id="booklistDao" resultType="com.triple.dreamlib.dto.BookDto">
+		select rownum, book_id, book_code, book_name, book_author, book_date, book_pub, book_in_date, book_imgPath
+  		from book_tbl order by book_id asc
+	</select>
+</mapper>

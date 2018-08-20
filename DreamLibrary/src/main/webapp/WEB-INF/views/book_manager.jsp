@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,6 +44,7 @@
                            <th scope="col">도서ID</th>
                            <th scope="col">서명</th>
                            <th scope="col">저자</th>
+                           <th scope="col">출판사</th>                           
                         </tr>
                      </thead>
                   </table>
@@ -51,17 +53,21 @@
                         <caption class='hide'>등록도서목록</caption>
                         <colgroup>
                            <col width="6%" />
-                           <col width="20%" />
-                           <col width="55%" />
+                           <col width="14%" />
+                           <col width="47%" />
+                           <col width="22%" />
                            <col width="*" />
                         </colgroup>
-                        <tbody>
-                           <tr>
-                              <td class="list_index">1</td>
-                              <td class="book_id">0100000101</td>
-                              <td class="book_name">열 세번째 이야기</td>
-                              <td class="book_author">존 스미스</td>
-                           </tr>
+                        <tbody>    
+                          <c:forEach items="${booklist}" var="dto" varStatus="status">
+  							<tr>
+                              <td class="list_index">${dto.rownum}</td>
+                              <td class="book_id">${dto.book_id}</td>
+                              <td class="book_name">${dto.book_name}</td>
+                              <td class="book_author">${dto.book_author}</td>
+                              <td class="rent_status">${dto.book_pub}</td>
+  							</tr>
+  						  </c:forEach>
                         </tbody>
                      </table>
                   </div>
@@ -78,17 +84,17 @@
                      <legend class="hide">도서관리</legend>
                      <p>
                         <label for="bookCode">코드</label>
-                        <select id="bookCode" name="">
-                           <option value="">01 문학</option>
-                           <option value="">02 언어</option>
-                           <option value="">03 철학</option>
-                           <option value="">04 종교</option>
-                           <option value="">05 예술</option>
-                           <option value="">06 사회과학</option>
-                           <option value="">07 자연과학</option>
-                           <option value="">08 기술과학</option>
-                           <option value="">09 역사</option>
-                           <option value="">10 기타</option>
+                        <select id="bookCode" name="book_code">
+                           <option value="01">01 문학</option>
+                           <option value="02">02 언어</option>
+                           <option value="03">03 철학</option>
+                           <option value="04">04 종교</option>
+                           <option value="05">05 예술</option>
+                           <option value="06">06 사회과학</option>
+                           <option value="07">07 자연과학</option>
+                           <option value="08">08 기술과학</option>
+                           <option value="09">09 역사</option>
+                           <option value="10">10 기타</option>
                         </select>
 
                      </p>
