@@ -76,7 +76,7 @@ public class BookController {
 				}
 			}
 			// 입력받은 값이 1개인경우
-			model.addAttribute("bookresult",dao.book_result1Dao(select1, input1));
+			model.addAttribute("bookresult",dao.book_result1Dao(input1));
 		}
 				
 		return "/search_result";
@@ -89,6 +89,18 @@ public class BookController {
 		return "/book_manager";
 	}
 	
+	@RequestMapping("/book_add")
+	public String book_add(HttpServletRequest request) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);	
+
+		dao.book_addDao(request.getParameter("book_id"), request.getParameter("book_code"),
+		request.getParameter("book_name"), request.getParameter("book_author"),request.getParameter("book_date"), 
+		request.getParameter("book_pub"),request.getParameter("book_imgPath"));
+		
+		return "redirect:book_manager";
+		
+	}	
+
 	/*
 	@RequestMapping("/petclinic/vetslistall")
 	public String vetslistall(Model model) {

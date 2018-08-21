@@ -84,7 +84,7 @@
                      <legend class="hide">도서관리</legend>
                      <p>
                         <label for="bookCode">코드</label>
-                        <select id="bookCode" name="book_code">
+                        <select id="bookCode" name="book_code"  value="${book_code}">
                            <option value="01">01 문학</option>
                            <option value="02">02 언어</option>
                            <option value="03">03 철학</option>
@@ -100,32 +100,32 @@
                      </p>
                      <p>
                         <label for="book_id">책고유ID</label>
-                        <input type="text" name="book_id" value="${dto.book_id}" id="bookId" readonly="readonly"/>
+                        <input type="text" name="book_id" value="${book_id}" id="bookId" readonly="readonly"/>
                      </p>
                      <p>
                         <label for="bookName">서명</label>
-                        <input type="text" name="book_name" value="" id="bookName"/>
+                        <input type="text" name="book_name" value=" value="${book_name}" id="bookName"/>
                      </p>
                      <p>
                         <label for="bookAuthor">저자</label>
-                        <input type="text" name="book_author" value="" id="bookAuthor"/>
+                        <input type="text" name="book_author" value=" value="${book_author}" id="bookAuthor"/>
                      </p>
 
                      <p>
                         <label for="bookDate">출판일</label>
-                        <input type="text" name="book_date" value="" id="bookDate" placeholder="예) 19900101"/>
+                        <input type="text" name="book_date" value="${book_date}" id="bookDate" placeholder="예) 19900101"/>
                         <label for="bookPub">출판사</label>
-                        <input type="text" name="book_pub" value="" id="bookPub"/>
+                        <input type="text" name="book_pub" value="${book_pub}" id="bookPub"/>
                      </p>
                      <p>
                         <label for="bookInDate">도서반입일</label>
-                        <input type="text" name="" value="" id="bookInDate" readonly="readonly"/>
+                        <input type="text" name="book_in_date" value="${book_in_date}" id="bookInDate" readonly="readonly"/>
                         <label for="bookAmount">권수</label>
-                        <input type="text" name="" value="" id="bookAmount"/>
+                        <input type="text" name="book_cnt" id="bookAmount"/>
                      </p>
                      <p>
                         <label for="bookImg">도서이미지</label>
-                        <input type="file" name="" value="" id="bookImg"/>
+                        <input type="file" name="book_imgPath" value="${book_imgPath}" id="bookImg"/>
                      </p>
                      <p class="btn_wrap">
                         <input type="submit" name="" value="업데이트" id="updateBtn"/>
@@ -145,14 +145,14 @@
       $(function(){
          //
             $(".sec1 table tbody tr").on("click",function(){
-               $(".sec2 form").attr("action","modify");
+               $(".sec2 form").attr("action","book_modify");
                $(".sec1 table tbody tr:nth-child(2n-1)").css("background-color","#fff");
                $(".sec1 table tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
                $(this).css("background-color","rgba(77, 155, 184,0.2)");
             })
 
             $(".sec1 .add_btn").on("click",function(){
-               $(".sec2 form").attr("action","add");
+               $(".sec2 form").attr("action","book_add");
                $(".sec1 table tbody tr:nth-child(2n-1)").css("background-color","#fff");
                $(".sec1 table tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
             })
