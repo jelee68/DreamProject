@@ -8,14 +8,23 @@
 	<select id="userInfoDao" resultType="com.triple.dreamlib.dto.UserDto">
 		SELECT user_id, user_name, user_tel, user_addr FROM user_tbl where user_id = #{param1}
 	</select>
-
 	
 	<select id="bookInfoDao" resultType="com.triple.dreamlib.dto.BookDto">
 		SELECT book_id, book_name, book_author, book_date, book_pub FROM book_tbl where book_id = #{param1}
 	</select>
+	
 	<select id="userCheckDao" resultType="com.triple.dreamlib.dto.UserDto">
 		SELECT user_id FROM user_tbl where user_id = #{param1}
 	</select>
+	
+	<select id="bookCheckDao" resultType="com.triple.dreamlib.dto.BookDto">
+		SELECT book_id FROM book_tbl where book_id = #{param1}
+	</select>
+	
+	<insert id="bookRentDao" >
+		INSERT INTO rent_tbl (rent_no, user_id, book_id, book_rent_date, book_re_due_date, book_re_date, book_status) 
+		VALUES (MVC_BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, 0, MVC_BOARD_SEQ.CURRVAL, 0, 0)
+	</insert>
 	
 	
 

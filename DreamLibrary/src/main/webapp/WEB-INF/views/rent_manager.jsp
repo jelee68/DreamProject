@@ -41,8 +41,8 @@
 
                            <dl class="user_info">
                               <dt>이름</dt><dd class="user_name"></dd>
-                              <dt>연락처</dt><dd class="user_tel">${userInfo.user_tel }</dd>
-                              <dt>주소</dt><dd class="user_arrd">${userInfo.user_addr}</dd>
+                              <dt>연락처</dt><dd class="user_tel"></dd>
+                              <dt>주소</dt><dd class="user_addr"></dd>
                            </dl>
                         </fieldset>
                      </form>
@@ -56,17 +56,17 @@
                         <legend class="hide">도서정보</legend>
                         <p>
                            <label for="bookId">책ID</label>
-                           <input type="text" name="book_id" value="${bookInfo.book_id }" id="bookId"/>
-                           <input type="submit" name="" value="조회" id="checkBook">
+                           <input type="text" name="book_id" id="bookId"/>
+                           <input type="button" name="" value="조회" id="checkBook">
                         </p>
 
                         <dl class="book_info">
-                           <dt>서명</dt><dd class="book_name">${bookInfo.book_name }</dd>
-                           <dt>저자</dt><dd class="book_author">${bookInfo.book_author }</dd>
-                           <dt>출판일</dt><dd class="book_date">${bookInfo.book_date }</dd>
-                           <dt>출판사</dt><dd class="book_pub">${bookInfo.book_pub }</dd>
+                           <dt>서명</dt><dd class="book_name"></dd>
+                           <dt>저자</dt><dd class="book_author"></dd>
+                           <dt>출판일</dt><dd class="book_date"></dd>
+                           <dt>출판사</dt><dd class="book_pub"></dd>
                         </dl>
-                        <input type="submit" name="" value="대출" id="rentBtn">
+                        <input type="button" name="" value="대출" id="rentBtn">
                       </fieldset>
                    </form>
                 </article>
@@ -109,12 +109,12 @@
                    <tbody>
 
                     <tr>
-                       <td class="rent_no">201807250001</td>
-                       <td class="book_id">0100000101</td>
-                       <td class="book_name">열 세번째 이야기</td>
-                       <td class="rent_date">2018-07-25</td>
-                       <td class="return_due_date">2018-08-21</td>
-                       <td class="rent_status">대출중</td>
+                       <td class="rent_no"></td>
+                       <td class="book_id"></td>
+                       <td class="book_name"></td>
+                       <td class="rent_date"></td>
+                       <td class="return_due_date"></td>
+                       <td class="rent_status"></td>
                     </tr> 
                    </tbody>
                 </table>
@@ -151,31 +151,63 @@
             })
             
             $('#checkUser').on('click',function(){
-               
-           		$.ajax({    //ajax함수 안에 객체의 형태로 실행명령을 넣는다. 
-	               
-           			url:'rent_user_check',  
+            	var checkBtn  = $(this).attr('id');
+            	check(checkBtn);
+            	   
+          	});
+         
+            $('#checkBook').on('click',function(){
+            	var checkBtn  = $(this).attr('id');
+            	check(checkBtn);
+          	});
+            
+            $('#rentBtn').on('click', function(){
+            	$.ajax({    
+ 	               
+        			url: '/book_rent',  
 	                type:'post',  
 	                dataType: 'json',
-	                data: {"user_id" : $("#userId").val()},
+	                data: { 
+	                		'user_id' : $('#userId').val(),
+	                		'book_id' : $('#bookId').val()
+	                	  },
 	                success : function(data){  
-	                	console.log(data[0].user_id);
-	                	if(data.result == "true"){
-	                          alert('연결성공!');
-	                	}else{
-	                		alert('아이디가 존재하지 않습니다.'); 
-	                	}
-	                           
+	                	alert('대출완료');
+	                
 	                }, 
 	                error : function(){ 
 	                	 alert('오류'); 
-                 	} 
+              		} 
 	                
-           	    });   
-          });
+        	  });
+            });
    
-       
-
+       ////////////
+            function check(checkBtn){
+            	
+             	var checkName = checkBtn.replace("check","").toLowerCase();
+            		$.ajax({    
+    	               
+            			url:'rent_'+checkName+'_check',  
+    	                type:'post',  
+    	                dataType: 'json',
+    	                data: { [checkName+'_id'] : $('#'+checkName+'Id').val()},
+    	                success : function(data){  
+    	                	var i = 0;
+    	                	var className="";
+    	                	while( i < $("."+checkName+"_info dd").length){
+    	                		 className = $("."+checkName+"_info dd:eq("+i+")").attr('class');
+    	                		 $("dd."+className).text(data[className]);
+    	       					 i++;
+    	                	}              
+    	                }, 
+    	                error : function(){ 
+    	                	 alert('오류'); 
+                  	} 
+    	                
+            	  });
+             }
+      ////////////
          
       })
    </script>

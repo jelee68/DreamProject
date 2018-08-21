@@ -1,5 +1,8 @@
 package com.triple.dreamlib;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.triple.dreamlib.dao.RentDao;
+import com.triple.dreamlib.dto.BookDto;
 import com.triple.dreamlib.dto.UserDto;
+import com.wind.web.dao.VetsDao;
 
 
 
@@ -39,26 +44,45 @@ public class RentController {
 		
 		RentDao dao = sqlSession.getMapper(RentDao.class);	
 		Gson gson = new Gson();
-		
-		List<UserDto> userInfo = dao.userCheckDao(id);
-		//System.out.println(dao.userCheckDao(id).toString());
+		UserDto userInfo = dao.userInfoDao(id);
+	
 		if( dao.userCheckDao(id) != null) {
-			//model.addAttribute("userInfo", dao.userInfoDao(id));	
-			System.out.println(gson.toJson(userInfo));
-			return gson.toJson(userInfo); //JSON 형태
+			return gson.toJson(userInfo);
 		}else {
-			//model.addAttribute("result", "false");
-			return "{\"result\":\"" + "false\"}";
+			return "아이디가 존재하지 않습니다.";
 		}
 		
 		
 	}
 	
 	@RequestMapping("/rent_book_check")
-	public String rent_book_check(HttpServletRequest request, Model model) {
+	@ResponseBody
+	public String rent_book_check(@RequestParam("book_id")String id, Model model) {
+		RentDao dao = sqlSession.getMapper(RentDao.class);	
+		Gson gson = new Gson();		
+		BookDto bookInfo = dao.bookInfoDao(id);
+	
+		if( dao.bookCheckDao(id) != null) {
+			return gson.toJson(bookInfo); 
+		}else {
+			return "책이 존재하지 않습니다.";
+		}
+	}
+	
+	@RequestMapping("/book_rent")
+	@ResponseBody
+	public String book_rent(@RequestParam("user_id")String user_id,@RequestParam("book_id")String book_id) {
 		RentDao dao = sqlSession.getMapper(RentDao.class);
-		model.addAttribute("bookInfo", dao.bookInfoDao(request.getParameter("book_id")));
-		return "rent_manager";
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		dao.vet_addDao(request.getParameter("first_name"), request.getParameter("last_name"));
+		System.out.println(sdf.format(now));
+		return "d";
+	}
+	
+	public void add_vets(String first_name, String last_name) {
+		VetsDao dao = sqlSession.getMapper(VetsDao.class);
+		dao.vet_addDao(first_name, last_name);
 	}
 
 }
