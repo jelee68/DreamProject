@@ -29,6 +29,6 @@
   </select>	
 
   <insert id="book_addDao">
-  INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7});
+  INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7})
   </insert>	
 </mapper>

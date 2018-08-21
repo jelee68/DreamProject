@@ -93,6 +93,8 @@ public class BookController {
 	public String book_add(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 
+		System.out.println(request.getParameter("book_id")+request.getParameter("book_name")); 
+		
 		dao.book_addDao(request.getParameter("book_id"), request.getParameter("book_code"),
 		request.getParameter("book_name"), request.getParameter("book_author"),request.getParameter("book_date"), 
 		request.getParameter("book_pub"),request.getParameter("book_imgPath"));

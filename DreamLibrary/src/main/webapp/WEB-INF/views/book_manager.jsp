@@ -100,15 +100,16 @@
                      </p>
                      <p>
                         <label for="book_id">책고유ID</label>
-                        <input type="text" name="book_id" value="${book_id}" id="bookId" readonly="readonly"/>
+                      <!--  <input type="text" name="book_id" value="${book_id}" id="bookId" readonly="readonly"/>  -->
+                        <input type="text" name="book_id" value="${book_id}" id="bookId"/>                        
                      </p>
                      <p>
                         <label for="bookName">서명</label>
-                        <input type="text" name="book_name" value=" value="${book_name}" id="bookName"/>
+                        <input type="text" name="book_name" value="${book_name}" id="bookName"/>
                      </p>
                      <p>
                         <label for="bookAuthor">저자</label>
-                        <input type="text" name="book_author" value=" value="${book_author}" id="bookAuthor"/>
+                        <input type="text" name="book_author" value="${book_author}" id="bookAuthor"/>
                      </p>
 
                      <p>
