@@ -21,9 +21,12 @@
 		SELECT book_id FROM book_tbl where book_id = #{param1}
 	</select>
 	
-	<insert id="bookRentDao" >
+	<insert id="rentAddDao" >
 		INSERT INTO rent_tbl (rent_no, user_id, book_id, book_rent_date, book_re_due_date, book_re_date, book_status) 
-		VALUES (MVC_BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, 0, MVC_BOARD_SEQ.CURRVAL, 0, 0)
+		VALUES ( 
+        CONCAT( to_char(sysdate,'YYYYMMDD') ,
+                (replace((select to_char(max(substr(rent_no,9,4)+1),'0000') from rent_tbl where substr(rent_no,1,8) = to_char(sysdate,'YYYYMMDD')),' ','')) 
+        ), #{param1} , #{param2} , trunc(sysdate), trunc(sysdate)+1, null, '1' )
 	</insert>
 	
 	
