@@ -164,7 +164,7 @@
             $('#rentBtn').on('click', function(){
             	$.ajax({    
  	               
-        			url: '/book_rent',  
+        			url: 'book_rent',  
 	                type:'post',  
 	                dataType: 'json',
 	                data: { 
@@ -172,11 +172,11 @@
 	                		'book_id' : $('#bookId').val()
 	                	  },
 	                success : function(data){  
-	                	alert('대출완료');
+	                	alert("대출완료");
 	                
 	                }, 
-	                error : function(){ 
-	                	 alert('오류'); 
+	                error : function(data){ 
+	                	 alert('??'); 
               		} 
 	                
         	  });
@@ -202,7 +202,7 @@
     	                	}              
     	                }, 
     	                error : function(){ 
-    	                	 alert('오류'); 
+    	                	 alert('없음'); 
                   	} 
     	                
             	  });

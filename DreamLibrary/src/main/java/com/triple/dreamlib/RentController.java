@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import com.triple.dreamlib.dao.RentDao;
 import com.triple.dreamlib.dto.BookDto;
 import com.triple.dreamlib.dto.UserDto;
-import com.wind.web.dao.VetsDao;
 
 
 
@@ -71,18 +70,26 @@ public class RentController {
 	
 	@RequestMapping("/book_rent")
 	@ResponseBody
-	public String book_rent(@RequestParam("user_id")String user_id,@RequestParam("book_id")String book_id) {
-		RentDao dao = sqlSession.getMapper(RentDao.class);
-		Date now = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		dao.vet_addDao(request.getParameter("first_name"), request.getParameter("last_name"));
-		System.out.println(sdf.format(now));
-		return "d";
+	public String book_rent(@RequestParam("user_id")String user_id,@RequestParam("book_id")String book_id) {		
+		add_rent(user_id,book_id);
+		Gson gson = new Gson();	
+		return gson.toJson("안녕");
 	}
 	
-	public void add_vets(String first_name, String last_name) {
-		VetsDao dao = sqlSession.getMapper(VetsDao.class);
-		dao.vet_addDao(first_name, last_name);
+	
+	
+	
+	//////////////////////////////
+	public void add_rent(String user_id, String book_id) {
+		RentDao dao = sqlSession.getMapper(RentDao.class);
+		System.out.println(user_id+book_id);
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		System.out.println(sdf.format(now));
+		String rent_id = sdf.format(now);
+		
+		
+		dao.rentAddDao(user_id, book_id);
 	}
 
 }

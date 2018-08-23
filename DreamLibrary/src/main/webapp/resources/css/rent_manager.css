@@ -4,8 +4,8 @@
 #rentManager section.sec1{height: 300px;width: 100%;}
 #rentManager section.sec1 article{width: 50%;height: 100%;float: left;border: 1px solid #ccc;box-sizing: border-box;padding: 30px;font-size: 16px;}
 #rentManager section.sec1 article form dl{margin-top: 20px;display: flex;flex-flow: row;flex-wrap: wrap;width: 400px;  overflow: visible;}
-#rentManager section.sec1 article form dl dt{flex: 0 0 20%; text-overflow: ellipsis;overflow: hidden;margin-bottom: 10px;text-align: right;padding-right: 20px;box-sizing: border-box;}
-#rentManager section.sec1 article form dl dd{ flex:0 0 80%; margin-left: auto;text-align: left; text-overflow: ellipsis; overflow: hidden;backgro und-color: #ededed;margin-bottom: 10px;border-bottom: 1px solid #ccc;}
+#rentManager section.sec1 article form dl dt{flex: 0 0 20%; text-overflow: ellipsis;overflow: hidden;margin-bottom: 10px;text-align: right;padding-right: 20px;box-sizing: border-box; height:25px;}
+#rentManager section.sec1 article form dl dd{ flex:0 0 80%; margin-left: auto;text-align: left; text-overflow: ellipsis; overflow: hidden;backgro und-color: #ededed;margin-bottom: 10px;border-bottom: 1px solid #ccc;height:25px;}
 
 #rentManager section.sec1 .user{}
 #rentManager section.sec1 .user form{}
