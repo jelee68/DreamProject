@@ -92,8 +92,6 @@ public class BookController {
 	@RequestMapping("/book_add")
 	public String book_add(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
-
-		System.out.println(request.getParameter("book_id")+request.getParameter("book_name")); 
 		
 		dao.book_addDao(request.getParameter("book_id"), request.getParameter("book_code"),
 		request.getParameter("book_name"), request.getParameter("book_author"),request.getParameter("book_date"), 
@@ -102,6 +100,17 @@ public class BookController {
 		return "redirect:book_manager";
 		
 	}	
+	
+	@RequestMapping("/book_sel")
+	public String book_sel(HttpServletRequest request, Model model) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);	
+		model.addAttribute("booklist", dao.booklistDao());		
+		model.addAttribute("book_sel", dao.bookselDao(request.getParameter("book_id")));		
+		return "book_manager";	
+	}
+
+	
+	
 
 	/*
 	@RequestMapping("/petclinic/vetslistall")
