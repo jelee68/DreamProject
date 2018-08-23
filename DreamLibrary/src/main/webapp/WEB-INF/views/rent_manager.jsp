@@ -171,13 +171,15 @@
 	                		'user_id' : $('#userId').val(),
 	                		'book_id' : $('#bookId').val()
 	                	  },
-	                success : function(data){  
-	                	alert("대출완료");
-	                
+	                success : function(data){ 
+	                	
+	                	alert(data.ms);
+	                	
 	                }, 
 	                error : function(data){ 
-	                	 alert('??'); 
-              		} 
+	                	alert(data.ms); 
+              		},
+              	
 	                
         	  });
             });

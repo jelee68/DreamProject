@@ -21,12 +21,21 @@
 		SELECT book_id FROM book_tbl where book_id = #{param1}
 	</select>
 	
+	<select id="rentCheckDao" resultType="com.triple.dreamlib.dto.RentDto">
+		<!-- SELECT book_status FROM rent_tbl where book_id = #{param1} -->
+		 SELECT DECODE((select book_status FROM rent_tbl WHERE book_id = #{param1}),null
+		 ,'0',(select book_status FROM rent_tbl WHERE book_id = #{param1})) as book_status from dual 
+        
+	</select>
+	
 	<insert id="rentAddDao" >
 		INSERT INTO rent_tbl (rent_no, user_id, book_id, book_rent_date, book_re_due_date, book_re_date, book_status) 
 		VALUES ( 
-        CONCAT( to_char(sysdate,'YYYYMMDD') ,
-                (replace((select to_char(max(substr(rent_no,9,4)+1),'0000') from rent_tbl where substr(rent_no,1,8) = to_char(sysdate,'YYYYMMDD')),' ','')) 
-        ), #{param1} , #{param2} , trunc(sysdate), trunc(sysdate)+1, null, '1' )
+         	(SELECT decode(to_char(max(substr(rent_no,9,4))), null ,
+         		to_char(sysdate,'YYYYMMDD')||to_char('0001'),
+         		to_char(sysdate,'YYYYMMDD')||TRIM(to_char(max(substr(rent_no,9,4))+1,'0000'))) from rent_tbl 
+        	  where substr(rent_no,1,8) = to_char(sysdate,'YYYYMMDD')), 
+        	  #{param1} ,#{param2} , trunc(sysdate), trunc(sysdate)+1, null, '1' )
 	</insert>
 	
 	

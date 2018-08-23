@@ -2,7 +2,9 @@ package com.triple.dreamlib;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.triple.dreamlib.dao.RentDao;
 import com.triple.dreamlib.dto.BookDto;
+import com.triple.dreamlib.dto.RentDto;
 import com.triple.dreamlib.dto.UserDto;
 
 
@@ -71,24 +74,37 @@ public class RentController {
 	@RequestMapping("/book_rent")
 	@ResponseBody
 	public String book_rent(@RequestParam("user_id")String user_id,@RequestParam("book_id")String book_id) {		
-		add_rent(user_id,book_id);
-		Gson gson = new Gson();	
-		return gson.toJson("안녕");
+		Gson gson = new Gson();
+		String ms;
+		HashMap msMap = new HashMap();
+		if(rent_check(book_id) == false) {
+			add_rent(user_id,book_id);				
+			ms = "대출완료";
+		}else {
+			ms = "이미 대출한 책";
+		}
+		msMap.put("ms", ms);
+		return gson.toJson(msMap);
 	}
 	
-	
-	
+
 	
 	//////////////////////////////
+	public boolean rent_check(String book_id) {
+		RentDao dao = sqlSession.getMapper(RentDao.class);	
+		RentDto dto;	
+		dto = dao.rentCheckDao(book_id);
+		boolean rc;	
+		rc = (dto.getBook_status().equals("1")) ? true : false;	
+		return rc;
+	}
+	
 	public void add_rent(String user_id, String book_id) {
 		RentDao dao = sqlSession.getMapper(RentDao.class);
-		System.out.println(user_id+book_id);
-		Date now = new Date();
+	
+		/*Date now = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		System.out.println(sdf.format(now));
-		String rent_id = sdf.format(now);
-		
-		
+		String rent_id = sdf.format(now);*/
 		dao.rentAddDao(user_id, book_id);
 	}
 

@@ -14,5 +14,6 @@ public interface RentDao {
 	public UserDto userCheckDao(String userId);
 	public BookDto bookCheckDao(String bookId);
 	
+	public RentDto rentCheckDao(String bookId);
 	public void rentAddDao(String userID, String bookId);
 }
