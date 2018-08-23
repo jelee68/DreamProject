@@ -60,13 +60,12 @@
                            <select id="" name="standard1" value="" title="기준을 선택하세요">
                               <option selected>제목</option>
                               <option>저자</option>
-                              <option>주제어</option>
+                              <option>출판사</option>
                            </select>
                            <input type="text" name="input1" id="input">
                            <select id="condition" name="condition" value="" title="기준을 선택하세요">
                               <option>AND</option>
                               <option>OR</option>
-                              <option>NOT</option>
                            </select>
                         </p>
 
@@ -74,13 +73,12 @@
                            <select id="" name="standard2" value="" title="기준을 선택하세요">
                               <option>제목</option>
                               <option selected>저자</option>
-                              <option>주제어</option>
+                              <option>출판사</option>
                            </select>
                            <input type="text" name="input2" id="input">
                            <select id="condition" name="condition" value="" title="기준을 선택하세요">
                               <option>AND</option>
                               <option>OR</option>
-                              <option>NOT</option>
                            </select>
                         </p>
 
@@ -88,7 +86,7 @@
                            <select id="" name="standard3" value="" title="기준을 선택하세요">
                               <option>제목</option>
                               <option>저자</option>
-                              <option selected>주제어</option>
+                              <option selected>출판사</option>
                            </select>
                            <input type="text" name="input3" id="input">
                         </p>
@@ -107,11 +105,11 @@
 
             <section class="sec2">
                   <ul class="menu cf">
-                     <li><a href="search.html">자료검색</a></li>
+                     <li><a href="book_search">자료검색</a></li>
                      <li><a href="">신간도서</a></li>
-                     <li><a href="">내 서재</a></li>
-                     <li><a href="">도서등록</a></li>
-                     <li><a href="">대출관리</a></li>
+                     <li><a href="my_history">내 서재</a></li>
+                     <li><a href="book_manager">도서등록</a></li>
+                     <li><a href="rent_manager">대출관리</a></li>
                   </ul>
             </section>
 

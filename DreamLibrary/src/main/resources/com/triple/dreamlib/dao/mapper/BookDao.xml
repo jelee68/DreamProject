@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.triple.dreamlib.dao.BookDao">
+
+  <select id="booklistDao" resultType="com.triple.dreamlib.dto.BookDto">
+		select rownum, book_id, book_code, book_name, book_author, book_date, book_pub, book_in_date, book_imgPath
+  		from book_tbl order by book_id asc
+  </select>
+  
+  <select id="bookselDao" resultType="com.triple.dreamlib.dto.BookDto">
+		select rownum, book_id, book_code, book_name, book_author, book_date, book_pub, book_in_date, book_imgPath
+  		from book_tbl where book_id = #{param1} order by book_id asc
+  </select>
+  
+  <select id="book_result1Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
+    	   decode(fun_bookstatus(book_id),null,'대출가능','대출중') as book_status
+	  from book_tbl where book_name like '%'|| #{param1} ||'%'  order by book_id asc
+  </select>
+	
+  <select id="book_result2Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
+    	   decode(fun_bookstatus(book_id),null,'0',fun_bookstatus(book_id)) as book_status
+	  from book_tbl where #{param1} like '%'|| #{param2} ||'%'  order by book_id asc
+  </select>
+  
+    <select id="book_result3Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
+    	   decode(fun_bookstatus(book_id),null,'0',fun_bookstatus(book_id)) as book_status
+	  from book_tbl where #{param1} like '%'|| #{param2} ||'%'  order by book_id asc
+  </select>	
+
+  <insert id="book_addDao">
+  INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7})
+  </insert>	
+</mapper>

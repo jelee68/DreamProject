@@ -22,9 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.triple.dreamlib" />
-	
-	
-	
+		
 	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
@@ -40,7 +38,7 @@
 	
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
-		<beans:property name="mapperLocations" value="classpath*:com/triple/dreamlib/dao/mapper/*.xml"/>
+		<beans:property name="mapperLocations" value="classpath:com/triple/dreamlib/dao/mapper/*.xml"/>
 	</beans:bean>
 	
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
