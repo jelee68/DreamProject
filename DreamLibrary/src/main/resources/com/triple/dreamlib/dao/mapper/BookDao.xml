@@ -10,6 +10,11 @@
   		from book_tbl order by book_id asc
   </select>
 
+  <select id="maxBookIdDao" resultType="com.triple.dreamlib.dto.MaxBookIdDto">
+	select to_char((decode(max(substr(book_id,3,6)),null,0,max(substr(book_id,3,6))))+1,'000000') as book_id
+	  from book_tbl where book_code = #{param1}
+  </select>
+
   <select id="bookselDao" resultType="com.triple.dreamlib.dto.BookDto">
 		select rownum, book_id, book_code, book_name, book_author, book_date, book_pub, book_in_date, book_imgPath
   		from book_tbl where book_id = #{param1} order by book_id asc

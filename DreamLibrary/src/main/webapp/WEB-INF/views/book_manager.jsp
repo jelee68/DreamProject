@@ -86,6 +86,7 @@
                         <label for="bookCode">코드</label>
                         <select id="bookCode" name="book_code">
                           <c:set var = "book_cd" scope = "page" value="${book_sel.book_code}" />
+                           <option value="">코드선택  </option>
                            <option value="01"<c:if test="${book_cd eq '01'}">selected="selected"</c:if>>01 문학</option>
                            <option value="02"<c:if test="${book_cd eq '02'}">selected="selected"</c:if>>02 언어</option>
                            <option value="03"<c:if test="${book_cd eq '03'}">selected="selected"</c:if>>03 철학</option>
@@ -101,8 +102,8 @@
                      </p>
                      <p>
                         <label for="book_id">책고유ID</label>
-                      <!--  <input type="text" name="book_id" value="${book_sel.book_id}" id="bookId" readonly="readonly"/>  -->
-                        <input type="text" name="book_id" value="${book_sel.book_id}" id="bookId"/>                        
+                        <input type="text" name="book_id" value="${book_sel.book_id}" id="bookId" readonly="readonly"/> 
+                        <!-- <input type="text" name="book_id" value="" id="bookId"/>    -->                     
                      </p>
                      <p>
                         <label for="bookName">서명</label>
@@ -123,7 +124,7 @@
                         <label for="bookInDate">도서반입일</label>
                         <input type="text" name="book_in_date" value="${book_sel.book_in_date}" id="bookInDate" readonly="readonly"/>
                         <label for="bookAmount">권수</label>
-                        <input type="text" name="book_cnt" id="bookAmount"/>
+                        <input type="text" name="book_cnt" id="bookAmount" value="1"/>
                      </p>
                      <p>
                         <label for="bookImg">도서이미지</label>
@@ -158,6 +159,30 @@
                $(".sec1 table tbody tr:nth-child(2n-1)").css("background-color","#fff");
                $(".sec1 table tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
             })
+            
+            ////////////
+            $('#bookCode').on("change",function(){
+            	$.ajax({    
+ 	               
+        			url:'max_book_id',  
+	                type:'post',  
+	                dataType: 'json',
+	                data: { 'book_code' : $('#bookCode').val()},
+	                
+	                success : function(data){  
+	                	console.log(data.book_id);
+	                	$('#bookId').val(data.book_id);
+	                	             
+	                }, 
+	                error : function(){ 
+	                	 alert('에러'); 
+              		} 
+	                
+        	  });        	
+
+             })
+             
+      ////////////
          //
       })
    </script>

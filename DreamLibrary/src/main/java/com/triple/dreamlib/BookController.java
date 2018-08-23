@@ -10,8 +10,12 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.triple.dreamlib.dao.BookDao;
+import com.triple.dreamlib.dto.MaxBookIdDto;
 
 @Controller
 public class BookController {
@@ -93,9 +97,16 @@ public class BookController {
 	public String book_add(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		
-		dao.book_addDao(request.getParameter("book_id"), request.getParameter("book_code"),
-		request.getParameter("book_name"), request.getParameter("book_author"),request.getParameter("book_date"), 
-		request.getParameter("book_pub"),request.getParameter("book_imgPath"));
+		int	book_cnt = Integer.parseInt(request.getParameter("book_cnt"));
+		
+		for(int i=1;i<=book_cnt;i++) {
+		
+			String book_id = request.getParameter("book_id") + String.format("%02d",i);
+			//System.out.println(book_id);
+			dao.book_addDao(book_id, request.getParameter("book_code"),
+			request.getParameter("book_name"), request.getParameter("book_author"),request.getParameter("book_date"), 
+			request.getParameter("book_pub"),request.getParameter("book_imgPath"));
+		}
 		
 		return "redirect:book_manager";
 		
@@ -103,12 +114,28 @@ public class BookController {
 	
 	@RequestMapping("/book_sel")
 	public String book_sel(HttpServletRequest request, Model model) {
+
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		model.addAttribute("booklist", dao.booklistDao());		
 		model.addAttribute("book_sel", dao.bookselDao(request.getParameter("book_id")));		
 		return "book_manager";	
 	}
 
+	
+	@RequestMapping("/max_book_id")
+	@ResponseBody
+	public String max_book_id(@RequestParam("book_code")String book_code) {
+		
+		BookDao dao = sqlSession.getMapper(BookDao.class);	
+
+		Gson gson = new Gson();
+		MaxBookIdDto dto = dao.maxBookIdDao(book_code);	
+		
+		String book_id = book_code.trim() + dto.getBook_id().trim();	
+		dto.setBook_id(book_id);
+
+		return gson.toJson(dto);			
+	}
 	
 	
 
