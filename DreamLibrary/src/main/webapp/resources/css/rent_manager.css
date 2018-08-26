@@ -44,6 +44,6 @@
 #rentManager section.sec2 table tbody tr{border-bottom: 1px solid #dbdbdb;}
 #rentManager section.sec2 table tbody tr:nth-child(2n){background-color: #f9f9f9;}
 #rentManager section.sec2 table tbody tr td{padding: 2px 3px;text-align: center;}
-#rentManager section.sec2 table tbody tr td.book_name, #rentManager section.sec2 table tbody tr td.book_author{text-align: left;}
+#rentManager section.sec2 table tbody tr td.book_name{text-align: left;}
 #rentManager section.sec2 .btn_wrap{height: 50px;}
 #rentManager section.sec2 .btn_wrap .add_btn{margin-top: 15px;}

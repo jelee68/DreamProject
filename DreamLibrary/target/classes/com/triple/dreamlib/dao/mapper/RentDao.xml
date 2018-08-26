@@ -21,7 +21,7 @@
 		SELECT book_id FROM book_tbl where book_id = #{param1}
 	</select>
 	
-	<select id="rentCheckDao" resultType="com.triple.dreamlib.dto.RentDto">
+	<select id="bookRentCheckDao" resultType="com.triple.dreamlib.dto.RentDto">
 		<!-- SELECT book_status FROM rent_tbl where book_id = #{param1} -->
 		 SELECT DECODE((select book_status FROM rent_tbl WHERE book_id = #{param1}),null
 		 ,'0',(select book_status FROM rent_tbl WHERE book_id = #{param1})) as book_status from dual 
@@ -35,10 +35,29 @@
          		to_char(sysdate,'YYYYMMDD')||to_char('0001'),
          		to_char(sysdate,'YYYYMMDD')||TRIM(to_char(max(substr(rent_no,9,4))+1,'0000'))) from rent_tbl 
         	  where substr(rent_no,1,8) = to_char(sysdate,'YYYYMMDD')), 
-        	  #{param1} ,#{param2} , trunc(sysdate), trunc(sysdate)+1, null, '1' )
+        	  #{param1} ,#{param2} , sysdate, (TRUNC(sysdate + 2) - 1/(24*60*60)), null, '1' )
 	</insert>
 	
-	
+	<select id="rentListDao" resultType="com.triple.dreamlib.dto.RentListDto">
+		SELECT rent_tbl.rent_no, rent_tbl.book_id, book_tbl.book_name, rent_tbl.book_rent_date, rent_tbl.book_re_due_date, rent_tbl.book_status 
+    		FROM rent_tbl, book_tbl  
+    		WHERE rent_tbl.book_id = book_tbl.book_id
+      		AND rent_tbl.user_id = #{param1} 
+      		ORDER BY rent_tbl.book_rent_date DESC	
+    </select>
+    
+    <select id="userRentCheckDao" resultType="com.triple.dreamlib.dto.RentDto">
+		SELECT book_re_due_date, book_re_date 
+    		FROM rent_tbl 
+    		WHERE user_id = #{param1} 
+      		ORDER BY book_rent_date	
+    </select>
+    
+    <update id="updateReturnDao">
+   		UPDATE rent_tbl SET book_status = '0', book_re_date = sysdate WHERE book_id = #{param1}
+  	</update> 
+    
+    
 
   <!-- <select id="listDao" resultType="com.wind.web.dto.ContentDto">
 		SELECT BID, BNAME, BTITLE, BCONTENT, BDATE, BHIT, BGROUP, BSTEP, BINDENT FROM MVC_BOARD ORDER BY BGROUP DESC, BSTEP ASC

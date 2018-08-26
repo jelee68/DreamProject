@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.triple.dreamlib.dto.BookDto;
 import com.triple.dreamlib.dto.RentDto;
+import com.triple.dreamlib.dto.RentListDto;
 import com.triple.dreamlib.dto.UserDto;
 
 public interface RentDao {
@@ -14,6 +15,12 @@ public interface RentDao {
 	public UserDto userCheckDao(String userId);
 	public BookDto bookCheckDao(String bookId);
 	
-	public RentDto rentCheckDao(String bookId);
+	public RentDto bookRentCheckDao(String bookId);
+	public ArrayList<RentDto> userRentCheckDao(String userId);
+	
 	public void rentAddDao(String userID, String bookId);
+	
+	public ArrayList<RentListDto> rentListDao(String userId);
+	
+	public void updateReturnDao(String bookId);
 }

@@ -108,14 +108,14 @@
                    </colgroup>
                    <tbody>
 
-                    <tr>
+                   <!--  <tr>
                        <td class="rent_no"></td>
                        <td class="book_id"></td>
                        <td class="book_name"></td>
-                       <td class="rent_date"></td>
-                       <td class="return_due_date"></td>
-                       <td class="rent_status"></td>
-                    </tr> 
+                       <td class="book_rent_date"></td>
+                       <td class="book_re_due_date"></td>
+                       <td class="book_status"></td>
+                    </tr>  -->
                    </tbody>
                 </table>
                 </div>
@@ -137,11 +137,12 @@
    <script type="text/javascript">
       $(function(){
          //
-            $(".sec2 table tbody tr").on("click",function(){
-               $(".sec2 form").attr("action","modify");
-               $(".sec2 table tbody tr:nth-child(2n-1)").css("background-color","#fff");
-               $(".sec2 table tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
+         	var bookId;
+            $(".sec2 .rent_list").on("click",'tr',function(){
+               $(".sec2 .rent_list tbody tr:nth-child(2n-1)").css("background-color","#fff");
+               $(".sec2 .rent_list tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
                $(this).css("background-color","rgba(77, 155, 184,0.2)");
+               bookId = $(">.book_id", this).text();
             })
 
             $(".sec2 .add_btn").on("click",function(){
@@ -174,6 +175,7 @@
 	                success : function(data){ 
 	                	
 	                	alert(data.ms);
+	                	check('user');
 	                	
 	                }, 
 	                error : function(data){ 
@@ -183,9 +185,31 @@
 	                
         	  });
             });
+            
+            $(".return_btn").on("click",function(){
+            	console.log(bookId);
+            	$.ajax({    
+  	               
+        			url: 'book_return',  
+	                type:'post',  
+	                dataType: 'json',
+	                data: { 'book_id' : bookId },
+	                success : function(data){ 
+	                	
+	                	alert(data.ms);
+	                	check('user');
+	                	
+	                }, 
+	                error : function(data){ 
+	                	alert(data.ms); 
+              		},
+              	
+	                
+        	  });
+            })
    
        ////////////
-            function check(checkBtn){
+			function check(checkBtn){
             	
              	var checkName = checkBtn.replace("check","").toLowerCase();
             		$.ajax({    
@@ -195,13 +219,38 @@
     	                dataType: 'json',
     	                data: { [checkName+'_id'] : $('#'+checkName+'Id').val()},
     	                success : function(data){  
-    	                	var i = 0;
+    	                	
     	                	var className="";
-    	                	while( i < $("."+checkName+"_info dd").length){
-    	                		 className = $("."+checkName+"_info dd:eq("+i+")").attr('class');
-    	                		 $("dd."+className).text(data[className]);
-    	       					 i++;
-    	                	}              
+    	                	
+    	                	 if(checkName == "book"){
+    	                		var i = 0;
+	    	                	while( i < $("."+checkName+"_info dd").length){
+	    	                		 className = $("."+checkName+"_info dd:eq("+i+")").attr('class');
+	    	                		 $("dd."+className).text(data[className]);
+	    	       					 i++;
+	    	                	}
+    	                	}else if(checkName == "user"){
+    	                		var i = 0;
+    	                		while( i < $("."+checkName+"_info dd").length){
+	    	                		 className = $("."+checkName+"_info dd:eq("+i+")").attr('class');
+	    	                		 $("dd."+className).text(data[checkName+"Info"][className]);
+	    	       					 i++;
+	    	                	}
+    	                		
+    	                		$('.rent_list tr').remove();
+    	                		
+    	                		for(var j=0; j<data.rentList.length ; j++){
+    	                			var tr =  $('<tr>');
+    	                			$(".rent_list").append(tr);
+    	                			var str = "date";
+    	                			for ( keyName in data.rentList[j] ) {
+    
+    	                				var td = $('<td>').addClass(keyName).text(data.rentList[j][keyName]);
+    	                				$(".rent_list tr:eq("+j+")").append(td); 
+    	                				
+    	                			}
+    	                		}    		
+    	                	}    	                	
     	                }, 
     	                error : function(){ 
     	                	 alert('없음'); 
