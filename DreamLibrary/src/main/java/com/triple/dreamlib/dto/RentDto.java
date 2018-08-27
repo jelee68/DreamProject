@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class RentDto {
 	private String rent_no;
-	private String user_id;
 	private String book_id;
+	private String book_name;
 	private Date book_rent_date;
 	private Date book_re_due_date;
 	private Date book_re_date;
@@ -14,12 +14,12 @@ public class RentDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public RentDto(String rent_no, String user_id, String book_id, Date book_rent_date, Date book_re_due_date,
+	public RentDto(String rent_no, String book_id, String book_name, Date book_rent_date, Date book_re_due_date,
 			Date book_re_date, String book_status) {
 		super();
 		this.rent_no = rent_no;
-		this.user_id = user_id;
 		this.book_id = book_id;
+		this.book_name = book_name;
 		this.book_rent_date = book_rent_date;
 		this.book_re_due_date = book_re_due_date;
 		this.book_re_date = book_re_date;
@@ -31,17 +31,17 @@ public class RentDto {
 	public void setRent_no(String rent_no) {
 		this.rent_no = rent_no;
 	}
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
 	public String getBook_id() {
 		return book_id;
 	}
 	public void setBook_id(String book_id) {
 		this.book_id = book_id;
+	}
+	public String getBook_name() {
+		return book_name;
+	}
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
 	}
 	public Date getBook_rent_date() {
 		return book_rent_date;
