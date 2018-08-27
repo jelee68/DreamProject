@@ -56,7 +56,6 @@ public class RentController {
 	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());*/
 		
 		while(i< rentList.size()) {
-			//System.out.println(rentList.get(i).getBook_re_due_date()+" vs "+ now);
 			if(rentList.get(i).getBook_status().equals("1")) {
 				if(rentList.get(i).getBook_re_due_date().compareTo(now) >= 0) {
 					rentList.get(i).setBook_status("대출중");
@@ -161,8 +160,7 @@ public class RentController {
 	}
 	
 	public void add_rent(String user_id, String book_id) {
-		RentDao dao = sqlSession.getMapper(RentDao.class);
-	
+		RentDao dao = sqlSession.getMapper(RentDao.class);	
 		/*Date now = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String rent_id = sdf.format(now);*/
