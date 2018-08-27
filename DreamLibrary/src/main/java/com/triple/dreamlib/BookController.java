@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.*;
+import java.util.*;          
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import com.google.gson.Gson;
 import com.triple.dreamlib.dao.BookDao;
 import com.triple.dreamlib.dto.MaxBookIdDto;
@@ -97,21 +102,68 @@ public class BookController {
 	public String book_add(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		
-		int	book_cnt = Integer.parseInt(request.getParameter("book_cnt"));
-		
-		for(int i=1;i<=book_cnt;i++) {
-		
-			String book_id = request.getParameter("book_id") + String.format("%02d",i);
-			//System.out.println(book_id);
-			dao.book_addDao(book_id, request.getParameter("book_code"),
-			request.getParameter("book_name"), request.getParameter("book_author"),request.getParameter("book_date"), 
-			request.getParameter("book_pub"),request.getParameter("book_imgPath"));
-		}
+		//책이미지 업로드
+	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+		int size = 10*1024*1024;	
+		String filename="";		
+		String book_imgPath="";
+			
+		try{
+		    MultipartRequest multi=new MultipartRequest(request,uploadPath,size,"UTF-8",new DefaultFileRenamePolicy());
+							
+		    Enumeration files = multi.getFileNames();
+		    String file = (String)files.nextElement();
+		    filename = multi.getFilesystemName(file);
+		    
+			book_imgPath=uploadPath+"\\"+filename;
+			
+			int	book_cnt = Integer.parseInt(multi.getParameter("book_cnt"));
+			
+			for(int i=1;i<=book_cnt;i++) {
+			
+				String book_id = multi.getParameter("book_id") + String.format("%02d",i);
+				dao.book_addDao(book_id, multi.getParameter("book_code"),
+				multi.getParameter("book_name"), multi.getParameter("book_author"),multi.getParameter("book_date"), 
+				multi.getParameter("book_pub"),book_imgPath);
+			}
+
+		}catch(Exception e){
+		    e.printStackTrace();
+		}		
 		
 		return "redirect:book_manager";
 		
 	}	
 	
+	@RequestMapping("/book_delete")
+	public String book_delete(HttpServletRequest request) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);
+
+		dao.book_deleteDao(request.getParameter("book_id"));
+		return "redirect:book_manager";
+	}
+	
+	@RequestMapping("/book_modify")
+	public String book_modify(HttpServletRequest request) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);
+		
+	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+		int size = 10*1024*1024;
+		
+		try{
+		    MultipartRequest multi=new MultipartRequest(request,uploadPath,size,"UTF-8",new DefaultFileRenamePolicy());
+			
+			dao.book_modifyDao(multi.getParameter("book_code"),multi.getParameter("book_name"), 
+					multi.getParameter("book_author"),multi.getParameter("book_date"), 
+					multi.getParameter("book_pub"),multi.getParameter("book_id"));
+
+		}catch(Exception e){
+		    e.printStackTrace();
+		}				
+					
+		return "redirect:book_manager";
+	}
+		
 	@RequestMapping("/book_sel")
 	public String book_sel(HttpServletRequest request, Model model) {
 
@@ -137,26 +189,5 @@ public class BookController {
 		return gson.toJson(dto);			
 	}
 	
-	
-
-	/*
-	@RequestMapping("/petclinic/vetslistall")
-	public String vetslistall(Model model) {
-		
-		// model : 
-		// vetslist - ?��?��?���?(id, first_name, last_name)
-		// vetspeslist - ?��?��ID ?? ?��공ID 맵핑?���? (vet_id, specialty_id)
-		// specialtieslist - ?��공정�?(id, name)
-		
-		VetsDao dao = sqlSession.getMapper(VetsDao.class);
-		VetspecialtiesDao vsdao = sqlSession.getMapper(VetspecialtiesDao.class);
-		SpecialtiesDao sdao = sqlSession.getMapper(SpecialtiesDao.class);
-		model.addAttribute("vetslist", dao.vetslistDao());
-		model.addAttribute("vetspeslist", vsdao.vetspeslistDao());
-		model.addAttribute("specialtieslist", sdao.specialtieslistDao());
-		
-		return "petclinic/vetslistall";
-	}
-	*/
 		
 }

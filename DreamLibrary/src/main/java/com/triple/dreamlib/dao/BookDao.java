@@ -19,4 +19,9 @@ public interface BookDao {
 	public void book_addDao(String book_id ,String book_code, String book_name, String book_author, 
 			String book_date, String book_pub, String book_imgPath);
 	
+	public void book_modifyDao(String book_code, String book_name, String book_author, 
+			String book_date, String book_pub, String book_id);
+	
+	public void book_deleteDao(String book_id);
+	
 }

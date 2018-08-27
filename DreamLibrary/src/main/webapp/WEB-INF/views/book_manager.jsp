@@ -79,7 +79,7 @@
             </section>
 
             <section class="sec2">
-               <form action="book_update" method="post">
+               <form action="book_modify" method="post" enctype="multipart/form-data">
                   <fieldset>
                      <legend class="hide">도서관리</legend>
                      <p>
@@ -128,7 +128,8 @@
                      </p>
                      <p>
                         <label for="bookImg">도서이미지</label>
-                        <input type="file" name="book_imgPath" value="${book_sel.book_imgPath}" id="bookImg"/>
+                        <input type="file" name="fileName" value="${book_sel.book_imgPath}"/>
+                        <input type="hidden" name="book_imgPath" value="${book_sel.book_imgPath}" id="bookImg"/>                        
                      </p>
                      <p class="btn_wrap">
                         <input type="submit" name="" value="업데이트" id="updateBtn"/>
@@ -160,6 +161,11 @@
                $(".sec1 table tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
             })
             
+            $(".sec2 #deleteBtn").on("click",function(){
+            	var book_id = $("#bookId").val();
+               location.href="book_delete?book_id="+book_id;
+           })
+                        
             ////////////
             $('#bookCode').on("change",function(){
             	$.ajax({    

@@ -42,4 +42,14 @@
   INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7})
   </insert>	
   
+   <update id="book_modifyDao">
+    UPDATE BOOK_TBL SET BOOK_CODE = #{param1}, BOOK_NAME = #{param2}, 
+           BOOK_AUTHOR = #{param3},	BOOK_DATE = #{param4}, BOOK_PUB = #{param5}
+     WHERE BOOK_ID = #{param6}
+  </update> 
+  
+  <delete id="book_deleteDao">
+	DELETE FROM BOOK_TBL WHERE BOOK_ID = #{param1}
+  </delete>  
+  
 </mapper>
