@@ -89,7 +89,7 @@ public class BookController {
 				}
 			}
 			// 입력받은 값이 1개인경우
-			model.addAttribute("bookresult",dao.book_result1Dao(input1));
+			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
 		}
 		
 		return "/search_result";
