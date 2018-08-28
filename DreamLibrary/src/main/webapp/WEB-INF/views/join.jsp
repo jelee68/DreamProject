@@ -12,11 +12,11 @@
 <body>
 <header id="header">
       <div class="inner-1280">
-         <h1><a href="">Dream Library</a></h1>
+         <h1><a href="/index">Dream Library</a></h1>
          <dl class="top-menu">
             <dt class="hide">상위메뉴</dt>
-            <dd><a href="">login</a>|</dd>
-            <dd><a href="">join</a></dd>
+            <dd><a href="login">login</a>|</dd>
+            <dd><a href="join">join</a></dd>
          </dl>
       </div>
    </header>
@@ -27,38 +27,38 @@
             <div class="join-wrap">
                <article class="join-box">
                      <h2>Join Dream Library</h2>
-                     <p>이미 아이디가 있으신가요? <a href="">로그인</a></p>
+                     <p>이미 아이디가 있으신가요? <a href="login">로그인</a></p>
 
-                     <form action="" method="post">
+                     <form action="join_add" method="post">
                         <fieldset>
                            <legend class="hide">회원가입하기</legend>
             					<p>
             						<label for="userName">* 이름</label>
-            						<input type="text" name="" value="" id="userName" placeholder="이름을 입력하세요"/ required><span class="ch">가능</span>
+            						<input type="text" name="user_name" value="" id="userName" placeholder="이름을 입력하세요"/ required><span class="ch">가능</span>
                            </p>
                            <p>
             						<label for="userId">* 아이디</label>
-            						<input type="text" name="" value="" id="userId" placeholder="영어로 이루어진 아이디를 입력하세요"/>
+            						<input type="text" name="user_id" value="" id="userId" placeholder="영어로 이루어진 아이디를 입력하세요"/>
                            </p>
                            <p>
             						<label for="userPwd">* 비밀번호</label>
-            						<input type="password" name="" value="" id="userPwd" placeholder="4자 이상, 20자 이하의 비밀번호를 입력하세요"/>
+            						<input type="password" name="user_pwd" value="" id="userPwd" placeholder="4자 이상, 20자 이하의 비밀번호를 입력하세요"/>
                            </p>
                            <p>
             						<label for="userPwd2">* 비밀번호 확인</label>
-            						<input type="password" name="" value="" id="userPwd2" placeholder="비밀번호를 다시 입력하세요"/>
+            						<input type="password" name="adm_check" value="" id="userPwd2" placeholder="비밀번호를 다시 입력하세요"/>
                            </p>
                            <p>
             						<label for="userBirth">* 생년월일</label>
-            						<input type="text" name="" value="" id="userBirth" placeholder="예) 19900101"/>
+            						<input type="text" name="user_birth" value="" id="userBirth" placeholder="예) 19900101"/>
                            </p>
                            <p>
             						<label for="userAddr">주소</label>
-            						<input type="text" name="" value="" id="userAddr"/>
+            						<input type="text" name="user_addr" value="" id="userAddr"/>
                            </p>
                            <p>
             						<label for="userTel">전화번호</label>
-            						<input type="text" name="" value="" id="userTel"/>
+            						<input type="text" name="user_tel" value="" id="userTel"/>
                            </p>
                            <p class="btn-wrap">
                               <input type="submit" value="회원가입하기" id="joinBtn"/>

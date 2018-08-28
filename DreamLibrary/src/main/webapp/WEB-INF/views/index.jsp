@@ -12,7 +12,7 @@
 <body>
 <header id="header">
       <div class="inner-1280">
-         <h1><a href="">Dream Library</a></h1>
+         <h1><a href="/index">Dream Library</a></h1>
          <dl class="top-menu">
             <dt class="hide">상위메뉴</dt>
             <dd><a href="">login</a>|</dd>

@@ -12,11 +12,11 @@
 <body>
 <header id="header">
       <div class="inner-1280">
-         <h1><a href="">Dream Library</a></h1>
+         <h1><a href="/index">Dream Library</a></h1>
          <dl class="top-menu">
             <dt class="hide">상위메뉴</dt>
-            <dd><a href="">login</a>|</dd>
-            <dd><a href="">join</a></d   d>
+            <dd><a href="login">login</a>|</dd>
+            <dd><a href="join">join</a></dd>
          </dl>
       </div>
    </header>
@@ -29,17 +29,17 @@
                   <h2>Login</h2>
                   <p>아이디가 없으신가요? <a href="join.html">회원가입</a></p>
 
-                  <form action="" method="post">
+                  <form action="login" method="post">
                      <fieldset>
                         <legend class="hide">로그인하기</legend>
 
                         <p>
                            <label for="userId">아이디</label>
-                           <input type="text" name="" value="" id="userId" required/>
+                           <input type="text" name="user_id" value="${join.user_id}" id="userId" required/>
                         </p>
                         <p>
                            <label for="userPwd">비밀번호</label>
-                           <input type="password" name="" value="" id="userPwd"/>
+                           <input type="password" name="user_pwd" value="${join.user_pwd}" id="userPwd"/>
                         </p>
 
                         <p class="btn-wrap">
@@ -56,8 +56,7 @@
 
    <script type="text/javascript" src="resources/js/jquery.js"> </script>
    <script type="text/javascript" src="resources/js/jquery-ui.min.js"> </script>
-   <script type="text/javascript">
-
-   </script>
+   <script type="text/javascript"> </script>
+   
 </body>
 </html>
