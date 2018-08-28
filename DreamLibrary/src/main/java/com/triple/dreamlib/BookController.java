@@ -68,17 +68,16 @@ public class BookController {
 		input3 = request.getParameter("input3");
 		cond01 = request.getParameter("cond01");
 		cond02 = request.getParameter("cond02");		
-		
+
 		// 입력받은 값이 1개이상인경우
 		if (!input1.equals(null)) {
-			System.out.println("input1");
-			
+		
 			// 입력받은 값이 2개이상인경우			
 			if (!input2.equals(null)) {
-				System.out.println("input2");
 				// 입력받은 값이 3개인경우
 				if (!input3.equals(null)) {
-					System.out.println("input3");					
+					
+					System.out.println(select1+"/"+input1+"/"+cond01+"/"+select2+"/"+input2+"/"+cond02+"/"+select3+"/"+input3);
 					model.addAttribute("bookresult",
 					dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
 				}
@@ -91,7 +90,7 @@ public class BookController {
 			// 입력받은 값이 1개인경우
 			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
 		}
-		
+				
 		return "/search_result";
 	}
 	
