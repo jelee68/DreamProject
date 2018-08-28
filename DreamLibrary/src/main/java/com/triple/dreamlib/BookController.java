@@ -20,6 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import com.google.gson.Gson;
 import com.triple.dreamlib.dao.BookDao;
+import com.triple.dreamlib.dto.BookSearchDto;
 import com.triple.dreamlib.dto.MaxBookIdDto;
 
 @Controller
@@ -81,13 +82,13 @@ public class BookController {
 				else {
 					// 입력받은 값이 2개인경우
 					model.addAttribute("bookresult",					
-					dao.book_result2Dao(select1,input1,cond01,select2,input2));					
+					dao.book_result2Dao(select1,input1,cond01,select2,input2));						
 				}
 			}
 			// 입력받은 값이 1개인경우
 			model.addAttribute("bookresult",dao.book_result1Dao(input1));
 		}
-				
+		
 		return "/search_result";
 	}
 	
