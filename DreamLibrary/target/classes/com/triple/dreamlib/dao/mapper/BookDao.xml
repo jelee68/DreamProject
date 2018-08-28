@@ -22,20 +22,24 @@
 
   <select id="book_result1Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
 	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
-    	   decode(fun_bookstatus(book_id),null,'대출가능','대출중') as book_status
-	  from book_tbl where book_name like '%'|| #{param1} ||'%'  order by book_id asc
+    	   decode(fun_bookstatus(book_id),null||0,'대출가능','대출중') as book_status 
+	  from book_tbl where ${param1} like '%'|| #{param2} ||'%'  order by book_id asc
   </select>
 	
   <select id="book_result2Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
 	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
-    	   decode(fun_bookstatus(book_id),null,'대출가능','대출중') as book_status
-	  from book_tbl where ${param1} like '%'|| #{param2} ||'%'  order by book_id asc
+    	   decode(fun_bookstatus(book_id),null||0,'대출가능','대출중') as book_status 
+	  from book_tbl where ${param1} like '%'|| #{param2} ||'%' 
+	  				${param3} ${param4} like '%'|| #{param5} ||'%' 
+	  order by book_id asc
   </select>
   
     <select id="book_result3Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
 	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
-    	   decode(fun_bookstatus(book_id),null,'0',fun_bookstatus(book_id)) as book_status
-	  from book_tbl where #{param1} like '%'|| #{param2} ||'%'  order by book_id asc
+    	    decode(fun_bookstatus(book_id),null||0,'대출가능','대출중') as book_status 
+	  from book_tbl where ${param1} like '%'|| #{param2} ||'%' 
+	  				${param3} ${param4} like '%'|| #{param5} ||'%'
+	  				${param6} ${param7} like '%'|| #{param8} ||'%'
   </select>	
 
   <insert id="book_addDao">

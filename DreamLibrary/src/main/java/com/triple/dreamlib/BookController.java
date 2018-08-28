@@ -71,11 +71,14 @@ public class BookController {
 		
 		// 입력받은 값이 1개이상인경우
 		if (!input1.equals(null)) {
+			System.out.println("input1");
 			
 			// 입력받은 값이 2개이상인경우			
 			if (!input2.equals(null)) {
+				System.out.println("input2");
 				// 입력받은 값이 3개인경우
 				if (!input3.equals(null)) {
+					System.out.println("input3");					
 					model.addAttribute("bookresult",
 					dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
 				}
