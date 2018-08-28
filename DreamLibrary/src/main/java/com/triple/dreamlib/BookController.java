@@ -122,7 +122,7 @@ public class BookController {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		
 		//책이미지 업로드
-	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+	    String uploadPath="C:\\dev\\DreamLibrary\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
 		int size = 10*1024*1024;	
 		String filename="";		
 		String book_imgPath="";
@@ -166,7 +166,7 @@ public class BookController {
 	public String book_modify(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);
 		
-	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+	    String uploadPath="C:\\dev\\DreamLibrary\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
 		int size = 10*1024*1024;
 		
 		try{
