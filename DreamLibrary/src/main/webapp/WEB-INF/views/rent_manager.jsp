@@ -136,7 +136,7 @@
    
    <script type="text/javascript">
       $(function(){
-         //
+         //master
          	var bookId;
             $(".sec2 .rent_list").on("click",'tr',function(){
                $(".sec2 .rent_list tbody tr:nth-child(2n-1)").css("background-color","#fff");
