@@ -11,8 +11,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.*;
+import java.util.*;          
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import com.google.gson.Gson;
 import com.triple.dreamlib.dao.BookDao;
-import com.triple.dreamlib.dto.BookDto;
+import com.triple.dreamlib.dto.BookSearchDto;
+import com.triple.dreamlib.dto.MaxBookIdDto;
+
 @Controller
 public class BookController {
 	@Autowired
@@ -59,26 +70,22 @@ public class BookController {
 		cond01 = request.getParameter("cond01");
 		cond02 = request.getParameter("cond02");		
 		
-		// �엯�젰諛쏆� 媛믪씠 1媛쒖씠�긽�씤寃쎌슦
-		if (!input1.equals(null)) {
-			
-			// �엯�젰諛쏆� 媛믪씠 2媛쒖씠�긽�씤寃쎌슦			
-			if (!input2.equals(null)) {
-				// �엯�젰諛쏆� 媛믪씠 3媛쒖씤寃쎌슦
-				if (!input3.equals(null)) {
-					model.addAttribute("bookresult",
-					dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
-				}
-				else {
-					// �엯�젰諛쏆� 媛믪씠 2媛쒖씤寃쎌슦
-					model.addAttribute("bookresult",					
-					dao.book_result2Dao(select1,input1,cond01,select2,input2));					
-				}
-			}
-			// �엯�젰諛쏆� 媛믪씠 1媛쒖씤寃쎌슦
-			model.addAttribute("bookresult",dao.book_result1Dao(input1));
+		boolean checkInput1 = !input1.equals(null);
+		boolean checkInput2 = !input2.equals(null);
+		boolean checkInput3 = !input3.equals(null);
+		System.out.println(input1+":"+input2+":"+input3+":"+checkInput1 +","+ checkInput2 +","+ checkInput3);
+		// 입력받은 값이 1개이상인경우
+		if(checkInput1 && !checkInput2 && !checkInput3) {
+			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
+		}else if(checkInput1 && checkInput2 && !checkInput3) {
+			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			model.addAttribute("bookresult",dao.book_result2Dao(select1,input1,cond01,select2,input2));	
+		}else if(checkInput1 && checkInput2 && checkInput3) {
+			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
 		}
-				
+
 		return "/search_result";
 	}
 	
@@ -92,15 +99,67 @@ public class BookController {
 	@RequestMapping("/book_add")
 	public String book_add(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
-	
-		dao.book_addDao(request.getParameter("book_id"), request.getParameter("book_code"),
-		request.getParameter("book_name"), request.getParameter("book_author"),request.getParameter("book_date"), 
-		request.getParameter("book_pub"),request.getParameter("book_imgPath"));
+
+		//책이미지 업로드
+	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+		int size = 10*1024*1024;	
+		String filename="";		
+		String book_imgPath="";
+			
+		try{
+		    MultipartRequest multi=new MultipartRequest(request,uploadPath,size,"UTF-8",new DefaultFileRenamePolicy());
+							
+		    Enumeration files = multi.getFileNames();
+		    String file = (String)files.nextElement();
+		    filename = multi.getFilesystemName(file);
+		    
+			book_imgPath=uploadPath+"\\"+filename;
+			
+			int	book_cnt = Integer.parseInt(multi.getParameter("book_cnt"));
+			
+			for(int i=1;i<=book_cnt;i++) {
+				String book_id = multi.getParameter("book_id") + String.format("%02d",i);
+				dao.book_addDao(book_id, multi.getParameter("book_code"),
+				multi.getParameter("book_name"), multi.getParameter("book_author"),multi.getParameter("book_date"), 
+				multi.getParameter("book_pub"),book_imgPath);
+			}
+
+		}catch(Exception e){
+		    e.printStackTrace();
+		}		
 		
 		return "redirect:book_manager";
 		
 	}	
+
+	@RequestMapping("/book_delete")
+	public String book_delete(HttpServletRequest request) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);
+		dao.book_deleteDao(request.getParameter("book_id"));
+		return "redirect:book_manager";
+	}
 	
+	@RequestMapping("/book_modify")
+	public String book_modify(HttpServletRequest request) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);
+		
+	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+		int size = 10*1024*1024;
+		
+		try{
+		    MultipartRequest multi=new MultipartRequest(request,uploadPath,size,"UTF-8",new DefaultFileRenamePolicy());
+			
+			dao.book_modifyDao(multi.getParameter("book_code"),multi.getParameter("book_name"), 
+					multi.getParameter("book_author"),multi.getParameter("book_date"), 
+					multi.getParameter("book_pub"),multi.getParameter("book_id"));
+
+		}catch(Exception e){
+		    e.printStackTrace();
+		}				
+					
+		return "redirect:book_manager";
+	}
+		
 	@RequestMapping("/book_sel")
 	public String book_sel(HttpServletRequest request, Model model) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
@@ -109,24 +168,19 @@ public class BookController {
 		return "book_manager";	
 	}
 
-	/*
-	@RequestMapping("/petclinic/vetslistall")
-	public String vetslistall(Model model) {
+	@RequestMapping("/max_book_id")
+	@ResponseBody
+	public String max_book_id(@RequestParam("book_code")String book_code) {
 		
-		// model : 
-		// vetslist - ?占쏙옙?占쏙옙?占쏙옙占�?(id, first_name, last_name)
-		// vetspeslist - ?占쏙옙?占쏙옙ID ?? ?占쏙옙怨킝D 留듯븨?占쏙옙占�? (vet_id, specialty_id)
-		// specialtieslist - ?占쏙옙怨듭젙占�?(id, name)
+		BookDao dao = sqlSession.getMapper(BookDao.class);	
+
+		Gson gson = new Gson();
+		MaxBookIdDto dto = dao.maxBookIdDao(book_code);	
 		
-		VetsDao dao = sqlSession.getMapper(VetsDao.class);
-		VetspecialtiesDao vsdao = sqlSession.getMapper(VetspecialtiesDao.class);
-		SpecialtiesDao sdao = sqlSession.getMapper(SpecialtiesDao.class);
-		model.addAttribute("vetslist", dao.vetslistDao());
-		model.addAttribute("vetspeslist", vsdao.vetspeslistDao());
-		model.addAttribute("specialtieslist", sdao.specialtieslistDao());
-		
-		return "petclinic/vetslistall";
+		String book_id = book_code.trim() + dto.getBook_id().trim();	
+		dto.setBook_id(book_id);
+
+		return gson.toJson(dto);			
 	}
-	*/
-		
+			
 }
