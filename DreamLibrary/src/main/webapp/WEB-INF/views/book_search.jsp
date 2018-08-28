@@ -46,7 +46,7 @@
                         </p>
 
                         <p class="cf">
-                           <select id="" name="select2" value="" title="기준을 선택하세요">
+                           <select id="" name="select2" title="기준을 선택하세요">
                               <option value="book_name">제목</option>
                               <option value="book_author" selected>저자</option>
                               <option value="book_pub">출판사</option>
@@ -59,7 +59,7 @@
                         </p>
 
                         <p class="cf">
-                           <select id="" name="select3" value="" title="기준을 선택하세요">
+                           <select id="" name="select3" title="기준을 선택하세요">
                               <option value="book_name">제목</option>
                               <option value="book_author">저자</option>
                               <option value="book_pub" selected>출판사</option>
