@@ -45,8 +45,8 @@
 	  from book_tbl LEFT OUTER JOIN rent_tbl 
       ON book_tbl.book_id = rent_tbl.book_id
 	  WHERE ${param1} like '%'|| #{param2} ||'%' 
-	  ${param3} (${param4} like '%'|| #{param5} ||'%' 
-	  ${param6} ${param7} like '%'|| #{param8} ||'%')
+	  ${param3} ${param4} like '%'|| #{param5} ||'%' 
+	  ${param6} ${param7} like '%'|| #{param8} ||'%'
 	  order by book_id asc
    </select>	
 
