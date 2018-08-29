@@ -41,15 +41,30 @@ public class UserController {
 		return "redirect:index";
 	}
 	
-	@RequestMapping("/login")
-	public String login(HttpServletRequest request, Model model) {
-		UserDao dao = sqlSession.getMapper(UserDao.class);
+	@RequestMapping("/loginform")
+	public String loginform() {
+		//UserDao dao = sqlSession.getMapper(UserDao.class);
 		
-		dao.loginDao(request.getParameter("user_id"), request.getParameter("user_pwd"));
+		//dao.loginDao(request.getParameter("user_id"), request.getParameter("user_pwd"));
+		
+		//model.addAttribute("login", udao.loginDao());
+		
+		return "loginform";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		//UserDao dao = sqlSession.getMapper(UserDao.class);
+		
+		//dao.loginDao(request.getParameter("user_id"), request.getParameter("user_pwd"));
 		
 		//model.addAttribute("login", udao.loginDao());
 		
 		return "login";
 	}
+
+
+
+	
 
 }

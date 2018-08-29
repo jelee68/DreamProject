@@ -11,11 +11,11 @@
 <h4>"<s:authentication property="name"/>" 님께서 로그인하셨습니다.</h4>
 
 
-<s:authorize ifAnyGranted="ROLE_USER">
+<s:authorize ifAnyGranted="0">
 <p> <b>USER</b> "<s:authentication property="name"/>" is Log-In</p>
 </s:authorize>
 
-<s:authorize ifAnyGranted="ROLE_ADMIN">
+<s:authorize ifAnyGranted="1">
 <p> <b>ADMIN</b> "<s:authentication property="name"/>" is Log-In
 </s:authorize>
 
