@@ -17,7 +17,7 @@
          <dl class="top-menu">
             <dt class="hide">상위메뉴</dt>
             <dd><a href="">login</a>|</dd>
-            <dd><a href="">join</a></d   d>
+            <dd><a href="">join</a></dd>
          </dl>
       </div>
    </header>
