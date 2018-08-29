@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.triple.dreamlib.dao.UserDao;
 import com.triple.dreamlib.dto.RentListDto;
@@ -64,27 +68,29 @@ public class UserController {
 	
 	@RequestMapping("/my_history")
 	public String my_history(HttpServletRequest request, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String user_id = auth.getName();
+	 
 		UserDao dao = sqlSession.getMapper(UserDao.class);
-		System.out.println(request.getParameter("user_id"));
-		ArrayList<RentListDto> rentList = dao.myRentListDao(request.getParameter("user_id"));
+		ArrayList<RentListDto> myRentList = dao.myRentListDao(user_id);
 		int i = 0;
 		Date now = new Date();
 		/*java.util.Date utilDate = new java.util.Date();
 	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());*/
 		
-		/*while(i< rentList.size()) {
-			if(rentList.get(i).getBook_status().equals("1")) {
-				if(rentList.get(i).getBook_re_due_date().compareTo(now) >= 0) {
-					rentList.get(i).setBook_status("대출중");
+		while(i< myRentList.size()) {
+			if(myRentList.get(i).getBook_status().equals("1")) {
+				if(myRentList.get(i).getBook_re_due_date().compareTo(now) >= 0) {
+					myRentList.get(i).setBook_status("대출중");
 				}else {
-					rentList.get(i).setBook_status("연체중");
+					myRentList.get(i).setBook_status("연체중");
 				}
 			}else {
-				rentList.get(i).setBook_status("반납완료");
+				myRentList.get(i).setBook_status("반납완료");
 			}
 			i++;
-		}*/
-		model.addAttribute("my_list",dao.myRentListDao(request.getParameter("user_id")));
+		}
+		model.addAttribute("my_list",myRentList);
 		return "my_history";
 	}
 

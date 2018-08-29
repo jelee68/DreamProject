@@ -6,7 +6,7 @@
 <mapper namespace="com.triple.dreamlib.dao.UserDao">
 
  	<insert id="user_addDao">
-		INSERT INTO USER_TBL VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, '0')
+		INSERT INTO USER_TBL VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, default, default)
 	</insert>
 	
  	<select id="loginDao" resultType="com.triple.dreamlib.dto.UserDto">
