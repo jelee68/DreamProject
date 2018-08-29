@@ -2,7 +2,7 @@ package com.triple.dreamlib.dto;
 
 public class BookSearchDto {
 
-	String  rownum;
+	String  seq;
 	String  book_id; 
 	String  book_name; 
 	String  book_author; 
@@ -14,7 +14,7 @@ public class BookSearchDto {
 	public BookSearchDto() {
 	}
 			
-	public BookSearchDto(String rownum, String book_id, String book_name, String book_author, String book_date, String book_pub,
+	public BookSearchDto(String seq, String book_id, String book_name, String book_author, String book_date, String book_pub,
 			String book_imgPath, String book_status) {
 
 		this.book_id = book_id;
@@ -26,12 +26,12 @@ public class BookSearchDto {
 		this.book_status = book_status;
 	}
 
-	public String getRownum() {
-		return rownum;
+	public String getSeq() {
+		return seq;
 	}
 
-	public void setRownum(String rownum) {
-		this.rownum = rownum;
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 
 	public String getBook_id() {

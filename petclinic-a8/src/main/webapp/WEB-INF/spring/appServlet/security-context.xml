@@ -23,9 +23,15 @@
   <security:authentication-provider>
 
   <security:jdbc-user-service data-source-ref="dataSource"
+    users-by-username-query="select user_id as username, user_pwd as password, adm_check as enabled from user_tbl where user_id=?"
+    authorities-by-username-query="select user_id as username, adm_check as authority from user_tbl where user_id=?"
+  />
+<!--   
+  <security:jdbc-user-service data-source-ref="dataSource"
     users-by-username-query="select username, password, enabled from memberuser where username=?"
     authorities-by-username-query="select username, authority from memberuser where username=?"
   />
+   -->
 
   </security:authentication-provider>
 </security:authentication-manager>
