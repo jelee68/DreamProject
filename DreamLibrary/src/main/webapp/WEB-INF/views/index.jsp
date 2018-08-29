@@ -15,8 +15,8 @@
          <h1><a href="/index">Dream Library</a></h1>
          <dl class="top-menu">
             <dt class="hide">상위메뉴</dt>
-            <dd><a href="">login</a>|</dd>
-            <dd><a href="">join</a></dd>
+            <dd><a href="login">login</a>|</dd>
+            <dd><a href="join">join</a></dd>
          </dl>
       </div>
    </header>
