@@ -8,6 +8,7 @@
 	<title>내 서재 | 드림도서관</title>
 	<link rel="stylesheet" href="resources/css/sub_import.css" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+	
 </head>
 <body>
 <header id="header">
@@ -47,15 +48,16 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <td class="history_index">1</td>
-                     <td class="rent_date">2018-07-16</td>
-                     <td class="book_name">열 세번째 이야기</td>
-                     <td class="return_due_date">2018-07-30</td>
-                     <td class="return_date">&nbsp;</td>
-                     <td class="rent_status">대출중</td>
-
-                  </tr>
+               	<c:forEach items="${my_list}" var="dto">
+  					<tr>
+                      <td class="history_index">${dto.rownum}</td>
+		              <td class="book_rent_date">${dto.book_rent_date}</td>
+		              <td class="book_name">${dto.book_name}</td>
+		              <td class="book_re_due_date">${dto.book_re_due_date}</td>
+		              <td class="book_re_date">${dto.book_re_date}</td>
+		              <td class="book_status">${dto.book_status}</td>
+  					</tr>
+  				</c:forEach>
 
                </tbody>
             </table>
