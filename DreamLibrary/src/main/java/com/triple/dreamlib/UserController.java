@@ -43,9 +43,9 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model model) {
-		UserDao dao = sqlSession.getMapper(UserDao.class);
+		//UserDao dao = sqlSession.getMapper(UserDao.class);
 		
-		dao.loginDao(request.getParameter("user_id"), request.getParameter("user_pwd"));
+		//dao.loginDao(request.getParameter("user_id"), request.getParameter("user_pwd"));
 		
 		//model.addAttribute("login", udao.loginDao());
 		
