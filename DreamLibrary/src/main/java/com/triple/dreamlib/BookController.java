@@ -36,6 +36,22 @@ public class BookController {
 		return "/test";
 	}	
 	
+	@RequestMapping("/book_simple_search")
+	public String book_simple_search(HttpServletRequest request, Model model) {
+		
+		String select;
+		String input;
+		
+		BookDao dao = sqlSession.getMapper(BookDao.class);
+		
+		select = request.getParameter("select1");
+		input = request.getParameter("input1");		
+		
+		model.addAttribute("bookresult",dao.book_result1Dao(select,input));
+		
+		return "/search_result";
+	}
+	
 	@RequestMapping("/book_search")
 	public String book_search() {
 		return "/book_search";
@@ -43,16 +59,6 @@ public class BookController {
 	
 	@RequestMapping("/search_result")
 	public String search_result(HttpServletRequest request, Model model) {
-/*
-		select1=book_name
-				&input1=spring
-				&cond01=AND
-				&select2=book_author
-				&input2=coding
-				&cond02=AND
-				&select3=book_pub
-				&input3=books
-	*/
 		
 		String select1, select2, select3;
 		String input1, input2, input3;
@@ -72,16 +78,16 @@ public class BookController {
 		boolean checkInput1 = !input1.equals(null);
 		boolean checkInput2 = !input2.equals(null);
 		boolean checkInput3 = !input3.equals(null);
-		System.out.println(input1+":"+input2+":"+input3+":"+checkInput1 +","+ checkInput2 +","+ checkInput3);
+		//System.out.println(input1+":"+input2+":"+input3+":"+checkInput1 +","+ checkInput2 +","+ checkInput3);
 		// 입력받은 값이 1개이상인경우
 		if(checkInput1 && !checkInput2 && !checkInput3) {
-			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
 			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
 		}else if(checkInput1 && checkInput2 && !checkInput3) {
-			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
 			model.addAttribute("bookresult",dao.book_result2Dao(select1,input1,cond01,select2,input2));	
 		}else if(checkInput1 && checkInput2 && checkInput3) {
-			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
 			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
 		}
 		
@@ -100,7 +106,8 @@ public class BookController {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		
 		//책이미지 업로드
-	    String uploadPath="C:\\dev\\DreamLibrary\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+		
+	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
 		int size = 10*1024*1024;	
 		String filename="";		
 		String book_imgPath="";
@@ -112,7 +119,7 @@ public class BookController {
 		    String file = (String)files.nextElement();
 		    filename = multi.getFilesystemName(file);
 		    
-			book_imgPath=uploadPath+"\\"+filename;
+			book_imgPath="resources\\book_img\\"+filename;
 			
 			int	book_cnt = Integer.parseInt(multi.getParameter("book_cnt"));
 			
