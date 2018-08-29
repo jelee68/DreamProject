@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,11 +13,22 @@
 <body>
 <header id="header">
       <div class="inner-1280">
-         <h1><a href="">Dream Library</a></h1>
+         <h1><a href="index">Dream Library</a></h1>
          <dl class="top-menu">
             <dt class="hide">상위메뉴</dt>
-            <dd><a href="login">login</a>|</dd>
-            <dd><a href="join">join</a></dd>
+            
+            <s:authorize ifNotGranted="0,1">
+            	<dd><a href="login">login</a>|</dd>
+            	<dd><a href="join">join</a></dd>
+            </s:authorize>
+            <s:authorize ifAnyGranted="0">
+				<dd> "<s:authentication property="name"/>"님 반갑습니다. |</dd>
+				<dd><a href="${pageContext.request.contextPath}/j_spring_security_logout">로그아웃</a></dd>
+			</s:authorize>
+			<s:authorize ifAnyGranted="1">
+				<dd> admin "<s:authentication property="name"/>"님 반갑습니다. |</dd>
+				<dd><a href="${pageContext.request.contextPath}/j_spring_security_logout">로그아웃</a></dd>
+			</s:authorize>
          </dl>
       </div>
    </header>
@@ -29,7 +41,7 @@
                <div class="easy cf">
                   <h4>
                      <span class="detail-btn">
-                     상세검색
+                     	상세검색
                      </span>
                   </h4>
                   <form action="" method="post" >
@@ -105,11 +117,21 @@
 
             <section class="sec2">
                   <ul class="menu cf">
-                     <li><a href="book_search">자료검색</a></li>
-                     <li><a href="">신간도서</a></li>
+                  <s:authorize ifNotGranted="0,1">
+                  	 <li><a href="dream_info">드림도서관 소개</a></li>
+            		 <li><a href="book_search">자료 검색</a></li> 
+            	  </s:authorize>
+            	  <s:authorize ifAnyGranted="0">
+            	 	 <li><a href="dream_info">드림도서관 소개</a></li>
+            	     <li><a href="book_search">자료 검색</a></li> 
                      <li><a href="my_history">내 서재</a></li>
-                     <li><a href="book_manager">도서등록</a></li>
-                     <li><a href="rent_manager">대출관리</a></li>
+            	  </s:authorize>
+            	  <s:authorize ifAnyGranted="1">
+            	  	 <li><a href="dream_info">드림도서관 소개</a></li>
+                     <li><a href="book_search">자료 검색</a></li>                     
+                     <li><a href="book_manager">도서 관리</a></li>
+                     <li><a href="rent_manager">대출 관리</a></li>
+            	  </s:authorize>           	  	 
                   </ul>
             </section>
 
