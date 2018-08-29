@@ -21,22 +21,34 @@
   </select>
 
   <select id="book_result1Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
-	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
-    	   decode(fun_bookstatus(book_id),null,'대출가능','대출중') as book_status
-	  from book_tbl where book_name like '%'|| #{param1} ||'%'  order by book_id asc
+	select rownum, book_tbl.book_id, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
+	book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
+	  from book_tbl LEFT OUTER JOIN rent_tbl 
+      ON book_tbl.book_id = rent_tbl.book_id
+	  WHERE ${param1} like '%'|| #{param2} ||'%'  
+	  order by book_id asc
   </select>
 	
   <select id="book_result2Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
-	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
-    	   decode(fun_bookstatus(book_id),null,'대출가능','대출중') as book_status
-	  from book_tbl where ${param1} like '%'|| #{param2} ||'%'  order by book_id asc
-  </select>
+	select rownum, book_tbl.book_id, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
+	book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
+	  from book_tbl LEFT OUTER JOIN rent_tbl 
+      ON book_tbl.book_id = rent_tbl.book_id
+	  WHERE ${param1} like '%'|| #{param2} ||'%' 
+	  ${param3} ${param4} like '%'|| #{param5} ||'%' 
+	  order by book_id asc
+   </select>
   
-    <select id="book_result3Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
-	select rownum, book_id, book_name, book_author, book_pub, book_date, book_imgPath,
-    	   decode(fun_bookstatus(book_id),null,'0',fun_bookstatus(book_id)) as book_status
-	  from book_tbl where #{param1} like '%'|| #{param2} ||'%'  order by book_id asc
-  </select>	
+   <select id="book_result3Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+	select rownum, book_tbl.book_id, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
+	book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
+	  from book_tbl LEFT OUTER JOIN rent_tbl 
+      ON book_tbl.book_id = rent_tbl.book_id
+	  WHERE ${param1} like '%'|| #{param2} ||'%' 
+	  ${param3} (${param4} like '%'|| #{param5} ||'%' 
+	  ${param6} ${param7} like '%'|| #{param8} ||'%')
+	  order by book_id asc
+   </select>	
 
   <insert id="book_addDao">
   INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7})

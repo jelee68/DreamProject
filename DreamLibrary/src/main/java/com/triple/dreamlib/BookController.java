@@ -69,13 +69,31 @@ public class BookController {
 		cond01 = request.getParameter("cond01");
 		cond02 = request.getParameter("cond02");		
 		
+		boolean checkInput1 = !input1.equals(null);
+		boolean checkInput2 = !input2.equals(null);
+		boolean checkInput3 = !input3.equals(null);
+		System.out.println(input1+":"+input2+":"+input3+":"+checkInput1 +","+ checkInput2 +","+ checkInput3);
 		// 입력받은 값이 1개이상인경우
-		if (!input1.equals(null)) {
+		if(checkInput1 && !checkInput2 && !checkInput3) {
+			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
+		}else if(checkInput1 && checkInput2 && !checkInput3) {
+			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			model.addAttribute("bookresult",dao.book_result2Dao(select1,input1,cond01,select2,input2));	
+		}else if(checkInput1 && checkInput2 && checkInput3) {
+			System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
+		}
+		
+		/*if (!input1.equals(null)) {
+			System.out.println("input1");
 			
 			// 입력받은 값이 2개이상인경우			
 			if (!input2.equals(null)) {
+				System.out.println("input2");
 				// 입력받은 값이 3개인경우
 				if (!input3.equals(null)) {
+					System.out.println("input3");					
 					model.addAttribute("bookresult",
 					dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
 				}
@@ -86,8 +104,8 @@ public class BookController {
 				}
 			}
 			// 입력받은 값이 1개인경우
-			model.addAttribute("bookresult",dao.book_result1Dao(input1));
-		}
+			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
+		}*/
 		
 		return "/search_result";
 	}
@@ -104,7 +122,7 @@ public class BookController {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		
 		//책이미지 업로드
-	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+	    String uploadPath="C:\\dev\\DreamLibrary\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
 		int size = 10*1024*1024;	
 		String filename="";		
 		String book_imgPath="";
@@ -148,7 +166,7 @@ public class BookController {
 	public String book_modify(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);
 		
-	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+	    String uploadPath="C:\\dev\\DreamLibrary\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
 		int size = 10*1024*1024;
 		
 		try{
