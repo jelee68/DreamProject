@@ -26,6 +26,7 @@
 	  from book_tbl LEFT OUTER JOIN rent_tbl 
       ON book_tbl.book_id = rent_tbl.book_id
 	  WHERE LOWER(${param1}) like LOWER('%'|| #{param2} ||'%')
+	  	AND book_tbl.book_del = '0' 
 	  order by book_id asc
   </select>
 	
@@ -61,7 +62,8 @@
 			</if>
 			<if test="param7 != null">
 				 ${param6} LOWER(${param7}) like LOWER('%'|| #{param8} ||'%') 
-			</if> 
+			</if>
+		AND book_tbl.book_del = '0' 
 		 order by book_id asc	
 		</where>
 	</select>
@@ -77,7 +79,8 @@
   </update> 
   
   <delete id="book_deleteDao">
-	DELETE FROM BOOK_TBL WHERE BOOK_ID = #{param1}
+	 UPDATE BOOK_TBL SET BOOK_DEL = '1'
+     WHERE BOOK_ID = #{param1}
   </delete>  
   
 </mapper>
