@@ -20,6 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import com.google.gson.Gson;
 import com.triple.dreamlib.dao.BookDao;
+import com.triple.dreamlib.dto.BookDto;
 import com.triple.dreamlib.dto.BookSearchDto;
 import com.triple.dreamlib.dto.MaxBookIdDto;
 
@@ -76,18 +77,10 @@ public class BookController {
 		cond02 = request.getParameter("cond02");		
 		
 		boolean checkInput1 = !input1.equals(null);
-		boolean checkInput2 = !input2.equals(null);
-		boolean checkInput3 = !input3.equals(null);
-		//System.out.println(input1+":"+input2+":"+input3+":"+checkInput1 +","+ checkInput2 +","+ checkInput3);
-		// 입력받은 값이 1개이상인경우
-		if(checkInput1 && !checkInput2 && !checkInput3) {
-		
-			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
-		}else if(checkInput1 && checkInput2 && !checkInput3) {
 
-			model.addAttribute("bookresult",dao.book_result2Dao(select1,input1,cond01,select2,input2));	
-		}else if(checkInput1 && checkInput2 && checkInput3) {
-			
+
+		if(checkInput1) {
+			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
 			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
 		}
 		
@@ -170,13 +163,25 @@ public class BookController {
 		return "redirect:book_manager";
 	}
 		
-	@RequestMapping("/book_sel")
+	/*@RequestMapping("/book_sel")
 	public String book_sel(HttpServletRequest request, Model model) {
 
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		model.addAttribute("booklist", dao.booklistDao());		
 		model.addAttribute("book_sel", dao.bookselDao(request.getParameter("book_id")));		
 		return "book_manager";	
+	}*/
+	
+	@RequestMapping("/book_sel")
+	@ResponseBody
+	public String book_sel(@RequestParam("book_id")String id) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);	
+		Gson gson = new Gson();		
+		BookDto bookSel = dao.bookselDao(id);
+	
+		
+		return gson.toJson(bookSel); 
+		
 	}
 
 	

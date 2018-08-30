@@ -136,7 +136,13 @@
    
    <script type="text/javascript">
       $(function(){
-         //master
+    	  
+    	  $(document).on('keydown',function(e){
+    		  if (e.keyCode === 13) {
+  		        e.preventDefault();
+  		    }
+    	  })
+         //
          	var bookId;
             $(".sec2 .rent_list").on("click",'tr',function(){
                $(".sec2 .rent_list tbody tr:nth-child(2n-1)").css("background-color","#fff");
