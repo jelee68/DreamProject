@@ -81,13 +81,13 @@ public class BookController {
 		//System.out.println(input1+":"+input2+":"+input3+":"+checkInput1 +","+ checkInput2 +","+ checkInput3);
 		// 입력받은 값이 1개이상인경우
 		if(checkInput1 && !checkInput2 && !checkInput3) {
-			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+		
 			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
 		}else if(checkInput1 && checkInput2 && !checkInput3) {
-			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+
 			model.addAttribute("bookresult",dao.book_result2Dao(select1,input1,cond01,select2,input2));	
 		}else if(checkInput1 && checkInput2 && checkInput3) {
-			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			
 			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
 		}
 		
