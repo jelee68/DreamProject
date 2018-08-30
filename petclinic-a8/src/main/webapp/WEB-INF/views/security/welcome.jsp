@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-welcome.jsp
+<h4>이름 : ${sessionScope.userLoginInfo.username} 님 환영합니다.</h4>
 </body>
 </html>
