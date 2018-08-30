@@ -25,7 +25,7 @@
             	<dd><a href="join">join</a></dd>
             </s:authorize>
             <s:authorize ifAnyGranted="0">
-				<dd> "<s:authentication property="name"/>"님 반갑습니다. |</dd>
+				<dd> "${userInfo.user_name }"님 반갑습니다. |</dd>
 				<dd><a href="${pageContext.request.contextPath}/j_spring_security_logout">로그아웃</a></dd>
 			</s:authorize>
 			<s:authorize ifAnyGranted="1">

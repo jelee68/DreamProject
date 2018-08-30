@@ -10,8 +10,9 @@
 	</insert>
 	
  	<select id="loginDao" resultType="com.triple.dreamlib.dto.UserDto">
-		select user_id, user_pwd from user_tbl
+		select user_name from user_tbl WHERE user_id = #{param1}
 	</select>
+	
 	
 	<select id="myRentListDao" resultType="com.triple.dreamlib.dto.RentListDto">
 		SELECT rownum, rent_tbl.book_rent_date, book_tbl.book_name, rent_tbl.book_re_due_date, 

@@ -35,7 +35,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("/index")
-	public String index() {
+	public String index(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String user_id = auth.getName();
+		UserDao dao = sqlSession.getMapper(UserDao.class);	
+		model.addAttribute("userInfo", dao.loginDao(user_id));
 		return "/index";
 	}
 	
@@ -60,12 +64,12 @@ public class UserController {
 		
 		return "loginform";
 	}
-	
+	/*
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
-	
+	*/
 	@RequestMapping("/my_history")
 	public String my_history(HttpServletRequest request, Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
