@@ -66,7 +66,7 @@
              <c:forEach items="${bookresult}" var="dto" varStatus="status">              
                   <li class="cf">
                      <span class="result_num">${dto.seq}.</span>
-                    	<a href="book_detail.html" class="book_img"><img src="resources/images/main/list0.jpg" alt="책표지이미지"></a>
+                    	<a href="book_detail.html" class="book_img"><img src="${dto.book_imgPath}" alt="책표지이미지"></a>
                     	<dl>
                     	<dt class="book_name"><a href="book_detail.html">${dto.book_name}</a></dt>
                      	<dd class="book_author"><a href="book_detail.html">${dto.book_author}</a></dd>

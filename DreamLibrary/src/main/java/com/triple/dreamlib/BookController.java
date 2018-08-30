@@ -104,10 +104,11 @@ public class BookController {
 	@RequestMapping("/book_add")
 	public String book_add(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
-		
+
 		//책이미지 업로드
+	    String uploadPath = request.getSession().getServletContext().getRealPath("resources/book_img");	
+	    //System.out.println(uploadPath);
 		
-	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
 		int size = 10*1024*1024;	
 		String filename="";		
 		String book_imgPath="";
@@ -119,7 +120,7 @@ public class BookController {
 		    String file = (String)files.nextElement();
 		    filename = multi.getFilesystemName(file);
 		    
-			book_imgPath="resources\\book_img\\"+filename;
+			book_imgPath="resources/book_img/"+filename;
 			
 			int	book_cnt = Integer.parseInt(multi.getParameter("book_cnt"));
 			
@@ -151,7 +152,8 @@ public class BookController {
 	public String book_modify(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);
 		
-	    String uploadPath="C:\\dev\\DreamLibrary\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+	    String uploadPath = request.getSession().getServletContext().getRealPath("resources/book_img");	
+	
 		int size = 10*1024*1024;
 		
 		try{
