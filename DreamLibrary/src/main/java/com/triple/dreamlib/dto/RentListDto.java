@@ -33,7 +33,6 @@ public class RentListDto {
 	public void setRownum(String rownum) {
 		this.rownum = rownum;
 	}
-	
 	public String getRent_no() {
 		return rent_no;
 	}
@@ -61,8 +60,8 @@ public class RentListDto {
 	public Date getBook_re_due_date() {
 		return book_re_due_date;
 	}
-	public void setBook_re_due_date(Date book_re_date) {
-		this.book_re_date = book_re_date;
+	public void setBook_re_due_date(Date book_re_due_date) {
+		this.book_re_due_date = book_re_due_date;
 	}
 	public Date getBook_re_date() {
 		return book_re_date;
@@ -76,6 +75,7 @@ public class RentListDto {
 	public void setBook_status(String book_status) {
 		this.book_status = book_status;
 	}
+
 	
 	
 }

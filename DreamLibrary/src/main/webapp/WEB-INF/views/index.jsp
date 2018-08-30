@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
 </head>
 <body>
+ 
 <header id="header">
       <div class="inner-1280">
          <h1><a href="index">Dream Library</a></h1>
@@ -125,8 +127,9 @@
             	  <s:authorize ifAnyGranted="0">
             	 	 <li><a href="dream_info">드림도서관 소개</a></li>
             	     <li><a href="book_search">자료 검색</a></li> 
-                     <li><a href='my_history?user_id=mong'>내 서재</a></li>
-                    <!--  '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>' -->
+            	     <li><a href='my_history'>내 서재</a></li>
+                     <%-- <li><a href='my_history?user_id=<s:authentication property="name"/>'>내 서재</a></li>  --%>
+                   
                      
             	  </s:authorize>
             	  <s:authorize ifAnyGranted="1">
