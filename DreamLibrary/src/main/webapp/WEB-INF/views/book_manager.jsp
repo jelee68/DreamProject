@@ -85,51 +85,51 @@
                      <p>
                         <label for="bookCode">코드</label>
                         <select id="bookCode" name="book_code">
-                          <c:set var = "book_cd" scope = "page" value="${book_sel.book_code}" />
+                          <c:set var = "book_cd" scope = "page"/>
                            <option value="">코드선택  </option>
-                           <option value="01"<c:if test="${book_cd eq '01'}">selected="selected"</c:if>>01 문학</option>
-                           <option value="02"<c:if test="${book_cd eq '02'}">selected="selected"</c:if>>02 언어</option>
-                           <option value="03"<c:if test="${book_cd eq '03'}">selected="selected"</c:if>>03 철학</option>
-                           <option value="04"<c:if test="${book_cd eq '04'}">selected="selected"</c:if>>04 종교</option>
-                           <option value="05"<c:if test="${book_cd eq '05'}">selected="selected"</c:if>>05 예술</option>
-                           <option value="06"<c:if test="${book_cd eq '06'}">selected="selected"</c:if>>06 사회과학</option>
-                           <option value="07"<c:if test="${book_cd eq '07'}">selected="selected"</c:if>>07 자연과학</option>
-                           <option value="08"<c:if test="${book_cd eq '08'}">selected="selected"</c:if>>08 기술과학</option>
-                           <option value="09"<c:if test="${book_cd eq '09'}">selected="selected"</c:if>>09 역사</option>
-                           <option value="10"<c:if test="${book_cd eq '10'}">selected="selected"</c:if>>10 기타</option>
+                           <option value="01">01 문학</option>
+                           <option value="02">02 언어</option>
+                           <option value="03">03 철학</option>
+                           <option value="04">04 종교</option>
+                           <option value="05">05 예술</option>
+                           <option value="06">06 사회과학</option>
+                           <option value="07">07 자연과학</option>
+                           <option value="08">08 기술과학</option>
+                           <option value="09">09 역사</option>
+                           <option value="10">10 기타</option>
                         </select>
 
                      </p>
                      <p>
                         <label for="book_id">책고유ID</label>
-                        <input type="text" name="book_id" value="${book_sel.book_id}" id="bookId" readonly="readonly"/> 
+                        <input type="text" name="book_id" id="bookId" readonly="readonly"/> 
                         <!-- <input type="text" name="book_id" value="" id="bookId"/>    -->                     
                      </p>
                      <p>
                         <label for="bookName">서명</label>
-                        <input type="text" name="book_name" value="${book_sel.book_name}" id="bookName"/>
+                        <input type="text" name="book_name" id="bookName"/>
                      </p>
                      <p>
                         <label for="bookAuthor">저자</label>
-                        <input type="text" name="book_author" value="${book_sel.book_author}" id="bookAuthor"/>
+                        <input type="text" name="book_author" id="bookAuthor"/>
                      </p>
 
                      <p>
                         <label for="bookDate">출판일</label>
-                        <input type="text" name="book_date" value="${book_sel.book_date}" id="bookDate" placeholder="예) 19900101"/>
+                        <input type="text" name="book_date" id="bookDate" placeholder="예) 19900101"/>
                         <label for="bookPub">출판사</label>
-                        <input type="text" name="book_pub" value="${book_sel.book_pub}" id="bookPub"/>
+                        <input type="text" name="book_pub" id="bookPub"/>
                      </p>
                      <p>
                         <label for="bookInDate">도서반입일</label>
-                        <input type="text" name="book_in_date" value="${book_sel.book_in_date}" id="bookInDate" readonly="readonly"/>
+                        <input type="text" name="book_in_date" id="bookInDate" readonly="readonly"/>
                         <label for="bookAmount">권수</label>
                         <input type="text" name="book_cnt" id="bookAmount" value="1"/>
                      </p>
                      <p>
                         <label for="bookImg">도서이미지</label>
-                        <input type="file" name="fileName" value="${book_sel.book_imgPath}"/>
-                        <input type="hidden" name="book_imgPath" value="${book_sel.book_imgPath}" id="bookImg"/>                        
+                        <input type="file" name="fileName"/>
+                        <input type="hidden" name="book_imgPath" id="bookImg"/>                        
                      </p>
                      <p class="btn_wrap">
                         <input type="submit" name="" value="업데이트" id="updateBtn"/>
