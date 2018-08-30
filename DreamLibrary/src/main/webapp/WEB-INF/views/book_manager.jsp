@@ -62,7 +62,7 @@
                           <c:forEach items="${booklist}" var="dto" varStatus="status">
   							<tr>
                               <td class="list_index">${dto.rownum}</td>
-                              <td class="book_id"><a href="book_sel?book_id=${dto.book_id}">${dto.book_id}</a></td>
+                              <td class="book_id">${dto.book_id}</td>
                               <td class="book_name">${dto.book_name}</td>
                               <td class="book_author">${dto.book_author}</td>
                               <td class="rent_status">${dto.book_pub}</td>
@@ -148,17 +148,39 @@
    <script type="text/javascript">
       $(function(){
          //
-            $(".sec1 table tbody tr").on("click",function(){
+            $(".sec1 table tbody").on("click","tr",function(){
                $(".sec2 form").attr("action","book_modify");
                $(".sec1 table tbody tr:nth-child(2n-1)").css("background-color","#fff");
                $(".sec1 table tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
                $(this).css("background-color","rgba(77, 155, 184,0.2)");
+               var bookId = $(this).find(".book_id").text();
+               $.ajax({    
+  	               
+       			url: 'book_sel',  
+	                type:'post',  
+	                dataType: 'json',
+	                data: { 'book_id' : bookId },
+	                success : function(data){ 
+	                	
+	                	for ( keyName in data ) {
+	      
+	                		$(".sec2 p select[name="+keyName+"]").find("option[value="+data[keyName]+"]").prop("selected", true);
+	                		$(".sec2 p input[name="+keyName+"]").val(data[keyName]);		
+            			}        	
+	                }, 
+	                error : function(data){ 
+	                	alert("에러"); 
+             		}
+        
+       	  	  }); 
             })
 
             $(".sec1 .add_btn").on("click",function(){
                $(".sec2 form").attr("action","book_add");
                $(".sec1 table tbody tr:nth-child(2n-1)").css("background-color","#fff");
                $(".sec1 table tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
+               $(".sec2 form p").not('.btn_wrap').find("input").val("");
+               $("#bookAmount").val("1");
             })
             
             $(".sec2 #deleteBtn").on("click",function(){

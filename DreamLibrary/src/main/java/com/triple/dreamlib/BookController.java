@@ -20,6 +20,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import com.google.gson.Gson;
 import com.triple.dreamlib.dao.BookDao;
+import com.triple.dreamlib.dao.RentDao;
+import com.triple.dreamlib.dto.BookDto;
 import com.triple.dreamlib.dto.BookSearchDto;
 import com.triple.dreamlib.dto.MaxBookIdDto;
 
@@ -168,14 +170,27 @@ public class BookController {
 		return "redirect:book_manager";
 	}
 		
-	@RequestMapping("/book_sel")
+	/*@RequestMapping("/book_sel")
 	public String book_sel(HttpServletRequest request, Model model) {
 
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		model.addAttribute("booklist", dao.booklistDao());		
 		model.addAttribute("book_sel", dao.bookselDao(request.getParameter("book_id")));		
 		return "book_manager";	
+	}*/
+	
+	@RequestMapping("/book_sel")
+	@ResponseBody
+	public String book_sel(@RequestParam("book_id")String id) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);	
+		Gson gson = new Gson();		
+		BookDto bookSel = dao.bookselDao(id);
+	
+		
+		return gson.toJson(bookSel); 
+		
 	}
+	
 
 	
 	@RequestMapping("/max_book_id")
