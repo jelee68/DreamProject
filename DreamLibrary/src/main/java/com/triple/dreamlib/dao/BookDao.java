@@ -24,4 +24,6 @@ public interface BookDao {
 	
 	public void book_deleteDao(String book_id);
 	
+	public ArrayList<BookDto> newBookListDao();
+	
 }

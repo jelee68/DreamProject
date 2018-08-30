@@ -145,28 +145,20 @@
                   <p>
                   <strong> 신착 도서</strong>
                   <em>new books</em></p>
-               <ul class="list cf">
-   					<li><a href="#">
-   							<img src="resources/images/main/list0.jpg" alt="추천도서1" />
-   							<strong>여행에 나이가 어딨어?</strong>
-
+               <ul class="new_list cf">
+   					
+   					<c:forEach items="${new_book}" var="dto" varStatus="status">
+  						<li>
+  							<a href="#">
+	   							<img src="${dto.book_imgPath }" alt="신간도서${status.count}" />
+	   							<strong>${dto.book_name }</strong>
    							</a>
    						</li>
-   					<li>
-                     <a href="#">
-   							<img src="resources/images/main/list1.jpg" alt="추천도서2" />
-   							<strong>상처받지 않는 삶</strong>
-
-   						</a>
-                  </li>
-   					<li>
-                     <a href="#">
-   							<img src="resources/images/main/list2.jpg" alt="추천도서3" />
-   							<strong>다시, 시로 숨 쉬고 싶은 그대에게</strong>
-
-   						</a>
-                  </li>
+  					</c:forEach>
+   					
 				</ul>
+				
+				
             </section>
          </div>
       </div>

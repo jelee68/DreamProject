@@ -83,4 +83,11 @@
      WHERE BOOK_ID = #{param1}
   </delete>  
   
+  <select id="newBookListDao" resultType="com.triple.dreamlib.dto.BookDto">
+		select book_id, book_name, book_in_date, book_imgPath 
+  		from book_tbl 
+  		WHERE rownum <= 3 
+  		order by book_in_date DESC 
+  </select>
+  
 </mapper>
