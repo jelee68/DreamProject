@@ -26,10 +26,11 @@
 	  from book_tbl LEFT OUTER JOIN rent_tbl 
       ON book_tbl.book_id = rent_tbl.book_id
 	  WHERE LOWER(${param1}) like LOWER('%'|| #{param2} ||'%')
+	  	AND book_tbl.book_del = '0' 
 	  order by book_id asc
   </select>
 	
-  <select id="book_result2Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+  <!-- <select id="book_result2Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
 	select row_number() over(order by book_tbl.book_id asc) as seq, book_tbl.book_id, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
 	book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
 	  from book_tbl LEFT OUTER JOIN rent_tbl 
@@ -48,10 +49,27 @@
 	  ${param3} LOWER(${param4}) like LOWER('%'|| #{param5} ||'%') 
 	  ${param6} LOWER(${param7}) like LOWER('%'|| #{param8} ||'%')
 	  order by book_id asc
-   </select>	
+   </select>	 -->
+   
+   <select id="book_result3Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+		select row_number() over(order by book_tbl.book_id asc) as seq, book_tbl.book_id, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
+		book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
+	  	from book_tbl LEFT OUTER JOIN rent_tbl 
+      	ON book_tbl.book_id = rent_tbl.book_id
+		<where> LOWER(${param1}) like LOWER('%'|| #{param2} ||'%') 
+			<if test="param4 != null">
+				 ${param3} LOWER(${param4}) like LOWER('%'|| #{param5} ||'%') 
+			</if>
+			<if test="param7 != null">
+				 ${param6} LOWER(${param7}) like LOWER('%'|| #{param8} ||'%') 
+			</if>
+		AND book_tbl.book_del = '0' 
+		 order by book_id asc	
+		</where>
+	</select>
 
   <insert id="book_addDao">
-  INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7})
+  INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7},default)
   </insert>	
   
    <update id="book_modifyDao">
@@ -61,7 +79,8 @@
   </update> 
   
   <delete id="book_deleteDao">
-	DELETE FROM BOOK_TBL WHERE BOOK_ID = #{param1}
+	 UPDATE BOOK_TBL SET BOOK_DEL = '1'
+     WHERE BOOK_ID = #{param1}
   </delete>  
   
 </mapper>

@@ -20,6 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import com.google.gson.Gson;
 import com.triple.dreamlib.dao.BookDao;
+import com.triple.dreamlib.dto.BookDto;
 import com.triple.dreamlib.dto.BookSearchDto;
 import com.triple.dreamlib.dto.MaxBookIdDto;
 
@@ -76,17 +77,9 @@ public class BookController {
 		cond02 = request.getParameter("cond02");		
 		
 		boolean checkInput1 = !input1.equals(null);
-		boolean checkInput2 = !input2.equals(null);
-		boolean checkInput3 = !input3.equals(null);
-		//System.out.println(input1+":"+input2+":"+input3+":"+checkInput1 +","+ checkInput2 +","+ checkInput3);
-		// 입력받은 값이 1개이상인경우
-		if(checkInput1 && !checkInput2 && !checkInput3) {
-			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
-			model.addAttribute("bookresult",dao.book_result1Dao(select1,input1));
-		}else if(checkInput1 && checkInput2 && !checkInput3) {
-			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
-			model.addAttribute("bookresult",dao.book_result2Dao(select1,input1,cond01,select2,input2));	
-		}else if(checkInput1 && checkInput2 && checkInput3) {
+
+
+		if(checkInput1) {
 			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
 			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
 		}
@@ -104,10 +97,11 @@ public class BookController {
 	@RequestMapping("/book_add")
 	public String book_add(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
-		
+
 		//책이미지 업로드
+	    String uploadPath = request.getSession().getServletContext().getRealPath("resources/book_img");	
+	    //System.out.println(uploadPath);
 		
-	    String uploadPath="C:\\dev\\workspace\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
 		int size = 10*1024*1024;	
 		String filename="";		
 		String book_imgPath="";
@@ -119,7 +113,7 @@ public class BookController {
 		    String file = (String)files.nextElement();
 		    filename = multi.getFilesystemName(file);
 		    
-			book_imgPath="resources\\book_img\\"+filename;
+			book_imgPath="resources/book_img/"+filename;
 			
 			int	book_cnt = Integer.parseInt(multi.getParameter("book_cnt"));
 			
@@ -151,7 +145,8 @@ public class BookController {
 	public String book_modify(HttpServletRequest request) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);
 		
-	    String uploadPath="C:\\dev\\DreamLibrary\\DreamProject\\DreamLibrary\\src\\main\\webapp\\resources\\book_img";		
+	    String uploadPath = request.getSession().getServletContext().getRealPath("resources/book_img");	
+	
 		int size = 10*1024*1024;
 		
 		try{
@@ -168,13 +163,25 @@ public class BookController {
 		return "redirect:book_manager";
 	}
 		
-	@RequestMapping("/book_sel")
+	/*@RequestMapping("/book_sel")
 	public String book_sel(HttpServletRequest request, Model model) {
 
 		BookDao dao = sqlSession.getMapper(BookDao.class);	
 		model.addAttribute("booklist", dao.booklistDao());		
 		model.addAttribute("book_sel", dao.bookselDao(request.getParameter("book_id")));		
 		return "book_manager";	
+	}*/
+	
+	@RequestMapping("/book_sel")
+	@ResponseBody
+	public String book_sel(@RequestParam("book_id")String id) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);	
+		Gson gson = new Gson();		
+		BookDto bookSel = dao.bookselDao(id);
+	
+		
+		return gson.toJson(bookSel); 
+		
 	}
 
 	
