@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.triple.dreamlib.dao.UserDao">
+
+ 	<insert id="user_addDao">
+		INSERT INTO USER_TBL VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, default, default)
+	</insert>
+	
+ 	<select id="loginDao" resultType="com.triple.dreamlib.dto.UserDto">
+		select user_name from user_tbl WHERE user_id = #{param1}
+	</select>
+	
+	
+	<select id="myRentListDao" resultType="com.triple.dreamlib.dto.RentListDto">
+		SELECT rownum, rent_tbl.book_rent_date, book_tbl.book_name, rent_tbl.book_re_due_date, 
+			   rent_tbl.book_re_date, rent_tbl.book_status 
+    		FROM rent_tbl, book_tbl  
+    		WHERE rent_tbl.book_id = book_tbl.book_id
+      		AND rent_tbl.user_id = #{param1} 
+      		ORDER BY rent_tbl.book_rent_date DESC	
+    </select>
+
+	
+</mapper>
