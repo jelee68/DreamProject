@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,25 +29,25 @@
             <section class="sec1">
                <div class="wrap">
                <div class="easy cf">
-                  <form action="" method="post" >
+                  <form action="book_simple_search" method="post" >
          			  	<fieldset>
          					<legend class="hide">자료검색하기</legend>
                         <p class="rescan">
                            <input type="checkbox" value="" id="rescan">
                            <label for="rescan">결과내 재검색</label>
                         </p>
-         					<p class="cf">
-                           <select class="" name="">
-                              <option value="전체" selected>전체</option>
-                              <option value="제목">제목</option>
-                              <option value="저자">저자</option>
+         					<p class="cf">      					
+                           <select class="" name="select1">
+                              <option value="book_name" selected>제목</option>
+                              <option value="book_author">저자</option>
+                              <option value="book_pub">출판사</option>
                            </select>
          						<label for="search"></label>
-         						<input type="text" value="" id="search" placeholder="자료검색"/>
+         						<input type="text"  name="input1" id="search" placeholder="자료검색"/>
          						<input type="submit" value="검색" id="searchBtn"/>
 
                            <span class="go_book_search">
-                              <a href="book_search.html">상세검색</a>
+                              <a href="book_search">상세검색</a>
                            </span>
                         </p>
          				</fieldset>
@@ -58,13 +59,13 @@
 
             <section class="sec2 cf">
                <div>
-                  <h3><strong>여행여행여행여행여행</strong>에 대한 검색 결과 </h3>
-                  <p>총<em>~</em>건</p>
+                  <h3><strong>${param.input1}/${param.input2}/${param.input3}</strong>에 대한 검색 결과 </h3>
+                  <p>총<em>${fn:length(bookresult)}</em>건</p>
                </div>
                <ul>
              <c:forEach items="${bookresult}" var="dto" varStatus="status">              
                   <li class="cf">
-                     <span class="result_num">${dto.rownum}.</span>
+                     <span class="result_num">${dto.seq}.</span>
                     	<a href="book_detail.html" class="book_img"><img src="resources/images/main/list0.jpg" alt="책표지이미지"></a>
                     	<dl>
                     	<dt class="book_name"><a href="book_detail.html">${dto.book_name}</a></dt>
