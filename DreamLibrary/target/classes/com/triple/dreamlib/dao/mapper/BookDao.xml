@@ -29,6 +29,15 @@
 	  	AND book_tbl.book_del = '0' 
 	  order by book_id asc
   </select>
+  
+    <select id="selectedBookDao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+	select rownum, book_tbl.book_id, book_tbl.book_code, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
+	book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
+	  from book_tbl LEFT OUTER JOIN rent_tbl 
+      ON book_tbl.book_id = rent_tbl.book_id
+	  WHERE book_tbl.book_id = #{param1}
+	   	AND book_tbl.book_del = '0' 
+  </select>
 	
   <!-- <select id="book_result2Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
 	select row_number() over(order by book_tbl.book_id asc) as seq, book_tbl.book_id, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
