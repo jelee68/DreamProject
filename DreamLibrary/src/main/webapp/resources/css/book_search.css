@@ -1,0 +1,19 @@
+#bookSearch{margin-top: 120px;}
+
+
+
+#bookSearch  .wrap{width: 900px;back ground-color: pink; margin: auto;padding: 60px;border: 2px solid #afcbb6;position: relative;}
+
+#bookSearch .wrap h2{font-size: 34px;font-weight: bold;margin-bottom: 50px;position: absolute; display: inline-block; background-color: #fff;top: -30px;padding: 0 10px;}
+
+#bookSearch  .detail{margin-top: 15px;dis play: none;}
+#bookSearch  .detail p{backgrou nd-color: #fff;pad ding: 10px 0 8px;margin-bottom: 8px;}
+#bookSearch  .detail select{height: 40px;float: left;margin-left: 13px;width: 100px;font-size: 14px;border: 1px solid #c9c9c9;}
+#bookSearch  .detail select option{font-size: 14px;}
+#bookSearch  .detail input[type="text"]{width: 650px;height: 40px;font-size: 20px;padding:0 15px;box-sizing:border-box;color:#333; border: 1px solid #c9c9c9;float: left;margin-left: 10px;}
+
+#bookSearch  .detail p.btn-wrap{text-align: center;margin-top: 50px;}
+#bookSearch  .detail p.btn-wrap input{height: 40px; width: 120px;margin-left: 5px;margin-right: 5px;border: 1px solid #333;font-size: 14px;cursor: pointer;background-color: #fff;}
+#bookSearch #reset{}
+#bookSearch #dataSearch{background-color: #4a7d81;color:#fff;}
+#bookSearch #close{}
