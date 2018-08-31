@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,7 +39,20 @@
                   <tbody>
                      <tr>
                         <th scope="row">분류</th>
-                        <td>${selectedBook.book_code}</td>
+                        <td>
+					      <c:choose>
+					         <c:when test = "${selectedBook.book_code eq '01'}">문학</c:when>  
+					         <c:when test = "${selectedBook.book_code eq '02'}">언어</c:when>
+						     <c:when test = "${selectedBook.book_code eq '03'}">철학</c:when>
+							 <c:when test = "${selectedBook.book_code eq '04'}">종교</c:when>
+							 <c:when test = "${selectedBook.book_code eq '05'}">예술 </c:when>
+							 <c:when test = "${selectedBook.book_code eq '06'}">사회과학</c:when>
+							 <c:when test = "${selectedBook.book_code eq '07'}">자연과학</c:when>
+							 <c:when test = "${selectedBook.book_code eq '08'}">기술과학 </c:when>
+							 <c:when test = "${selectedBook.book_code eq '09'}">역사</c:when>					          
+					         <c:otherwise>기타</c:otherwise>
+					      </c:choose>                        
+                        </td>
                      </tr>
                      <tr>
                         <th scope="row">출판사</th>
@@ -45,7 +60,10 @@
                      </tr>
                      <tr>
                         <th scope="row">발행년도</th>
-                        <td>${selectedBook.book_date}</td>
+                        <td>
+                        <fmt:parseDate value="${selectedBook.book_date}"  var='book_date' pattern="yyyymmdd" scope="page"/>
+                        <fmt:formatDate value="${book_date}" pattern="yyyy-MM-dd"/>
+                        </td>
                      </tr>
                      <tr>
                         <th scope="row">대출여부</th>

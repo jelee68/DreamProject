@@ -6,7 +6,8 @@
 <mapper namespace="com.triple.dreamlib.dao.BookDao">
 
   <select id="booklistDao" resultType="com.triple.dreamlib.dto.BookDto">
-		select rownum, book_id, book_code, book_name, book_author, book_date, book_pub, book_in_date, book_imgPath
+		select row_number() over(order by book_tbl.book_id asc) as seq, book_id, book_code, book_name, 
+		       book_author, book_date, book_pub, book_in_date, book_imgPath, decode(book_del, 0,'','폐기') as book_del
   		from book_tbl order by book_id asc
   </select>
 
