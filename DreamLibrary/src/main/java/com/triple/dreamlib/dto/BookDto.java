@@ -2,7 +2,7 @@ package com.triple.dreamlib.dto;
 
 public class BookDto {
 
-	String  rownum;
+	String  seq;
 	String  book_id; 
 	String  book_code; 
 	String  book_name; 
@@ -11,14 +11,15 @@ public class BookDto {
 	String  book_pub; 
 	String  book_in_date; 
 	String  book_imgPath;
+	String  book_del;	
 	
 	public BookDto() {
 	}
 
-	public BookDto(String rownum, String book_id, String book_code, String book_name, String book_author,
-			String book_date, String book_pub, String book_in_date, String book_imgPath) {
+	public BookDto(String seq, String book_id, String book_code, String book_name, String book_author,
+			String book_date, String book_pub, String book_in_date, String book_imgPath, String book_del) {
 
-		this.rownum = rownum;
+		this.seq = seq;
 		this.book_id = book_id;
 		this.book_code = book_code;
 		this.book_name = book_name;
@@ -27,10 +28,15 @@ public class BookDto {
 		this.book_pub = book_pub;
 		this.book_in_date = book_in_date;
 		this.book_imgPath = book_imgPath;
+		this.book_del = book_del;		
 	}
 
-	public String getRownum() {
-		return rownum;
+	public String getSeq() {
+		return seq;
+	}
+
+	public String getBook_del() {
+		return book_del;
 	}
 
 	public String getBook_id() {
@@ -65,10 +71,14 @@ public class BookDto {
 		return book_imgPath;
 	}
 
-	public void setRownum(String rownum) {
-		this.rownum = rownum;
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 
+	public void setBook_del(String book_del) {
+		this.book_del = book_del;
+	}
+	
 	public void setBook_id(String book_id) {
 		this.book_id = book_id;
 	}

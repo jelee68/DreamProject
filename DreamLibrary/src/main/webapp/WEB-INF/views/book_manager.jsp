@@ -32,10 +32,11 @@
                   <table class="col_name">
                      <caption class='hide'>컬럼명</caption>
                      <colgroup>
-                        <col width="5.5%" />
+                        <col width="4.5%" />
                         <col width="13.5%" />
-                        <col width="46%" />
-                        <col width="21.5%" />
+                        <col width="39.5%" />
+                        <col width="15.5%" />
+                        <col width="17.5%" />
                         <col width="*" />
                      </colgroup>
                      <thead>
@@ -44,7 +45,8 @@
                            <th scope="col">도서ID</th>
                            <th scope="col">서명</th>
                            <th scope="col">저자</th>
-                           <th scope="col">출판사</th>                           
+                           <th scope="col">출판사</th> 
+                           <th scope="col">상태</th>                           
                         </tr>
                      </thead>
                   </table>
@@ -52,20 +54,22 @@
                      <table class="book_list">
                         <caption class='hide'>등록도서목록</caption>
                         <colgroup>
-                           <col width="6%" />
+                           <col width="5%" />
                            <col width="14%" />
-                           <col width="47%" />
-                           <col width="22%" />
+                           <col width="40%" />
+                           <col width="16%" />
+                           <col width="18%" />
                            <col width="*" />
                         </colgroup>
                         <tbody>    
                           <c:forEach items="${booklist}" var="dto" varStatus="status">
   							<tr>
-                              <td class="list_index">${dto.rownum}</td>
+                              <td class="list_index">${dto.seq}</td>
                               <td class="book_id">${dto.book_id}</td>
                               <td class="book_name">${dto.book_name}</td>
                               <td class="book_author">${dto.book_author}</td>
                               <td class="rent_status">${dto.book_pub}</td>
+                              <td>${dto.book_del}</td>
   							</tr>
   						  </c:forEach>
                         </tbody>
