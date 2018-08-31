@@ -52,6 +52,18 @@ public class BookController {
 		return "/search_result";
 	}
 	
+	@RequestMapping("/book_detail")
+	public String book_detail(HttpServletRequest request, Model model) {
+		BookDao dao = sqlSession.getMapper(BookDao.class);
+		
+		BookSearchDto dto = dao.selectedBookDao(request.getParameter("book_id"));
+		
+		System.out.println(dto.getBook_author()+ " / " +dto.getBook_name());
+		
+		model.addAttribute("selectedBook",dao.selectedBookDao(request.getParameter("book_id")));
+		return "/book_detail";
+	}
+	
 	@RequestMapping("/book_search")
 	public String book_search() {
 		return "/book_search";
