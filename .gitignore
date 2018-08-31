@@ -1,6 +1,15 @@
 /.metadata/
 RemoteSystemsTempFIles
-
 Servers
-
 /.recommenders/
+
+/DreamLibrary/.settings
+/DreamLibrary/target
+/petclinic-a8
+/sss
+/test
+*.class
+*.txt
+*.md
+*.bat
+
