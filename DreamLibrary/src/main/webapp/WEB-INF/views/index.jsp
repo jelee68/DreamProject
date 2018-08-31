@@ -120,24 +120,20 @@
 
             <section class="sec2">
                   <ul class="menu cf">
-                  <s:authorize ifNotGranted="0,1">
+         
                   	 <li><a href="dream_info">드림도서관 소개</a></li>
-            		 <li><a href="book_search">자료 검색</a></li> 
-            	  </s:authorize>
-            	  <s:authorize ifAnyGranted="0">
-            	 	 <li><a href="dream_info">드림도서관 소개</a></li>
+ 
+  
+
+
             	     <li><a href="book_search">자료 검색</a></li> 
             	     <li><a href='my_history'>내 서재</a></li>
                      <%-- <li><a href='my_history?user_id=<s:authentication property="name"/>'>내 서재</a></li>  --%>
                    
-                     
-            	  </s:authorize>
-            	  <s:authorize ifAnyGranted="1">
-            	  	 <li><a href="dream_info">드림도서관 소개</a></li>
-                     <li><a href="book_search">자료 검색</a></li>                     
+                                   
                      <li><a href="book_manager">도서 관리</a></li>
                      <li><a href="rent_manager">대출 관리</a></li>
-            	  </s:authorize>           	  	 
+      	  	 
                   </ul>
             </section>
 
@@ -145,6 +141,8 @@
                   <p>
                   <strong> 신착 도서</strong>
                   <em>new books</em></p>
+               <div class="new_list_wrap">
+               <div class="mask cf">
                <ul class="new_list cf">
    					
    					<c:forEach items="${new_book}" var="dto" varStatus="status">
@@ -157,8 +155,16 @@
   					</c:forEach>
    					
 				</ul>
+				</div>
+				<dl class="new_list_btn">
+				   <dd class="btn_left">&lt;</dd>
+				   <dd class="btn_right">&gt;</dd>		   
+				</dl>
 				
-		
+				</div> 
+				
+				
+			
 				
             </section>
          </div>
@@ -171,6 +177,13 @@
       $(function(){
          $(".detail-btn").on("click",function(){
             $(".detail").slideToggle();
+         })
+         
+         $(".btn_right").on('click',function(){
+        	 console.log("dd")
+        	 $(".new_list").animate({
+        		 left:-405
+        	 })
          })
       })
    </script>
