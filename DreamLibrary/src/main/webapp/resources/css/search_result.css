@@ -1,0 +1,59 @@
+#searchResult .sec1{ba ckground: url(../images/main/main.jpg) 0 32% no-repeat; backg round-size: cover;widt h: 100%;he ight: 500px;padding: 100px 0;border-bottom: 1px dashed #adccad;}
+#searchResult .sec1 .wrap{width: 795px;backgrou nd-color: rgba(0,0,0,0.6); margin: auto}
+#searchResult .sec1 .easy{position: relative;}
+#searchResult .sec1 .easy form{}
+#searchResult .sec1 .easy p{backg round-color: #fff;padding: 10px 0 8px;}
+#searchResult .sec1 .easy p.rescan{text-align: right;}
+#searchResult .sec1 .easy label[for="rescan"]{font-size: 12px;}
+#searchResult .sec1 .easy select{height: 35px;float: left;ma rgin-left: 15px;width: 80px;font-size: 14px;border: 1px solid #c9c9c9;}
+#searchResult .sec1 .easy select option{font-size: 14px;}
+
+#searchResult .sec1 .easy p span.go_book_search{
+float: left; margin-left: 10px;
+}
+#searchResult .sec1 .easy p span.go_book_search a{
+   display: block; width: 80px;height: 35px;text-align: center; border: 1px solid #4a994a; color:#4a994a; box-sizing: border-box; line-height: 35px;
+}
+
+#search{width: 550px;height: 35px;font-size: 16px;padding: 0 15px;box-sizing:border-box;color:#333; bor der: none; float: left;margin-left: 10px;border: 2px solid #4a994a;}
+input:focus, select:focus{outline: none;box-sha dow: none}
+#searchBtn{width: 65px;height: 35px;background-color: #4a994a;border: 2px solid #4a994a;backg round: url(../images/main/search_btn.png) 50% 50% no-repeat;background-size:32px 32px;padding: 0;bor der: none;cursor:pointer;color:#fff;float: left;}
+
+#searchResult .sec2{width: 1050px;margin: auto;margin-top: 50px;}
+#searchResult .sec2 div{width: 200px; float: left;margin-right: 50px;fo nt-size: 20px;}
+#searchResult .sec2 div h3{font-size: 16px;}
+#searchResult .sec2 div h3 strong{font-weight: bold;color:#4a994a;}
+#searchResult .sec2 div p{font-size: 14px;color:#8a8a8a}
+#searchResult .sec2 div p em{font-weight: bold; color:#333}
+#searchResult .sec2 ul{width: 800px;margin: auto;float: left;}
+#searchResult .sec2 ul li{border: 1px solid #cfcfcf;width: 100%;margin-bottom: 10px;padding: 20px 30px;box-sizing: border-box;}
+#searchResult .sec2 ul li span.result_num{float: left;font-size: 14px;}
+#searchResult .sec2 ul li a{}
+#searchResult .sec2 ul li a.book_img{float: left;width: 100px;margin: 0 15px;}
+#searchResult .sec2 ul li a img{width: 100%;}
+#searchResult .sec2 ul li dl{float: left;width: 550px;position: relative;height: 140px;}
+#searchResult .sec2 ul li dl dt.book_name{}
+#searchResult .sec2 ul li dl dt.book_name a{font-size: 16px;font-weight: bold;color:#333;}
+#searchResult .sec2 ul li dl dd.book_author{}
+#searchResult .sec2 ul li dl dd.book_author a{}
+#searchResult .sec2 ul li dl dd.book_pub{color:#a2a2a2}
+#searchResult .sec2 ul li dl dd.rent_chek{position: absolute;right: 10px;bottom: 0;font-weight: bold;}
+#searchResult .sec2 ul li dl dd.rent_able{color: #229843;}
+#searchResult .sec2 ul li dl dd.rent_ing{color:#c82d2d}
+
+#searchResult .sec3 {margin-top: 120px;width: 1020px;float: right;}
+#searchResult .sec3 p.paging{text-align: center;}
+#searchResult .sec3 p.paging a{}
+#searchResult .sec3 p.paging span{}
+   #searchResult .sec3 p.paging span a{font-size: 14px;margin: 0 3px;}
+#searchResult .sec3 p.paging a img{width: 25px; height: auto;vertical-align: middle;}
+#searchResult .sec3 p.paging a.on{color:#333;text-decoration: underline;font-weight: bold;}
+#searchResult .sec3 p.paging a.arrow{display: inline-block;border: 1px solid #cfcfcf;box-sizing: border-box;}
+#searchResult .sec3 p.paging a.first{}
+#searchResult .sec3 p.paging a.prev{margin-right: 10px;}
+#searchResult .sec3 p.paging a.next{margin-left: 10px;}
+#searchResult .sec3 p.paging a.last{}
+
+#searchResult .sec3 p.paging a:hover{backgr ound-color: #333;}
+
+/* <a href="#" class='on'>1</a> */

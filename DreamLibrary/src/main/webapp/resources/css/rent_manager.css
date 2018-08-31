@@ -1,0 +1,49 @@
+#rentManager{margin-top: 100px;}
+#rentManager div.all_wrap{width: 100%;}
+
+#rentManager section.sec1{height: 300px;width: 100%;}
+#rentManager section.sec1 article{width: 50%;height: 100%;float: left;border: 1px solid #ccc;box-sizing: border-box;padding: 30px;font-size: 16px;}
+#rentManager section.sec1 article form dl{margin-top: 20px;display: flex;flex-flow: row;flex-wrap: wrap;width: 400px;  overflow: visible;}
+#rentManager section.sec1 article form dl dt{flex: 0 0 20%; text-overflow: ellipsis;overflow: hidden;margin-bottom: 10px;text-align: right;padding-right: 20px;box-sizing: border-box; height:25px;}
+#rentManager section.sec1 article form dl dd{ flex:0 0 80%; margin-left: auto;text-align: left; text-overflow: ellipsis; overflow: hidden;backgro und-color: #ededed;margin-bottom: 10px;border-bottom: 1px solid #ccc;height:25px;}
+
+#rentManager section.sec1 .user{}
+#rentManager section.sec1 .user form{}
+#rentManager section.sec1 .user form fieldset{}
+#rentManager section.sec1 .user form fieldset p{}
+#rentManager section.sec1 .user form fieldset p label{}
+#rentManager section.sec1 .user form fieldset p input{}
+#rentManager section.sec1 .user dl.user_info{}
+#rentManager section.sec1 .user dl.user_info dt{}
+#rentManager section.sec1 .user dl.user_info dd{}
+
+#rentManager section.sec1 .book{}
+#rentManager section.sec1 .book form{}
+#rentManager section.sec1 .book form fieldset{}
+#rentManager section.sec1 .book form fieldset p{}
+#rentManager section.sec1 .book form fieldset p label{}
+#rentManager section.sec1 .book form fieldset p input{}
+#rentManager section.sec1 .book form fieldset dl.book_info{}
+#rentManager section.sec1 .book form fieldset dl.book_info dt{}
+#rentManager section.sec1 .book form fieldset dl.book_info dd{}
+#rentManager #rentBtn{margin-top: 20px;}
+
+#rentManager section.sec2{width: 100%;height: 300px;}
+#rentManager section.sec2 .list_wrap{height: 300px;background-color: #fff;border: 1px solid #ccc;over flow: auto;}
+#rentManager section.sec2 table{width: 100%;}
+#rentManager section.sec2 table.col_name{}
+
+#rentManager section.sec2 .rent_list_wrap{height: 259px;overflow: auto}
+#rentManager section.sec2 table.rent_list{}
+#rentManager section.sec2 table thead{background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);}
+
+#rentManager section.sec2 table thead tr{}
+#rentManager section.sec2 table thead tr th{padding: 10px 0;border-right: 1px solid #ccc;}
+#rentManager section.sec2 table thead tr th:last-of-type{border-right: none;}
+#rentManager section.sec2 table tbody{}
+#rentManager section.sec2 table tbody tr{border-bottom: 1px solid #dbdbdb;}
+#rentManager section.sec2 table tbody tr:nth-child(2n){background-color: #f9f9f9;}
+#rentManager section.sec2 table tbody tr td{padding: 2px 3px;text-align: center;}
+#rentManager section.sec2 table tbody tr td.book_name{text-align: left;}
+#rentManager section.sec2 .btn_wrap{height: 50px;}
+#rentManager section.sec2 .btn_wrap .add_btn{margin-top: 15px;}

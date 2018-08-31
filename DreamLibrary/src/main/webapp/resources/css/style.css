@@ -1,0 +1,18 @@
+#container:after{display: block;content: "";clear: both;}
+#container{padding-bottom: 100px;}
+
+.inner-1280{
+   width: 1280px;
+   margin: auto;
+}
+
+#header{
+   height: 80px;
+   border-bottom: 1px solid #ccc;
+}
+
+#header h1{float: left;margin-top: 15px;}
+#header h1 a{font-size: 38px;font-family: 'Patua One';color:#2f3d61}
+#header .top-menu{float: right;margin-top: 25px;}
+#header .top-menu dd{float: left;}
+#header .top-menu dd a{font-size: 16px;margin-left: 15px;margin-right: 15px;}
