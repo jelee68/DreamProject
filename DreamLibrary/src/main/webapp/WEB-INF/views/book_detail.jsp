@@ -25,8 +25,8 @@
       <div id="bookDetail">
          <div class="inner-1280">
             <article class="cf">
-               <h3 class="book_name">여행에 나이가 어딨어?</h3>
-               <p class="book_author">힐러리 브레트</p>
+               <h3 class="book_name">${selectedBook.book_name}</h3>
+               <p class="book_author">${selectedBook.book_author}</p>
 
                <table>
                   <caption class="hide">상세정보</caption>
@@ -37,23 +37,23 @@
                   <tbody>
                      <tr>
                         <th scope="row">분류</th>
-                        <td>문학</td>
+                        <td>${selectedBook.book_code}</td>
                      </tr>
                      <tr>
                         <th scope="row">출판사</th>
-                        <td>책세상</td>
+                        <td>${selectedBook.book_pub}</td>
                      </tr>
                      <tr>
                         <th scope="row">발행년도</th>
-                        <td>2016</td>
+                        <td>${selectedBook.book_date}</td>
                      </tr>
                      <tr>
                         <th scope="row">대출여부</th>
-                        <td class="rent_able">대출 가능</td>
+                        <td class="rent_able">${selectedBook.book_status}</td>
                      </tr>
                   </tbody>
                </table>
-               <img src="resources/images/main/list0.jpg" alt="책표지이미지">
+               <img src="${selectedBook.book_imgPath}" alt="책표지이미지">
 
             </article>
 

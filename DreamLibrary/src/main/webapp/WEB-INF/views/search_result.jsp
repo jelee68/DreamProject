@@ -66,10 +66,10 @@
              <c:forEach items="${bookresult}" var="dto" varStatus="status">              
                   <li class="cf">
                      <span class="result_num">${dto.seq}.</span>
-                    	<a href="book_detail.html" class="book_img"><img src="${dto.book_imgPath}" alt="책표지이미지"></a>
+                    	<a href="book_detail?book_id=${dto.book_id}" class="book_img"><img src="${dto.book_imgPath}" alt="책표지이미지"></a>
                     	<dl>
-                    	<dt class="book_name"><a href="book_detail.html">${dto.book_name}</a></dt>
-                     	<dd class="book_author"><a href="book_detail.html">${dto.book_author}</a></dd>
+                    	<dt class="book_name"><a href="book_detail?book_id=${dto.book_id}">${dto.book_name}</a></dt>
+                     	<dd class="book_author"><a href="book_detail?book_id=${dto.book_id}">${dto.book_author}</a></dd>
                      	<dd class="book_pub">${dto.book_pub}, ${dto.book_date}</dd>
                         <dd class="rent_chek rent_able">${dto.book_status}</dd>
                 	  </dl>

@@ -9,7 +9,7 @@ public interface BookDao {
 	public ArrayList<BookDto> booklistDao();
 	
 	public BookDto bookselDao(String book_id);
-	
+	public BookSearchDto selectedBookDao(String book_id);
 	public MaxBookIdDto maxBookIdDao(String book_code);
 	
 	public ArrayList<BookSearchDto> book_result1Dao(String select1, String input1);	
