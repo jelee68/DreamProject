@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import com.triple.dreamlib.dao.BookDao;
 import com.triple.dreamlib.dao.UserDao;
 import com.triple.dreamlib.dto.RentListDto;
 import com.triple.dreamlib.dto.UserDto;
@@ -40,6 +41,9 @@ public class UserController {
 	    String user_id = auth.getName();
 		UserDao dao = sqlSession.getMapper(UserDao.class);	
 		model.addAttribute("userInfo", dao.loginDao(user_id));
+		
+		BookDao dao2 = sqlSession.getMapper(BookDao.class);
+		model.addAttribute("new_book", dao2.newBookListDao());
 		return "/index";
 	}
 	
