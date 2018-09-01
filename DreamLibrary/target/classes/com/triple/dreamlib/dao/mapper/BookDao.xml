@@ -95,12 +95,14 @@
   </delete>  
   
   <select id="newBookListDao" resultType="com.triple.dreamlib.dto.BookDto">
+
 	SELECT book_id, book_name, book_in_date, book_imgPath, rownum
     FROM (SELECT book_id, book_name, book_in_date, book_imgPath
           FROM book_tbl WHERE ROWID 
           IN (SELECT MIN(ROWID) FROM book_tbl GROUP BY substr(book_id,1,8)) 
           ORDER BY book_in_date DESC)        
-    WHERE rownum <![CDATA[<=]]> 6
+    WHERE rownum <![CDATA[<=]]> 9
+
   </select>
   
 </mapper>

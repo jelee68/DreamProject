@@ -45,7 +45,7 @@ public class RentController {
 	@RequestMapping("/rent_user_check")
 	@ResponseBody
 	public String rent_user_check(@RequestParam("user_id")String id, Model model) {
-		System.out.println(id);
+
 		RentDao dao = sqlSession.getMapper(RentDao.class);	
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		UserDto userInfo = dao.userInfoDao(id);
