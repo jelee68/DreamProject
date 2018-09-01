@@ -11,6 +11,7 @@
 	
 	<select id="bookInfoDao" resultType="com.triple.dreamlib.dto.BookDto">
 		SELECT book_id, book_name, book_author, book_date, book_pub FROM book_tbl where book_id = #{param1}
+		AND book_del = '0' 
 	</select>
 	
 	<select id="userCheckDao" resultType="com.triple.dreamlib.dto.UserDto">

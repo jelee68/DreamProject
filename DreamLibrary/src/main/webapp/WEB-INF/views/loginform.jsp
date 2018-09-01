@@ -11,16 +11,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
 </head>
 <body>
-<header id="header">
-      <div class="inner-1280">
-         <h1><a href="">Dream Library</a></h1>
-         <dl class="top-menu">
-            <dt class="hide">상위메뉴</dt>
-            <dd><a href="">login</a>|</dd>
-            <dd><a href="">join</a></dd>
-         </dl>
-      </div>
-   </header>
+ <%@ include file="include/header.jsp" %>
 
    <div id="container">
       <div id="login">

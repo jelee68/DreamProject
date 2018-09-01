@@ -35,10 +35,18 @@ input:focus, select:focus{outline: none;box-sha dow: none}
 #content .sec3 p{height: 100px;background-color: #eff5f7;}
 #content .sec3 p strong{padding-top: 20px;width: 100%;text-align: center;display: block;font-size: 23px;font-family: nanumB;}
 #content .sec3 p em{font-family: nanumEB;width: 100%;text-align: center;display: block;font-size: 14px;color:#9d9d9d;}
-#content .sec3 ul{width: 100%;}
-#content .sec3 ul li{position: relative;overflow: hidden;float: left;width: 408px;height: 405px;border-top: 28px solid #34495e;border-bottom: 28px solid #34495e;}
-#content .sec3 ul li:nth-child(2){border-right: 28px solid #000;border-left: 28px solid #000;}
+#content .sec3 ul{wi dth: 100%;wid th:2460px;position:relative;}
+#content .sec3 ul li{position: relative;overflow: hidden;float: left;width: 400px;height: 405px;bo rder-top: 28px solid #34495e;bor der-bottom: 28px solid #34495e;border:1px solid #eee;  box-sizing: border-box;}
+#content .sec3 ul li:nth-child(2){bo rder-right: 28px solid #000;bor der-left: 28px solid #000;}
 #content .sec3 ul li a{display: block;wi dth: 448px;height: 405px;text-align: center;}
 #content .sec3 ul li a img{padding-top: 35px;display: block;width: 200px;height: 271px;margin: auto;}
-#content .sec3 ul li a strong{font-size: 20px;color:#333;margin-top: 25px;margin-bottom: 25px;display: block;font-family: nanumEB;}
+#content .sec3 ul li a strong{font-size: 16px;color:#333;margin-top: 25px;margin-bottom: 25px;display: block;font-family: nanumEB;}
 #content .sec3 ul li a em{display: block;font-size: 14px;color:#333;text-align: left;width: 388px;margin: auto;}
+
+#content .sec3 .new_list_wrap{position: relative; width:100%;}
+#content .sec3 .new_list_wrap .mask{overflow: hidden;width:1200px;transform: translateX(40px);}
+#content .sec3 .new_list_btn{}
+#content .sec3 .new_list_btn dd{position: absolute;top:40%;font-size:30px;cursor:pointer;width:35px; height:35px;line-height:30px;text-align:center;backgr ound-color:#ccc;}
+#content .sec3 .new_list_btn dd.btn_left{left:0%}
+#content .sec3 .new_list_btn dd.btn_right{right:0%}
+

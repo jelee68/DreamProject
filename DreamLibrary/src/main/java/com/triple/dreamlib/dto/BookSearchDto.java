@@ -4,6 +4,7 @@ public class BookSearchDto {
 
 	String  seq;
 	String  book_id; 
+	String  book_code;	
 	String  book_name; 
 	String  book_author; 
 	String  book_date; 
@@ -14,16 +15,25 @@ public class BookSearchDto {
 	public BookSearchDto() {
 	}
 			
-	public BookSearchDto(String seq, String book_id, String book_name, String book_author, String book_date, String book_pub,
+	public BookSearchDto(String seq, String book_id, String  book_code, String book_name, String book_author, String book_date, String book_pub,
 			String book_imgPath, String book_status) {
 
 		this.book_id = book_id;
+		this.book_code = book_code;
 		this.book_name = book_name;
 		this.book_author = book_author;
 		this.book_date = book_date;
 		this.book_pub = book_pub;
 		this.book_imgPath = book_imgPath;
 		this.book_status = book_status;
+	}
+
+	public String getBook_code() {
+		return book_code;
+	}
+
+	public void setBook_code(String book_code) {
+		this.book_code = book_code;
 	}
 
 	public String getSeq() {

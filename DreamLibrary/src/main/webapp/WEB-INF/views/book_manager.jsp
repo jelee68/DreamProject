@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,16 +13,7 @@
 </head>
 <body>
 
-<header id="header">
-      <div class="inner-1280">
-         <h1><a href="/index">Dream Library</a></h1>
-         <dl class="top-menu">
-            <dt class="hide">상위메뉴</dt>
-            <dd><a href="login">login</a>|</dd>
-            <dd><a href="join">join</a></dd>
-         </dl>
-      </div>
-   </header>
+ <%@ include file="include/header.jsp" %>
 
    <div id="container">
       <div id="bookManager">
@@ -32,10 +24,11 @@
                   <table class="col_name">
                      <caption class='hide'>컬럼명</caption>
                      <colgroup>
-                        <col width="5.5%" />
+                        <col width="4.5%" />
                         <col width="13.5%" />
-                        <col width="46%" />
-                        <col width="21.5%" />
+                        <col width="39.5%" />
+                        <col width="15.5%" />
+                        <col width="17.5%" />
                         <col width="*" />
                      </colgroup>
                      <thead>
@@ -44,7 +37,8 @@
                            <th scope="col">도서ID</th>
                            <th scope="col">서명</th>
                            <th scope="col">저자</th>
-                           <th scope="col">출판사</th>                           
+                           <th scope="col">출판사</th> 
+                           <th scope="col">상태</th>                           
                         </tr>
                      </thead>
                   </table>
@@ -52,22 +46,42 @@
                      <table class="book_list">
                         <caption class='hide'>등록도서목록</caption>
                         <colgroup>
-                           <col width="6%" />
-                           <col width="14%" />
-                           <col width="47%" />
-                           <col width="22%" />
-                           <col width="*" />
+                        <c:set value="${booklist.size()}" var="listCnt"></c:set>
+                        <c:choose>
+						 
+						    <c:when test="${listCnt < 20}">
+						       <col width="4.5%" />
+		                       <col width="13.5%" />
+		                       <col width="39.5%" />
+		                       <col width="15.5%" />
+		                       <col width="17.5%" />
+		                       <col width="*" />
+						    </c:when>
+	
+						    <c:otherwise>
+						       <col width="5%" />
+	                           <col width="14%" />
+	                           <col width="40%" />
+	                           <col width="16%" />
+	                           <col width="18%" />
+	                           <col width="*" />
+						    </c:otherwise>
+						 
+						</c:choose>
+ 
                         </colgroup>
                         <tbody>    
-                          <c:forEach items="${booklist}" var="dto" varStatus="status">
+                        
+                         <c:forEach items="${booklist}" var="dto" varStatus="status">
   							<tr>
-                              <td class="list_index">${dto.rownum}</td>
+                              <td class="list_index">${dto.seq}</td>
                               <td class="book_id">${dto.book_id}</td>
                               <td class="book_name">${dto.book_name}</td>
                               <td class="book_author">${dto.book_author}</td>
                               <td class="rent_status">${dto.book_pub}</td>
+                              <td>${dto.book_del}</td>
   							</tr>
-  						  </c:forEach>
+  						  </c:forEach>  
                         </tbody>
                      </table>
                   </div>

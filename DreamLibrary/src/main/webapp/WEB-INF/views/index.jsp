@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,27 +14,8 @@
 </head>
 <body>
  
-<header id="header">
-      <div class="inner-1280">
-         <h1><a href="index">Dream Library</a></h1>
-         <dl class="top-menu">
-            <dt class="hide">상위메뉴</dt>
-            
-            <s:authorize ifNotGranted="0,1">
-            	<dd><a href="login">login</a>|</dd>
-            	<dd><a href="join">join</a></dd>
-            </s:authorize>
-            <s:authorize ifAnyGranted="0">
-				<dd> "${userInfo.user_name }"님 반갑습니다. |</dd>
-				<dd><a href="${pageContext.request.contextPath}/j_spring_security_logout">로그아웃</a></dd>
-			</s:authorize>
-			<s:authorize ifAnyGranted="1">
-				<dd> admin "<s:authentication property="name"/>"님 반갑습니다. |</dd>
-				<dd><a href="${pageContext.request.contextPath}/j_spring_security_logout">로그아웃</a></dd>
-			</s:authorize>
-         </dl>
-      </div>
-   </header>
+ <%@ include file="include/header.jsp" %>
+
 
    <div id="container">
       <div id="content">
@@ -120,24 +101,20 @@
 
             <section class="sec2">
                   <ul class="menu cf">
-                  <s:authorize ifNotGranted="0,1">
+         
                   	 <li><a href="dream_info">드림도서관 소개</a></li>
-            		 <li><a href="book_search">자료 검색</a></li> 
-            	  </s:authorize>
-            	  <s:authorize ifAnyGranted="0">
-            	 	 <li><a href="dream_info">드림도서관 소개</a></li>
+ 
+  
+
+
             	     <li><a href="book_search">자료 검색</a></li> 
             	     <li><a href='my_history'>내 서재</a></li>
                      <%-- <li><a href='my_history?user_id=<s:authentication property="name"/>'>내 서재</a></li>  --%>
                    
-                     
-            	  </s:authorize>
-            	  <s:authorize ifAnyGranted="1">
-            	  	 <li><a href="dream_info">드림도서관 소개</a></li>
-                     <li><a href="book_search">자료 검색</a></li>                     
+                                   
                      <li><a href="book_manager">도서 관리</a></li>
                      <li><a href="rent_manager">대출 관리</a></li>
-            	  </s:authorize>           	  	 
+      	  	 
                   </ul>
             </section>
 
@@ -145,20 +122,29 @@
                   <p>
                   <strong> 신착 도서</strong>
                   <em>new books</em></p>
-               <ul class="new_list cf">
-   					
-   					<c:forEach items="${new_book}" var="dto" varStatus="status">
-  						<li>
-  							<a href="#">
-	   							<img src="${dto.book_imgPath }" alt="신간도서${status.count}" />
-	   							<strong>${dto.book_name }</strong>
-   							</a>
-   						</li>
-  					</c:forEach>
-   					
-				</ul>
+
+               <div class="new_list_wrap">
+	               <div class="mask">	
+		               <ul class="new_list cf">
+		   					
+		   					<c:forEach items="${new_book}" var="dto" varStatus="status">
+		  						<li>
+		  							<a href="#">
+			   							<img src="${dto.book_imgPath }" alt="신간도서${status.count}" />
+			   							<strong>${dto.book_name }</strong>
+		   							</a>
+		   						</li>
+		  					</c:forEach>
+		   					
+						</ul>
+					</div>
+					<dl class="new_list_btn">
+					   <dd class="btn_left">&lt;</dd>
+					   <dd class="btn_right">&gt;</dd>		   
+					</dl>
 				
-				
+				</div> 
+			
             </section>
          </div>
       </div>
@@ -168,9 +154,57 @@
    <script type="text/javascript" src="resources/js/jquery-ui.min.js"> </script>
    <script type="text/javascript">
       $(function(){
-         $(".detail-btn").on("click",function(){
-            $(".detail").slideToggle();
+		
+    	 var liWidth =  $(".new_list li").outerWidth();
+    	 var liNum = $(".new_list li").length;
+    	 console.log(liWidth)
+    	 $(".new_list").width(liNum*liWidth);
+    	 var ulWidth =  $(".new_list").width()
+		 var cnt = 0; 
+		 var w = liWidth*3; 
+		 var tx = 0; 
+		
+	
+         
+         $(".btn_right").on('click',function(){
+        	 
+        	 if(cnt < (ulWidth/w)-1){
+ 				cnt++;
+ 				tx=cnt*-w;
+ 		
+ 				$('.new_list').animate({
+ 					'left':tx
+ 				},700);
+ 				//if(cnt>0){$('.prev').fadeIn()}
+ 				//if(cnt==3){$('.next').hide()}
+ 			}
+			
          })
+         
+         $(".btn_left").on('click',function(){
+        	
+        	 if(cnt>0){
+        		 
+ 				cnt--;
+ 				tx=cnt*-w;
+ 				console.log(tx)
+ 				$('.new_list').animate({
+ 					'left':tx
+ 				},700);
+ 				//if(cnt>0){$('.prev').fadeIn()}
+ 				//if(cnt==3){$('.next').hide()}
+ 			}
+			
+         })
+   
+         function nextList(){
+				$('#visual .banner li').eq(cnt).css('left','100%').animate({left:0})
+				$('#visual .banner li').eq(old).animate({left:'-100%'})
+				$('#visual .paging li').removeClass('on')
+			 	$('#visual .paging li').eq(cnt).addClass('on')
+				
+				old=cnt
+			}
       })
    </script>
 </body>
