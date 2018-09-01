@@ -47,17 +47,17 @@
                      	상세검색
                      </span>
                   </h4>
-                  <form action="" method="post" >
+                  <form action="book_simple_search" method="post" >
          			  	<fieldset>
          					<legend class="hide">자료검색하기</legend>
          					<p class="cf">
-                           <select class="" name="">
-                              <option value="전체" selected>전체</option>
-                              <option value="제목">제목</option>
-                              <option value="저자">저자</option>
+                           <select class="" name="select1">
+                              <option value="book_name" selected>제목</option>
+                              <option value="book_author">저자</option>
+                              <option value="book_pub">출판사</option>
                            </select>
          						<label for="search"></label>
-         						<input type="text" value="" id="search" placeholder="자료검색"/>
+         						<input type="text" name="input1" id="search" placeholder="자료검색"/>
          						<input type="submit" value="" id="searchBtn"/>
                         </p>
          				</fieldset>
@@ -67,41 +67,41 @@
 
                <div class="detail">
                      <div class="detail-content">
-                        <form action="" method="post">
+                        <form action="search_result" method="post">
                         <fieldset>
                         <legend class="hide">상세조건선택</legend>
 
                         <p class="cf">
-                           <select id="" name="standard1" value="" title="기준을 선택하세요">
-                              <option selected>제목</option>
-                              <option>저자</option>
-                              <option>출판사</option>
+                           <select  name="select1" title="기준을 선택하세요">
+                              <option value="book_name" selected>제목</option>
+                              <option value="book_author">저자</option>
+                              <option value="book_pub">출판사</option>
                            </select>
                            <input type="text" name="input1" id="input">
-                           <select id="condition" name="condition" value="" title="기준을 선택하세요">
+                           <select id="condition" name="cond01" title="기준을 선택하세요">
                               <option>AND</option>
                               <option>OR</option>
                            </select>
                         </p>
 
                         <p class="cf">
-                           <select id="" name="standard2" value="" title="기준을 선택하세요">
-                              <option>제목</option>
-                              <option selected>저자</option>
-                              <option>출판사</option>
+                           <select name="select2" title="기준을 선택하세요">
+                              <option value="book_name">제목</option>
+                              <option value="book_author" selected>저자</option>
+                              <option value="book_pub">출판사</option>
                            </select>
                            <input type="text" name="input2" id="input">
-                           <select id="condition" name="condition" value="" title="기준을 선택하세요">
+                           <select id="condition" name="cond02" title="기준을 선택하세요">
                               <option>AND</option>
                               <option>OR</option>
                            </select>
                         </p>
 
                         <p class="cf">
-                           <select id="" name="standard3" value="" title="기준을 선택하세요">
-                              <option>제목</option>
-                              <option>저자</option>
-                              <option selected>출판사</option>
+                           <select name="select3" title="기준을 선택하세요">
+                              <option value="book_name">제목</option>
+                              <option value="book_author">저자</option>
+                              <option value="book_pub" selected>출판사</option>
                            </select>
                            <input type="text" name="input3" id="input">
                         </p>
