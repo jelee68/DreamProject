@@ -154,6 +154,10 @@
    <script type="text/javascript" src="resources/js/jquery-ui.min.js"> </script>
    <script type="text/javascript">
       $(function(){
+    	  
+    	   $(".detail-btn").on("click",function(){
+               $(".detail").slideToggle();
+            })
 		
     	 var liWidth =  $(".new_list li").outerWidth();
     	 var liNum = $(".new_list li").length;
