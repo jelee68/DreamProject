@@ -201,14 +201,7 @@
 			
          })
    
-         function nextList(){
-				$('#visual .banner li').eq(cnt).css('left','100%').animate({left:0})
-				$('#visual .banner li').eq(old).animate({left:'-100%'})
-				$('#visual .paging li').removeClass('on')
-			 	$('#visual .paging li').eq(cnt).addClass('on')
-				
-				old=cnt
-			}
+ 
       })
    </script>
 </body>

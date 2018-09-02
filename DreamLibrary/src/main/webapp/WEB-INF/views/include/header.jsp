@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+
 <header id="header">
       <div class="inner-1280">
          <h1><a href="index">Dream Library</a></h1>

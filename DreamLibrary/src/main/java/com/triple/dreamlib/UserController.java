@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import com.triple.dreamlib.dao.BookDao;
@@ -22,6 +23,7 @@ import com.triple.dreamlib.dto.RentListDto;
 import com.triple.dreamlib.dto.UserDto;
 
 @Controller
+@SessionAttributes("userInfo")
 public class UserController {
 	
 	@Autowired
@@ -34,6 +36,7 @@ public class UserController {
 	public String join() {
 		return "/join";
 	}
+	
 	
 	@RequestMapping("/index")
 	public String index(Model model) {
