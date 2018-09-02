@@ -42,8 +42,12 @@ public class UserController {
 	public String index(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String user_id = auth.getName();
-		UserDao dao = sqlSession.getMapper(UserDao.class);	
-		model.addAttribute("userInfo", dao.loginDao(user_id));
+
+	    if(user_id != "anonymousUser") {
+	    	UserDao dao = sqlSession.getMapper(UserDao.class);	
+			model.addAttribute("userInfo", dao.loginDao(user_id));
+	    }
+		
 		
 		BookDao dao2 = sqlSession.getMapper(BookDao.class);
 		model.addAttribute("new_book", dao2.newBookListDao());

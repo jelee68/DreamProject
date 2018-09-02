@@ -129,7 +129,7 @@
 		   					
 		   					<c:forEach items="${new_book}" var="dto" varStatus="status">
 		  						<li>
-		  							<a href="#">
+		  							<a href="book_detail?book_id=${dto.book_id}">
 			   							<img src="${dto.book_imgPath }" alt="신간도서${status.count}" />
 			   							<strong>${dto.book_name }</strong>
 		   							</a>
