@@ -71,7 +71,8 @@ public class BookController {
 		
 		String select1, select2, select3;
 		String input1, input2, input3;
-		String cond01, cond02;		
+		String cond01, cond02;
+		int maxPageListNum, minPageListNum;
 		
 		BookDao dao = sqlSession.getMapper(BookDao.class);
 		
@@ -84,17 +85,21 @@ public class BookController {
 		cond01 = request.getParameter("cond01");
 		cond02 = request.getParameter("cond02");		
 		
+		
 		boolean checkInput1 = !input1.equals(null);
 
 
 		if(checkInput1) {
-			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
-			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
-			
 			// 전체리스트 개수
-	        int listCnt = dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3).size();
-	       
+	        int listCnt = dao.totalListDao(select1, input1, cond01, select2, input2, cond02, select3, input3).getListCnt();
 	        Pagination pagination = new Pagination(listCnt, curPage);
+	        maxPageListNum = curPage * pagination.getPageSize();
+	        minPageListNum = curPage * pagination.getPageSize() - (pagination.getPageSize()-1);
+			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
+			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3,maxPageListNum,minPageListNum));
+			
+			
+	        
 
 	        model.addAttribute("listCnt", listCnt);	        
 	        model.addAttribute("pagination", pagination);
