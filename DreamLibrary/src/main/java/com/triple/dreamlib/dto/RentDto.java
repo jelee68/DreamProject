@@ -9,13 +9,13 @@ public class RentDto {
 	private Date book_rent_date;
 	private Date book_re_due_date;
 	private Date book_re_date;
-	private String book_status;
+	private String rent_status;
 	public RentDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public RentDto(String rent_no, String user_id, String book_id, Date book_rent_date, Date book_re_due_date,
-			Date book_re_date, String book_status) {
+			Date book_re_date, String rent_status) {
 		super();
 		this.rent_no = rent_no;
 		this.user_id = user_id;
@@ -23,7 +23,7 @@ public class RentDto {
 		this.book_rent_date = book_rent_date;
 		this.book_re_due_date = book_re_due_date;
 		this.book_re_date = book_re_date;
-		this.book_status = book_status;
+		this.rent_status = rent_status;
 	}
 	public String getRent_no() {
 		return rent_no;
@@ -61,11 +61,11 @@ public class RentDto {
 	public void setBook_re_date(Date book_re_date) {
 		this.book_re_date = book_re_date;
 	}
-	public String getBook_status() {
-		return book_status;
+	public String getRent_status() {
+		return rent_status;
 	}
-	public void setBook_status(String book_status) {
-		this.book_status = book_status;
+	public void setRent_status(String rent_status) {
+		this.rent_status = rent_status;
 	}
 	
 }

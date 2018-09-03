@@ -23,22 +23,20 @@
   </select>
 
   <select id="book_result1Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
-	select row_number() over(order by book_tbl.book_id asc) as seq, book_tbl.book_id, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
-	book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
-	  from book_tbl LEFT OUTER JOIN rent_tbl 
-      ON book_tbl.book_id = rent_tbl.book_id
+	select row_number() over(order by book_id asc) as seq, book_id, book_name, book_author, book_pub, book_date, 
+	book_imgPath, decode(book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
+	  from book_tbl 
 	  WHERE LOWER(${param1}) like LOWER('%'|| #{param2} ||'%')
-	  	AND book_tbl.book_del = '0' 
+	  	AND book_del = '0' 
 	  order by book_id asc
   </select>
   
     <select id="selectedBookDao" resultType="com.triple.dreamlib.dto.BookSearchDto">
-	select rownum, book_tbl.book_id, book_tbl.book_code, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
-	book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
-	  from book_tbl LEFT OUTER JOIN rent_tbl 
-      ON book_tbl.book_id = rent_tbl.book_id
-	  WHERE book_tbl.book_id = #{param1}
-	   	AND book_tbl.book_del = '0' 
+	select rownum, book_id, book_code, book_name, book_author, book_pub, book_date, 
+	book_imgPath, decode(book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
+	  from book_tbl 
+	  WHERE book_id = #{param1}
+	   	AND book_del = '0' 
   </select>
 	
   <!-- <select id="book_result2Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
@@ -63,10 +61,9 @@
    </select>	 -->
    
    <select id="book_result3Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
-		select row_number() over(order by book_tbl.book_id asc) as seq, book_tbl.book_id, book_tbl.book_name, book_tbl.book_author, book_tbl.book_pub, book_tbl.book_date, 
-		book_tbl.book_imgPath, decode(rent_tbl.book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
-	  	from book_tbl LEFT OUTER JOIN rent_tbl 
-      	ON book_tbl.book_id = rent_tbl.book_id
+		select row_number() over(order by book_id asc) as seq, book_id, book_name, book_author, book_pub, book_date, 
+		book_imgPath, decode(book_status, null ,'대출가능',0,'대출가능','대출중') as book_status
+	  	from book_tbl 
 		<where> LOWER(${param1}) like LOWER('%'|| #{param2} ||'%') 
 			<if test="param4 != null">
 				 ${param3} LOWER(${param4}) like LOWER('%'|| #{param5} ||'%') 
@@ -74,13 +71,13 @@
 			<if test="param7 != null">
 				 ${param6} LOWER(${param7}) like LOWER('%'|| #{param8} ||'%') 
 			</if>
-		AND book_tbl.book_del = '0' 
+		AND book_del = '0' 
 		 order by book_id asc	
 		</where>
 	</select>
 
   <insert id="book_addDao">
-  INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7},default)
+  INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7},default,default)
   </insert>	
   
    <update id="book_modifyDao">
@@ -100,6 +97,7 @@
     FROM (SELECT book_id, book_name, book_in_date, book_imgPath
           FROM book_tbl WHERE ROWID 
           IN (SELECT MIN(ROWID) FROM book_tbl GROUP BY substr(book_id,1,8)) 
+          AND book_del = 0 
           ORDER BY book_in_date DESC)        
     WHERE rownum <![CDATA[<=]]> 9
 

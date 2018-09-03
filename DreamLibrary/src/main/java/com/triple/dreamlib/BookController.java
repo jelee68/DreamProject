@@ -23,6 +23,7 @@ import com.triple.dreamlib.dao.BookDao;
 import com.triple.dreamlib.dto.BookDto;
 import com.triple.dreamlib.dto.BookSearchDto;
 import com.triple.dreamlib.dto.MaxBookIdDto;
+import com.triple.dreamlib.dto.Pagination;
 
 @Controller
 public class BookController {
@@ -66,7 +67,7 @@ public class BookController {
 	}	
 	
 	@RequestMapping("/search_result")
-	public String search_result(HttpServletRequest request, Model model) {
+	public String search_result(@RequestParam(defaultValue="1") int curPage, HttpServletRequest request, Model model) {
 		
 		String select1, select2, select3;
 		String input1, input2, input3;
@@ -89,7 +90,20 @@ public class BookController {
 		if(checkInput1) {
 			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
 			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3));
+			
+			// 전체리스트 개수
+	        int listCnt = dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3).size();
+	       
+	        Pagination pagination = new Pagination(listCnt, curPage);
+
+	        model.addAttribute("listCnt", listCnt);	        
+	        model.addAttribute("pagination", pagination);
+		
 		}
+		
+		
+		
+		
 		
 		return "/search_result";
 	}

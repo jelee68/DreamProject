@@ -15,12 +15,14 @@ public interface RentDao {
 	public UserDto userCheckDao(String userId);
 	public BookDto bookCheckDao(String bookId);
 	
-	public RentDto bookRentCheckDao(String bookId);
+	public BookDto bookRentCheckDao(String bookId);
 	public ArrayList<RentDto> userRentCheckDao(String userId);
 	
 	public void rentAddDao(String userID, String bookId);
 	
 	public ArrayList<RentListDto> rentListDao(String userId);
 	
-	public void updateReturnDao(String bookId);
+	public void updateReturnDao(String rent_no);
+	
+	public void bookStatusUpdateDao(String book_status,String book_id);
 }

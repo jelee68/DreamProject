@@ -135,11 +135,13 @@
     	  })
          //
          	var bookId;
+    	    var rentNo; 
             $(".sec2 .rent_list").on("click",'tr',function(){
                $(".sec2 .rent_list tbody tr:nth-child(2n-1)").css("background-color","#fff");
                $(".sec2 .rent_list tbody tr:nth-child(2n)").css("background-color","#f9f9f9");
                $(this).css("background-color","rgba(77, 155, 184,0.2)");
                bookId = $(">.book_id", this).text();
+               rentNo = $(">.rent_no", this).text(); 
             })
 
             $(".sec2 .add_btn").on("click",function(){
@@ -184,13 +186,15 @@
             });
             
             $(".return_btn").on("click",function(){
-            	console.log(bookId);
+     
             	$.ajax({    
   	               
         			url: 'book_return',  
 	                type:'post',  
 	                dataType: 'json',
-	                data: { 'book_id' : bookId },
+	                data: { 'book_id' : bookId,
+	                		'rent_no' : rentNo
+	                	  },
 	                success : function(data){ 
 	                	
 	                	alert(data.ms);

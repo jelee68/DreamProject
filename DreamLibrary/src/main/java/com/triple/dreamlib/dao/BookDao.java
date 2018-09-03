@@ -26,4 +26,9 @@ public interface BookDao {
 	
 	public ArrayList<BookDto> newBookListDao();
 	
+	
+	
+	public int setStartIndex(int i);
+	public int setCntPerPage(int i);
+	
 }

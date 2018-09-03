@@ -56,14 +56,14 @@ public class RentController {
 	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());*/
 		
 		while(i< rentList.size()) {
-			if(rentList.get(i).getBook_status().equals("1")) {
+			if(rentList.get(i).getRent_status().equals("1")) {
 				if(rentList.get(i).getBook_re_due_date().compareTo(now) >= 0) {
-					rentList.get(i).setBook_status("대출중");
+					rentList.get(i).setRent_status("대출중");
 				}else {
-					rentList.get(i).setBook_status("연체중");
+					rentList.get(i).setRent_status("연체중");
 				}
 			}else {
-				rentList.get(i).setBook_status("반납완료");
+				rentList.get(i).setRent_status("반납완료");
 			}
 			i++;
 		}
@@ -113,13 +113,15 @@ public class RentController {
 	
 	@RequestMapping("/book_return")
 	@ResponseBody
-	public String book_return(@RequestParam("book_id")String book_id) {		
+	public String book_return(@RequestParam("rent_no")String rent_no,@RequestParam("book_id")String book_id) {	
+		
+	
 		Gson gson = new Gson();
 		String ms;
 		HashMap msMap = new HashMap();
 
 		if(book_rent_check(book_id) == true) {
-			update_return(book_id);				
+			update_return(rent_no,book_id);				
 			ms = "반납 완료";
 		}else {
 			ms = "이미 반납된 도서입니다.";
@@ -133,9 +135,10 @@ public class RentController {
 	//////////////////////////////
 	public boolean book_rent_check(String book_id) {
 		RentDao dao = sqlSession.getMapper(RentDao.class);	
-		RentDto dto;	
+		BookDto dto;	
 		dto = dao.bookRentCheckDao(book_id);
 		boolean brc;	
+		
 		brc = (dto.getBook_status().equals("1"))  ? true : false;	
 		return brc;
 	}
@@ -165,10 +168,12 @@ public class RentController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String rent_id = sdf.format(now);*/
 		dao.rentAddDao(user_id, book_id);
+		dao.bookStatusUpdateDao("1",book_id);
 	}
 
-	public void update_return(String book_id) {
+	public void update_return(String rent_no,String book_id) {
 		RentDao dao = sqlSession.getMapper(RentDao.class);
-		dao.updateReturnDao(book_id);
+		dao.updateReturnDao(rent_no);
+		dao.bookStatusUpdateDao("0",book_id);
 	}
 }
