@@ -14,11 +14,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import com.triple.dreamlib.dao.BookDao;
 import com.triple.dreamlib.dao.UserDao;
+import com.triple.dreamlib.dto.Pagination;
 import com.triple.dreamlib.dto.RentListDto;
 import com.triple.dreamlib.dto.UserDto;
 
@@ -82,30 +84,38 @@ public class UserController {
 	}
 	*/
 	@RequestMapping("/my_history")
-	public String my_history(HttpServletRequest request, Model model) {
+	public String my_history(@RequestParam(defaultValue="1") int curPage,HttpServletRequest request, Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String user_id = auth.getName();
-	 
-		UserDao dao = sqlSession.getMapper(UserDao.class);
-		ArrayList<RentListDto> myRentList = dao.myRentListDao(user_id);
+	    UserDao dao = sqlSession.getMapper(UserDao.class);
+	    
+	    int maxPageListNum, minPageListNum;	    
+	    int listCnt = dao.totalListDao(user_id).getListCnt();
+        Pagination pagination = new Pagination(listCnt, curPage);
+	    maxPageListNum = curPage * pagination.getPageSize();
+        minPageListNum = curPage * pagination.getPageSize() - (pagination.getPageSize()-1);	
+		ArrayList<RentListDto> myRentList = dao.myRentListDao(user_id, maxPageListNum, minPageListNum);
+		
 		int i = 0;
 		Date now = new Date();
 		/*java.util.Date utilDate = new java.util.Date();
 	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());*/
 		
 		while(i< myRentList.size()) {
-			if(myRentList.get(i).getBook_status().equals("1")) {
+			if(myRentList.get(i).getRent_status().equals("1")) {
 				if(myRentList.get(i).getBook_re_due_date().compareTo(now) >= 0) {
-					myRentList.get(i).setBook_status("대출중");
+					myRentList.get(i).setRent_status("대출중");
 				}else {
-					myRentList.get(i).setBook_status("연체중");
+					myRentList.get(i).setRent_status("연체중");
 				}
 			}else {
-				myRentList.get(i).setBook_status("반납완료");
+				myRentList.get(i).setRent_status("반납완료");
 			}
 			i++;
 		}
 		model.addAttribute("my_list",myRentList);
+        model.addAttribute("listCnt", listCnt);	        
+        model.addAttribute("pagination", pagination);
 		return "my_history";
 	}
 

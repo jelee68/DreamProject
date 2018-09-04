@@ -14,13 +14,36 @@
 	</select>
 	
 	
-	<select id="myRentListDao" resultType="com.triple.dreamlib.dto.RentListDto">
+	<!-- <select id="myRentListDao" resultType="com.triple.dreamlib.dto.RentListDto">
 		SELECT rownum, rent_tbl.book_rent_date, book_tbl.book_name, rent_tbl.book_re_due_date, 
 			   rent_tbl.book_re_date, rent_tbl.book_status 
     		FROM rent_tbl, book_tbl  
     		WHERE rent_tbl.book_id = book_tbl.book_id
       		AND rent_tbl.user_id = #{param1} 
       		ORDER BY rent_tbl.book_rent_date DESC	
+    </select> -->
+    
+    <select id="myRentListDao" resultType="com.triple.dreamlib.dto.RentListDto">
+		SELECT X.seq, X.book_rent_date, X.book_name, X.book_re_due_date, X.book_re_date, X.rent_status 
+    		FROM (
+                SELECT rownum as seq, A.book_rent_date, A.book_name, A.book_re_due_date, A.book_re_date, A.rent_status 
+                FROM(
+                    SELECT rent_tbl.book_rent_date, book_tbl.book_name, rent_tbl.book_re_due_date, rent_tbl.book_re_date, rent_tbl.rent_status 
+                    FROM rent_tbl, book_tbl
+                    WHERE rent_tbl.book_id = book_tbl.book_id
+                    AND rent_tbl.user_id = #{param1} 
+                    ORDER BY rent_tbl.book_rent_date DESC
+                ) A 
+             WHERE rownum <![CDATA[<=]]> ${param2}
+            ) X
+		WHERE X.seq <![CDATA[>=]]> ${param3}
+    </select>
+  
+    
+    <select id="totalListDao" resultType="com.triple.dreamlib.dto.Pagination">
+	 	SELECT COUNT(*) AS listCnt  
+        FROM rent_tbl 
+        WHERE user_id = #{param1}  
     </select>
 
 	
