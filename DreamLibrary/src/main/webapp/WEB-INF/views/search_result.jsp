@@ -85,7 +85,7 @@
                                 <%-- onClick="fn_paging('${pageNum }')" --%>
                             </c:when>
                             <c:otherwise>
-                                <span><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span> 
+                                <span><a href="search_result?${pageNum }">${pageNum }</a></span> 
                             </c:otherwise>
                         </c:choose>
                  </c:forEach>
