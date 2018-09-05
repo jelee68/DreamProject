@@ -38,7 +38,7 @@ public class BookController {
 		return "/test";
 	}	
 	
-	@RequestMapping("/book_simple_search")
+	/*@RequestMapping("/book_simple_search")
 	public String book_simple_search(HttpServletRequest request, Model model) {
 		
 		String select;
@@ -48,11 +48,15 @@ public class BookController {
 		
 		select = request.getParameter("select1");
 		input = request.getParameter("input1");		
+		int listCnt = dao.totalListDao(select, input).getListCnt();
+        Pagination pagination = new Pagination(listCnt, curPage, 10);
+        maxPageListNum = pagination.getMaxPageListNum();
+        minPageListNum = pagination.getMinPageListNum();
 		
-		model.addAttribute("bookresult",dao.book_result1Dao(select,input));
+		model.addAttribute("bookresult",dao.book_result1Dao(select,input,maxPageListNum,minPageListNum));
 		
 		return "/search_result";
-	}
+	}*/
 	
 	@RequestMapping("/book_search")
 	public String book_search() {
@@ -74,6 +78,7 @@ public class BookController {
 		String cond01, cond02;
 		int maxPageListNum, minPageListNum;
 		
+		 
 		BookDao dao = sqlSession.getMapper(BookDao.class);
 		
 		select1 = request.getParameter("select1");
@@ -83,7 +88,14 @@ public class BookController {
 		input2 = request.getParameter("input2");
 		input3 = request.getParameter("input3");
 		cond01 = request.getParameter("cond01");
-		cond02 = request.getParameter("cond02");		
+		cond02 = request.getParameter("cond02");
+		
+		
+
+		
+		
+		String urlPlus = "select1="+select1+"&select2="+select2+"&select3="+select3+"&input1="+input1+"&input2="+input2+
+				"&input3="+input3+"&cond01="+cond01+"&cond02="+cond02;
 		
 		
 		boolean checkInput1 = !input1.equals(null);
@@ -92,15 +104,15 @@ public class BookController {
 		if(checkInput1) {
 			// 전체리스트 개수
 	        int listCnt = dao.totalListDao(select1, input1, cond01, select2, input2, cond02, select3, input3).getListCnt();
-	        Pagination pagination = new Pagination(listCnt, curPage);
-	        maxPageListNum = curPage * pagination.getPageSize();
-	        minPageListNum = curPage * pagination.getPageSize() - (pagination.getPageSize()-1);
+	        Pagination pagination = new Pagination(listCnt, curPage, 10);
+	        maxPageListNum = pagination.getMaxPageListNum();
+	        minPageListNum = pagination.getMinPageListNum();
 			//System.out.println("1:"+ checkInput1 +","+ checkInput2 +","+ checkInput3);
-			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, select3, input3,maxPageListNum,minPageListNum));
+			model.addAttribute("bookresult",dao.book_result3Dao(select1, input1, cond01, select2, input2, cond02, 
+					select3, input3,maxPageListNum,minPageListNum));
 			
-			
-	        
-
+			model.addAttribute("urlPlus",urlPlus);
+	       
 	        model.addAttribute("listCnt", listCnt);	        
 	        model.addAttribute("pagination", pagination);
 		

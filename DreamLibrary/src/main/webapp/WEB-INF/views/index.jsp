@@ -28,7 +28,7 @@
                      	상세검색
                      </span>
                   </h4>
-                  <form action="book_simple_search" method="post" >
+                  <form action="search_result" method="post" >
          			  	<fieldset>
          					<legend class="hide">자료검색하기</legend>
          					<p class="cf">
@@ -102,7 +102,7 @@
             <section class="sec2">
                   <ul class="menu cf">
          
-                  	 <li><a href="dream_info">드림도서관 소개</a></li>
+                  	 <li><a href="resources/project.pdf" target="_blank">드림도서관 소개</a></li>
  
   
 

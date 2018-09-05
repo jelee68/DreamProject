@@ -1,5 +1,10 @@
 ﻿삭제도서 - 대출중 도서 삭제 x
 
+검색결과 페이징
+페이징 랜지
+
+렌트매니저 트랜젝션
+
 -------------------
 
 
@@ -15,3 +20,7 @@
 코드 정리
 로그인 ng,상단 css
 
+
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Listener refused the connection with the following error:
+ORA-12519, TNS:no appropriate service handler found

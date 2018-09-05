@@ -50,7 +50,7 @@
 		              <td class="book_name">${dto.book_name}</td>
 		              <td class="book_re_due_date"><fmt:formatDate value="${dto.book_re_due_date}" type="both" pattern="yyyy-MM-dd"/></td>
 		              <td class="book_re_date"><fmt:formatDate value="${dto.book_re_date}" type="both" pattern="yyyy-MM-dd"/></td>
-		              <td class="book_status">${dto.book_status}</td>
+		              <td class="book_status">${dto.rent_status}</td>
   					</tr>
   				</c:forEach>
 
@@ -59,14 +59,38 @@
             </section>
             <section class="sec2">
                <p class="paging">
-                  <a href="#" class="arrow first"><img src="resources/images/firstPage.gif" alt="맨앞"></a>
-                  <a href="#" class="arrow prev"><img src="resources/images/prevPage.gif" alt="이전"></a>
-
-                  <span><a href="#" class='on'>1</a></span>
-
-                  <a href="#" class="arrow next"><img src="resources/images/nextPage.gif" alt="다음"></a>
-                  <a href="#" class="arrow last"><img src="resources/images/lastPage.gif" alt="맨뒤"></a>
-               </p>
+               	 <c:if test="${pagination.curRange ne 1 }">
+					<a href="my_history?curPage=1" class="arrow first"><img src="resources/images/firstPage.gif" alt="맨앞"></a>	 	
+				 </c:if>
+				 <c:if test="${pagination.curPage ne 1}">
+                    <a href="my_history?curPage=${pagination.prevPage }" class="arrow prev"><img src="resources/images/prevPage.gif" alt="이전"></a>
+                 </c:if>
+							
+				 <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
+                        <c:choose>
+                            <c:when test="${pageNum eq  pagination.curPage}">
+                                <span style="font-weight: bold;"><a href="my_history?curPage=${pageNum }" class='on'>${pageNum }</a></span> 
+                                <%-- onClick="fn_paging('${pageNum }')" --%>
+                            </c:when>
+                            <c:otherwise>
+                                <span><a href="my_history?curPage=${pageNum }">${pageNum }</a></span> 
+                            </c:otherwise>
+                        </c:choose>
+                 </c:forEach>
+						
+					
+							
+                 <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+                        <a href="my_history?curPage=${pagination.nextPage }" class="arrow next"><img src="resources/images/nextPage.gif" alt="다음"></a> 
+                 </c:if>
+                 <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
+                        <a href="my_history?curPage=${pagination.pageCnt }" class="arrow last"><img src="resources/images/lastPage.gif" alt="맨뒤"></a> 
+                 </c:if>    
+						
+	
+			    </p>
+			    
+			      총 게시글 수 : ${pagination.listCnt } /    총 페이지 수 : ${pagination.pageCnt } / 현재 페이지 : ${pagination.curPage } / 현재 블럭 : ${pagination.curRange } / 총 블럭 수 : ${pagination.rangeCnt }
             </section>
             
          </div>

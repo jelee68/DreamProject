@@ -20,7 +20,7 @@
             <section class="sec1">
                <div class="wrap">
                <div class="easy cf">
-                  <form action="book_simple_search" method="post" >
+                  <form action="search_result" method="post" >
          			  	<fieldset>
          					<legend class="hide">자료검색하기</legend>
                         <p class="rescan">
@@ -51,7 +51,7 @@
             <section class="sec2 cf">
                <div>
                   <h3><strong>${param.input1}/${param.input2}/${param.input3}</strong>에 대한 검색 결과 </h3>
-                  <p>총<em>${fn:length(bookresult)}</em>건</p>
+                  <p>총<em>${pagination.listCnt}</em>건</p>
                </div>
                <ul>
              <c:forEach items="${bookresult}" var="dto" varStatus="status">              
@@ -71,36 +71,33 @@
 
             <section class="sec3">
                <p class="paging">
-               	 <c:if test="${pagination.curRange ne 1 }">
-					<a href="#" class="arrow first" onClick="fn_paging(1)"><img src="resources/images/firstPage.gif" alt="맨앞"></a>	 	
+               	  <c:if test="${pagination.curRange ne 1 }">
+					<a href="search_result?curPage=1&${urlPlus}" class="arrow first"><img src="resources/images/firstPage.gif" alt="맨앞"></a>	 	
 				 </c:if>
 				 <c:if test="${pagination.curPage ne 1}">
-                    <a href="#" class="arrow prev" onClick="fn_paging('${pagination.prevPage }')"><img src="resources/images/prevPage.gif" alt="이전"></a>
+                    <a href="search_result?curPage=${pagination.prevPage }&${urlPlus}" class="arrow prev"><img src="resources/images/prevPage.gif" alt="이전"></a>
                  </c:if>
 							
 				 <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
                         <c:choose>
                             <c:when test="${pageNum eq  pagination.curPage}">
-                                <span style="font-weight: bold;"><a href="search_result?${pageNum }" class='on'>${pageNum }</a></span> 
+                                <span style="font-weight: bold;"><a href="search_result?curPage=${pageNum }&${urlPlus}" class='on'>${pageNum }</a></span> 
                                 <%-- onClick="fn_paging('${pageNum }')" --%>
                             </c:when>
                             <c:otherwise>
-                                <span><a href="search_result?${pageNum }">${pageNum }</a></span> 
+                                <span><a href="search_result?curPage=${pageNum }&${urlPlus}">${pageNum }</a></span> 
                             </c:otherwise>
                         </c:choose>
                  </c:forEach>
 						
-							
+					
 							
                  <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-                        <a href="#" class="arrow next" onClick="fn_paging('${pagination.nextPage }')"><img src="resources/images/nextPage.gif" alt="다음"></a> 
+                        <a href="search_result?curPage=${pagination.nextPage }&${urlPlus}" class="arrow next"><img src="resources/images/nextPage.gif" alt="다음"></a> 
                  </c:if>
                  <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
-                        <a href="#" class="arrow last" onClick="fn_paging('${pagination.pageCnt }')"><img src="resources/images/lastPage.gif" alt="맨뒤"></a> 
+                        <a href="search_result?curPage=${pagination.pageCnt }&${urlPlus}" class="arrow last"><img src="resources/images/lastPage.gif" alt="맨뒤"></a> 
                  </c:if>    
-						
-	
-			    </p>
 			    
 			      총 게시글 수 : ${pagination.listCnt } /    총 페이지 수 : ${pagination.pageCnt } / 현재 페이지 : ${pagination.curPage } / 현재 블럭 : ${pagination.curRange } / 총 블럭 수 : ${pagination.rangeCnt }
             </section>
