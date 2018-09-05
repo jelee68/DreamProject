@@ -31,14 +31,14 @@ public class HomeController {
 	public String index(Model model) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);
 		model.addAttribute("new_book", dao.newBookListDao());
-		
+		/*
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String user_id = auth.getName();
 
 	    if(user_id != "anonymousUser") {
 	    	UserDao dao2 = sqlSession.getMapper(UserDao.class);	
 			model.addAttribute("userInfo", dao2.loginDao(user_id));
-	    }
+	    }*/
 		return "/index";
 	}
 	
