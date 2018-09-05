@@ -81,10 +81,11 @@
 				 <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
                         <c:choose>
                             <c:when test="${pageNum eq  pagination.curPage}">
-                                <span style="font-weight: bold;"><a href="#" class='on' onClick="fn_paging('${pageNum }')">${pageNum }</a></span> 
+                                <span style="font-weight: bold;"><a href="search_result?${pageNum }" class='on'>${pageNum }</a></span> 
+                                <%-- onClick="fn_paging('${pageNum }')" --%>
                             </c:when>
                             <c:otherwise>
-                                <span><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span> 
+                                <span><a href="search_result?${pageNum }">${pageNum }</a></span> 
                             </c:otherwise>
                         </c:choose>
                  </c:forEach>
