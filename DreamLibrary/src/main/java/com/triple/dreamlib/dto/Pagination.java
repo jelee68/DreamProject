@@ -2,10 +2,10 @@ package com.triple.dreamlib.dto;
 
 public class Pagination {
 	 /** 한 페이지당 게시글 수 **/
-    private int pageSize = 2;
+    private int pageSize ;
     
     /** 한 블럭(range)당 페이지 수 **/
-    private int rangeSize = 5;
+    private int rangeSize =5;
     
     /** 현재 페이지 **/
     private int curPage = 1;
@@ -36,14 +36,20 @@ public class Pagination {
     
     /** 다음 페이지 **/
     private int nextPage;
+    
+    private int  maxPageListNum;
+    private int  minPageListNum;
+
+	
 
 	public Pagination() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pagination(int pageSize, int rangeSize, int curPage, int curRange, int listCnt, int pageCnt, int rangeCnt,
-			int startPage, int endPage, int startIndex, int prevPage, int nextPage) {
+	public Pagination(int pageSize, int rangeSize, int curPage, int curRange, int listCnt, int pageCnt,
+			int rangeCnt, int startPage, int endPage, int startIndex, int prevPage, int nextPage,
+			int maxPageListNum, int minPageListNum) {
 		super();
 		this.pageSize = pageSize;
 		this.rangeSize = rangeSize;
@@ -57,8 +63,9 @@ public class Pagination {
 		this.startIndex = startIndex;
 		this.prevPage = prevPage;
 		this.nextPage = nextPage;
+		this.maxPageListNum = maxPageListNum;
+		this.minPageListNum = minPageListNum;
 	}
-
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -145,7 +152,7 @@ public class Pagination {
 		this.nextPage = nextPage;
 	}
     
-	 public Pagination(int listCnt, int curPage){
+	 public Pagination(int listCnt, int curPage, int pageSize){
 	        
 	        /**
 	         * 페이징 처리 순서
@@ -155,6 +162,8 @@ public class Pagination {
 	         */
 	        
 	        // 총 게시물 수와 현재 페이지를 Controller로 부터 받아온다.
+		 
+		 	setPageSize(pageSize);
 	        /** 현재페이지 **/
 	        setCurPage(curPage);
 	        /** 총 게시물 수 **/
@@ -169,6 +178,7 @@ public class Pagination {
 	        
 	        /** DB 질의를 위한 startIndex 설정 **/
 	        setStartIndex(curPage);
+	        listPageNumSetting(curPage,pageSize);
 	    }
 	 
 	    public void setPageCnt(int listCnt) {
@@ -176,6 +186,11 @@ public class Pagination {
 	    }
 	    public void setRangeCnt(int pageCnt) {
 	        this.rangeCnt = (int) Math.ceil(pageCnt*1.0/rangeSize);
+	    }
+	    
+	    public void listPageNumSetting(int curPage, int pageSize) {
+	    	 this.maxPageListNum = curPage * pageSize;
+	         this.minPageListNum = (curPage-1) * pageSize +1;
 	    }
 	    public void rangeSetting(int curPage){
 	        
@@ -196,4 +211,22 @@ public class Pagination {
 	    public void setStartIndex(int curPage) {
 	        this.startIndex = (curPage-1) * pageSize;
 	    }
+	    
+	    public int getMaxPageListNum() {
+			return maxPageListNum;
+		}
+
+		
+
+		public void setMaxPageListNum(int maxPageListNum) {
+			this.maxPageListNum = maxPageListNum;
+		}
+
+		public int getMinPageListNum() {
+			return minPageListNum;
+		}
+
+		public void setMinPageListNum(int minPageListNum) {
+			this.minPageListNum = minPageListNum;
+		}
 }

@@ -19,7 +19,7 @@
                <h2>자료검색</h2>
                <div class="detail">
                      <div class="detail-content">
-                        <form action="search_result" method="post">
+                        <form action="search_result" method="get">
                         <fieldset>
                         <legend class="hide">상세조건선택</legend>
 

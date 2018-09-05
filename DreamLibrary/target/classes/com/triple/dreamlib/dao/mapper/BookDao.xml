@@ -30,7 +30,7 @@
 	  	AND book_del = '0' 
 	  order by book_id asc
   </select> -->
-   <select id="book_result1Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
+   <!-- <select id="book_result1Dao" resultType="com.triple.dreamlib.dto.BookSearchDto">
 	  select X.seq, X.book_id, X.book_name, X.book_author, X.book_pub, X.book_date, X.book_imgPath, X.book_status
 		from ( 
 		    select rownum as seq, A.book_id, A.book_name, A.book_author, A.book_pub, A.book_date, A.book_imgPath, A.book_status
@@ -42,7 +42,7 @@
 		        order by book_id asc) A
 		    where rownum <![CDATA[<=]]> 20) X
 		where X.seq <![CDATA[>=]]> 11 
-    </select>
+    </select> -->
   
     <select id="selectedBookDao" resultType="com.triple.dreamlib.dto.BookSearchDto">
 		select rownum, book_id, book_code, book_name, book_author, book_pub, book_date, 
@@ -100,12 +100,14 @@
 		        select book_id, book_name, book_author, book_pub, book_date, book_imgPath, decode(book_status, null ,'대출가능',0,'대출가능','대출중') as book_status 
 		        from book_tbl
 		        <where> LOWER(${param1}) like LOWER('%'|| #{param2} ||'%') 
-				<if test="param4 != null">
+				<if test="!(''.equals(param5))">
 					 ${param3} LOWER(${param4}) like LOWER('%'|| #{param5} ||'%') 
-				</if>
-				<if test="param7 != null">
-					 ${param6} LOWER(${param7}) like LOWER('%'|| #{param8} ||'%') 
+					 
 				</if> 
+				<if test="!(''.equals(param8))">
+					 ${param6} LOWER(${param7}) like LOWER('%'|| #{param8} ||'%') 
+				</if>
+				
 				</where>
 		        AND book_del = '0' 
 		        order by book_id asc) A
@@ -117,10 +119,10 @@
 	 select COUNT(*) AS listCnt  
         from book_tbl 
         <where> LOWER(${param1}) like LOWER('%'|| #{param2} ||'%') 
-			<if test="param4 != null">
+			<if test="!(''.equals(param5))">
 					 ${param3} LOWER(${param4}) like LOWER('%'|| #{param5} ||'%') 
 			</if>
-			<if test="param7 != null">
+			<if test="!(''.equals(param8))">
 					 ${param6} LOWER(${param7}) like LOWER('%'|| #{param8} ||'%') 
 			</if> 
 		</where> 
@@ -147,8 +149,7 @@
 	SELECT book_id, book_name, book_in_date, book_imgPath, rownum
     FROM (SELECT book_id, book_name, book_in_date, book_imgPath
           FROM book_tbl WHERE ROWID 
-          IN (SELECT MIN(ROWID) FROM book_tbl GROUP BY substr(book_id,1,8)) 
-          AND book_del = 0 
+          IN (SELECT MIN(ROWID) FROM book_tbl WHERE book_del = 0 GROUP BY substr(book_id,1,8)) 
           ORDER BY book_in_date DESC)        
     WHERE rownum <![CDATA[<=]]> 9
 

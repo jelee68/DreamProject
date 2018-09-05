@@ -27,12 +27,12 @@ public class HomeController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping("/")
+	@RequestMapping("index")
 	public String index(Model model) {
 		BookDao dao = sqlSession.getMapper(BookDao.class);
 		model.addAttribute("new_book", dao.newBookListDao());
-		/*
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String user_id = auth.getName();
 
 	    if(user_id != "anonymousUser") {

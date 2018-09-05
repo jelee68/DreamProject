@@ -28,7 +28,7 @@
                      	상세검색
                      </span>
                   </h4>
-                  <form action="book_simple_search" method="post" >
+                  <form action="search_result" method="get" >
          			  	<fieldset>
          					<legend class="hide">자료검색하기</legend>
          					<p class="cf">
@@ -48,7 +48,7 @@
 
                <div class="detail">
                      <div class="detail-content">
-                        <form action="search_result" method="post">
+                        <form action="search_result" method="get">
                         <fieldset>
                         <legend class="hide">상세조건선택</legend>
 

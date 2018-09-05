@@ -40,7 +40,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public String index(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String user_id = auth.getName();
@@ -91,9 +91,9 @@ public class UserController {
 	    
 	    int maxPageListNum, minPageListNum;	    
 	    int listCnt = dao.totalListDao(user_id).getListCnt();
-        Pagination pagination = new Pagination(listCnt, curPage);
-	    maxPageListNum = curPage * pagination.getPageSize();
-        minPageListNum = curPage * pagination.getPageSize() - (pagination.getPageSize()-1);	
+        Pagination pagination = new Pagination(listCnt, curPage, 5);
+	    maxPageListNum = pagination.getMaxPageListNum();
+        minPageListNum = pagination.getMinPageListNum();	
 		ArrayList<RentListDto> myRentList = dao.myRentListDao(user_id, maxPageListNum, minPageListNum);
 		
 		int i = 0;

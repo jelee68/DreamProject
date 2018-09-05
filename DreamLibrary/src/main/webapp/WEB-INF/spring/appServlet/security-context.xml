@@ -10,7 +10,7 @@
 <security:http auto-config="true" disable-url-rewriting="true" use-expressions="true">
   <security:form-login login-page="/loginform"
    login-processing-url="/j_spring_security_check.action"
-   default-target-url="/index"
+   default-target-url="/"
    always-use-default-target="true" 
     authentication-failure-url="/loginform?ng" />
   <security:intercept-url pattern="/loginform*" access="permitAll"/>
