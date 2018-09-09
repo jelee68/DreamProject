@@ -18,8 +18,6 @@ public interface UserDao {
 	
 	public Pagination totalListDao(String userId);
 	
-	public int setStartIndex(int i);
-	public int setCntPerPage(int i);
 	
 
 }

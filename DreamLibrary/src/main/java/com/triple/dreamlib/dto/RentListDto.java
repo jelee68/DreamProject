@@ -3,7 +3,7 @@ package com.triple.dreamlib.dto;
 import java.util.Date;
 
 public class RentListDto {
-	private String rownum;
+	private String seq;
 	private String rent_no;
 	private String book_id;
 	private String book_name;
@@ -18,10 +18,10 @@ public class RentListDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RentListDto(String rownum, String rent_no, String book_id, String book_name, Date book_rent_date,
+	public RentListDto(String seq, String rent_no, String book_id, String book_name, Date book_rent_date,
 			Date book_re_due_date, Date book_re_date, String rent_status, String book_status) {
 		super();
-		this.rownum = rownum;
+		this.seq = seq;
 		this.rent_no = rent_no;
 		this.book_id = book_id;
 		this.book_name = book_name;
@@ -32,12 +32,12 @@ public class RentListDto {
 		this.book_status = book_status;
 	}
 
-	public String getRownum() {
-		return rownum;
+	public String getSeq() {
+		return seq;
 	}
 
-	public void setRownum(String rownum) {
-		this.rownum = rownum;
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 
 	public String getRent_no() {

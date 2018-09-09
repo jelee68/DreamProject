@@ -2,6 +2,7 @@ package com.triple.dreamlib;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,10 +16,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.apache.commons.lang3.StringUtils;
 
+import com.google.gson.Gson;
 import com.triple.dreamlib.dao.BookDao;
+import com.triple.dreamlib.dao.RentDao;
 import com.triple.dreamlib.dao.UserDao;
 import com.triple.dreamlib.dto.Pagination;
 import com.triple.dreamlib.dto.RentListDto;
@@ -77,12 +82,21 @@ public class UserController {
 		
 		return "loginform";
 	}
-	/*
-	@RequestMapping("/login")
-	public String login() {
-		return "login";
+
+	@RequestMapping("/id_check")
+	@ResponseBody
+	public String id_check(@RequestParam("inputed_id")String id) {
+		RentDao dao = sqlSession.getMapper(RentDao.class);	
+		UserDto dto = dao.userCheckDao(id);		
+		
+		if(dto == null) {	
+			return "1";
+		}else {
+			return "0";
+		}
+
 	}
-	*/
+	
 	@RequestMapping("/my_history")
 	public String my_history(@RequestParam(defaultValue="1") int curPage,HttpServletRequest request, Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -73,8 +73,7 @@
                <p class="paging">
                	  <c:if test="${pagination.curRange ne 1 }">
 					<a href="search_result?curPage=1&${urlPlus}" class="arrow first"><img src="resources/images/firstPage.gif" alt="맨앞"></a>	 	
-				 </c:if>
-				 <c:if test="${pagination.curPage ne 1}">
+				
                     <a href="search_result?curPage=${pagination.prevPage }&${urlPlus}" class="arrow prev"><img src="resources/images/prevPage.gif" alt="이전"></a>
                  </c:if>
 							
@@ -92,14 +91,14 @@
 						
 					
 							
-                 <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+                  <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
                         <a href="search_result?curPage=${pagination.nextPage }&${urlPlus}" class="arrow next"><img src="resources/images/nextPage.gif" alt="다음"></a> 
-                 </c:if>
-                 <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
+             
+                
                         <a href="search_result?curPage=${pagination.pageCnt }&${urlPlus}" class="arrow last"><img src="resources/images/lastPage.gif" alt="맨뒤"></a> 
                  </c:if>    
 			    
-			      총 게시글 수 : ${pagination.listCnt } /    총 페이지 수 : ${pagination.pageCnt } / 현재 페이지 : ${pagination.curPage } / 현재 블럭 : ${pagination.curRange } / 총 블럭 수 : ${pagination.rangeCnt }
+				</p>
             </section>
             
             

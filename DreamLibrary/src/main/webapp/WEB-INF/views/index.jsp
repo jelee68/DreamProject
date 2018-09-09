@@ -161,7 +161,6 @@
 		
     	 var liWidth =  $(".new_list li").outerWidth();
     	 var liNum = $(".new_list li").length;
-    	 console.log(liWidth)
     	 $(".new_list").width(liNum*liWidth);
     	 var ulWidth =  $(".new_list").width()
 		 var cnt = 0; 
@@ -174,32 +173,28 @@
         	 
         	 if(cnt < (ulWidth/w)-1){
  				cnt++;
- 				tx=cnt*-w;
- 		
- 				$('.new_list').animate({
- 					'left':tx
- 				},700);
- 				//if(cnt>0){$('.prev').fadeIn()}
- 				//if(cnt==3){$('.next').hide()}
+ 				listAni(cnt);
+ 				
  			}
 			
          })
          
          $(".btn_left").on('click',function(){
         	
-        	 if(cnt>0){
-        		 
+        	 if(cnt>0){  		 
  				cnt--;
- 				tx=cnt*-w;
- 				console.log(tx)
- 				$('.new_list').animate({
- 					'left':tx
- 				},700);
- 				//if(cnt>0){$('.prev').fadeIn()}
- 				//if(cnt==3){$('.next').hide()}
+ 				listAni(cnt);
  			}
 			
          })
+         
+         function listAni(cnt){
+        	 tx=cnt*-w;
+				console.log(tx)
+				$('.new_list').animate({
+					'left':tx
+				},700);
+         }
    
  
       })

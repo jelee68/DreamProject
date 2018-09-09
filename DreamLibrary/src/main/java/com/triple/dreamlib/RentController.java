@@ -13,6 +13,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +27,8 @@ import com.triple.dreamlib.dto.BookDto;
 import com.triple.dreamlib.dto.RentDto;
 import com.triple.dreamlib.dto.RentListDto;
 import com.triple.dreamlib.dto.UserDto;
+
+
 
 
 
@@ -166,14 +170,35 @@ public class RentController {
 		RentDao dao = sqlSession.getMapper(RentDao.class);	
 		/*Date now = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String rent_id = sdf.format(now);*/
-		dao.rentAddDao(user_id, book_id);
-		dao.bookStatusUpdateDao("1",book_id);
+		String rent_id = sdf.format(now);*/	
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();	
+		TransactionStatus status = transactionManager.getTransaction(def);
+
+		try {
+			dao.rentAddDao(user_id, book_id);
+			dao.bookStatusUpdateDao("1",book_id);
+			transactionManager.commit(status);
+
+		} catch (Exception e) {
+			transactionManager.rollback(status);
+			e.printStackTrace();
+		}
 	}
 
 	public void update_return(String rent_no,String book_id) {
 		RentDao dao = sqlSession.getMapper(RentDao.class);
-		dao.updateReturnDao(rent_no);
-		dao.bookStatusUpdateDao("0",book_id);
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();	
+		TransactionStatus status = transactionManager.getTransaction(def);
+
+		try {
+			dao.updateReturnDao(rent_no);
+			dao.bookStatusUpdateDao("0",book_id);
+			transactionManager.commit(status);
+
+		} catch (Exception e) {
+			transactionManager.rollback(status);
+			e.printStackTrace();
+		}
 	}
 }

@@ -26,12 +26,13 @@
 #join .join-box form fieldset{}
 #join .join-box form fieldset p{margin-bottom: 10px;}
 #join .join-box form fieldset p label{color:#fff; text-shadow: 0px 2px 1px #333;font-size: 18px;width: 20%;text-align: right;display: inline-block;margin-right: 5px;}
-#join .join-box form fieldset p input{font-size: 16px;border-radius: 10px; border: none;}
-#join .join-box form fieldset p input[type="text"]{width: 60%;height: 40px;text-indent: 10px;padding: 3px 20px 3px 0px;box-sizing: border-box;}
+#join .join-box form fieldset p input{font-size: 16px;border-radius: 10px; border: none;font-family:sans-serif;box-sizing: border-box;}
+#join .join-box form fieldset p input[type="text"]{width: 60%;height: 40px;text-indent: 10px;padding: 3px 20px 3px 0px;}
 #join .join-box form fieldset p input[type="password"]{width: 60%;height: 40px;text-indent: 10px;}
 #join .btn-wrap{text-align: center;margin-top: 50px;}
 #join .btn-wrap input{width: 150px;height: 50px;cursor: pointer;}
-#join #joinBtn{background-color: #b04d4d;color:#fff}
+#join #joinBtn.on{background-color: #b04d4d;color:#fff}
+#join #joinBtn.off{background-color: #aaa;color:#333;cursor:default;}
 #join #goBack{}
 
-#join .ch{ma rgin-left: 5px;color:#2e9500;display: inline-block;background-color: #caec9d;width: 10%;height: 40px;line-height: 40px;border-radius: 0 10px 10px 0;text-indent: 10px; font-weight: bold;transform: translate(-10px,0px);transform: tr}
+#join .ch{ma rgin-left: 5px;co lor:#2e9500;display: inline-block;background-color:#ddd;width: 10%;height: 40px;line-height: 40px;border-radius: 0 10px 10px 0;text-indent: 10px; font-weight: bold;transform: translateX(-13px);vertical-align: top;}

@@ -200,7 +200,7 @@
             
             $(".sec2 #deleteBtn").on("click",function(){
             	var book_id = $("#bookId").val();
-               location.href="book_delete?book_id="+book_id;
+                location.href="book_delete?book_id="+book_id;
            })
                         
             ////////////

@@ -45,7 +45,7 @@
                	
 
   					<tr>
-                      <td class="history_index">${dto.rownum}</td>
+                      <td class="history_index">${dto.seq}</td>
 		              <td class="book_rent_date"><fmt:formatDate value="${dto.book_rent_date}" type="both" pattern="yyyy-MM-dd"/></td>
 		              <td class="book_name">${dto.book_name}</td>
 		              <td class="book_re_due_date"><fmt:formatDate value="${dto.book_re_due_date}" type="both" pattern="yyyy-MM-dd"/></td>
@@ -61,8 +61,7 @@
                <p class="paging">
                	 <c:if test="${pagination.curRange ne 1 }">
 					<a href="my_history?curPage=1" class="arrow first"><img src="resources/images/firstPage.gif" alt="맨앞"></a>	 	
-				 </c:if>
-				 <c:if test="${pagination.curPage ne 1}">
+	
                     <a href="my_history?curPage=${pagination.prevPage }" class="arrow prev"><img src="resources/images/prevPage.gif" alt="이전"></a>
                  </c:if>
 							
@@ -79,18 +78,15 @@
                  </c:forEach>
 						
 					
-							
-                 <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-                        <a href="my_history?curPage=${pagination.nextPage }" class="arrow next"><img src="resources/images/nextPage.gif" alt="다음"></a> 
-                 </c:if>
+			
                  <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
+                 		<a href="my_history?curPage=${pagination.nextPage }" class="arrow next"><img src="resources/images/nextPage.gif" alt="다음"></a> 
                         <a href="my_history?curPage=${pagination.pageCnt }" class="arrow last"><img src="resources/images/lastPage.gif" alt="맨뒤"></a> 
                  </c:if>    
 						
 	
 			    </p>
-			    
-			      총 게시글 수 : ${pagination.listCnt } /    총 페이지 수 : ${pagination.pageCnt } / 현재 페이지 : ${pagination.curPage } / 현재 블럭 : ${pagination.curRange } / 총 블럭 수 : ${pagination.rangeCnt }
+			       
             </section>
             
          </div>

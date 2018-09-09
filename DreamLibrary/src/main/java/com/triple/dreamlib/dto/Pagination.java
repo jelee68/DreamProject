@@ -202,8 +202,8 @@ public class Pagination {
 	            this.endPage = pageCnt;
 	        }
 	        
-	        this.prevPage = curPage - 1;
-	        this.nextPage = curPage + 1;
+	        this.prevPage = (curRange - 1) * rangeSize;
+	        this.nextPage = (curRange * rangeSize)+1;
 	    }
 	    public void setCurRange(int curPage) {
 	        this.curRange = (int)((curPage-1)/rangeSize) + 1;

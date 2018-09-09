@@ -100,7 +100,7 @@
 		        select book_id, book_name, book_author, book_pub, book_date, book_imgPath, decode(book_status, null ,'대출가능',0,'대출가능','대출중') as book_status 
 		        from book_tbl
 		        <where> LOWER(${param1}) like LOWER('%'|| #{param2} ||'%') 
-				<if test="!(''.equals(param5))">
+				<if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(param5)">
 					 ${param3} LOWER(${param4}) like LOWER('%'|| #{param5} ||'%') 
 					 
 				</if> 
@@ -133,6 +133,7 @@
   INSERT  INTO BOOK_TBL VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},sysdate,#{param7},default,default)
   </insert>	
   
+  
    <update id="book_modifyDao">
     UPDATE BOOK_TBL SET BOOK_CODE = #{param1}, BOOK_NAME = #{param2}, 
            BOOK_AUTHOR = #{param3},	BOOK_DATE = #{param4}, BOOK_PUB = #{param5}
@@ -155,4 +156,16 @@
 
   </select>
   
+  <!-- <insert id="setOrderListDao" parameterType="com.doxmo.web.dto.Dxm08">
+		<foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" "  close="SELECT * FROM DUAL">
+			into tbl_dxm08 (order_no, prdt_cd, prdt_sz, order_cnt) values
+			(#{item.order_no}, #{item.prdt_cd},#{item.prdt_sz}, #{item.order_cnt}) 
+		</foreach>
+	</insert>	
+		<insert id="setOrderDao" parameterType="com.doxmo.web.dto.Dxm07">
+    	insert into tbl_dxm07 
+    		(order_no, u_id, store_cd, tt_pay, pay_tp, rcpt_tp, rcpt_nm, rcpt_tel, rcpt_addr, memo, order_st) 
+		values(#{order_no}, #{u_id}, #{store_cd}, #{tt_pay}, #{pay_tp}, #{rcpt_tp}, #{rcpt_nm}, #{rcpt_tel}, #{rcpt_addr}, #{memo}, '01') 
+	</insert>
+   -->
 </mapper>

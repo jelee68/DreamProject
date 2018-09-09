@@ -99,10 +99,10 @@ public class BookController {
 				"&input3="+input3+"&cond01="+cond01+"&cond02="+cond02;
 		
 		
-		boolean checkInput1 = !input1.equals(null);
+		//boolean checkInput1 = !input1.equals(null);
 
 
-		if(checkInput1) {
+		//if(checkInput1) {
 			// 전체리스트 개수
 	        int listCnt = dao.totalListDao(select1, input1, cond01, select2, input2, cond02, select3, input3).getListCnt();
 	        Pagination pagination = new Pagination(listCnt, curPage, 10);
@@ -117,7 +117,7 @@ public class BookController {
 	        model.addAttribute("listCnt", listCnt);	        
 	        model.addAttribute("pagination", pagination);
 		
-		}
+		//}
 		
 		
 		
